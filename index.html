@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+        <meta charset ="UTF-8"/>
+        <title> Canvas Resize </title>
+        <style type ="text/css">
+        canvas{
+            border: 1px solid black
+                }
+          body{
+            margin:0;
+              }
+          </style>
+
+
+          <script>
+            function blink()
+            {
+              document.getElementById("logo").style.opacity= 0;
+              setTimeout("appear()",500);
+            }
+
+
+            function appear(){
+              document.getElementById("logo").style.opacity= 100;
+              setTimeout("blink()",500);
+
+            }
+
+          </script>
+
+
+        </head>
+
+      <body>
+
+        <h1 id="pilou"  > Pilex la Flex <h1>
+        <canvas></canvas>
+        <img id="logo"src="coursera logo0.png" width=100px>
+
+         <script src="script.js"></script>
+      </body>
+    </html>
