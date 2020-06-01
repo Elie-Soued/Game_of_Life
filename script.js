@@ -9,20 +9,40 @@ c.lineWidth=2;
 ;
 
 
-// Blinking square for Joe
+// Blinking square
 
-
+/*
 
 function addsquare(){
-  c.fillRect(302,302,46,46);
+  c.fillRect(300,300,50,50);
 }
 setInterval("addsquare()",500)
 
 function removesquare(){
-  c.clearRect(302,302,46,46);
+  c.clearRect(301,301,48,48);
 }
   setInterval("removesquare()",1000)
+*/
 
+
+
+
+
+
+// moving square animation
+
+var x = 0;
+
+function moving_square(){
+  requestAnimationFrame(moving_square);
+  c.clearRect(0,0,innerWidth,innerHeight);
+  c.beginPath();
+  c.fillRect(x,200,50,50);
+  c.stroke();
+  x += 1;
+  }
+
+moving_square();
 
 
 
@@ -54,6 +74,8 @@ function removesquare(){
 
       // This is the grid
 
+      /*
+
       for (i=0; i<=400; i=i+50){
         c.beginPath();
         c.moveTo(i,0);
@@ -69,14 +91,14 @@ function removesquare(){
           c.stroke();
           console.log(canvas);
           }
-
+*/
 
           //*********************
 
 
 
-
 /*
+
 
           // This is the ball animation bouncing on the border
 
@@ -106,10 +128,10 @@ function removesquare(){
             }
 
             animate();
-
+*/
             //******************************************
 
-            */
+
 
             /*
 
