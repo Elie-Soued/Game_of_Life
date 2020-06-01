@@ -14,12 +14,12 @@ c.lineWidth=2;
 
 
 function addsquare(){
-  c.fillRect(300,300,50,50);
+  c.fillRect(302,302,46,46);
 }
 setInterval("addsquare()",500)
 
 function removesquare(){
-  c.clearRect(300,300,50,50);
+  c.clearRect(302,302,46,46);
 }
   setInterval("removesquare()",1000)
 
