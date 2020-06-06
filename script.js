@@ -8,17 +8,7 @@ c.strokeStyle='black';
 c.lineWidth=2;
 ;
 
-
-
-
-
-
-
-
-
-
 // Blinking square
-
 
 /*
 
@@ -36,12 +26,8 @@ function removesquare(){
 
 
 
-
-
-
-
-
   // This is a nested for loop that draw square on all i and all j
+
 
 
 /*
@@ -60,10 +46,6 @@ function removesquare(){
       }
 
 */
-
-      // **************************************************
-
-
 
 
 
@@ -147,52 +129,14 @@ function something_y(h8) {
 
 
 // Message to Joe
-//In the function something_x(h8), I am returning a value of 400 and for the function something_y(h8) I am returning a value of 350.
-// When I call the draw function and give it the argument h8, the two values (400,350) are read and the square is drawn in this specific location.
-// I wanted to do the same to all the squares (write their something function to have all the square´s x and y defined) but realized that it would not work.
-// If I want to activate a cell I need to create its something function ( = defining its location) than call it in the draw function. 
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-        Examples of cell_name values:
-
-
-        “E4”
-        “F3”
-        “H8”
-        “A2”
-
-        Examples of return values
-
-
-        something_x(“A1”) // should return 0
-        something_y(“A1”) // should return 0
-        something_x(“E4”) // should return 200
-        something_y(“E4”) // should return 150
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
+//In the function something_x(h8), I am returning a value of 400 and for the function something_y(h8) I am returning
+//a value of 350.
+// When I call the draw function and give it the argument h8, the two values (400,350) are read and the square
+//is drawn in this specific location.
+// I wanted to do the same to all the squares (write their something function to have all the square´s x and y defined)
+//but realized that it would not work.
+// If I want to activate a cell I need to create its something function ( = defining its location) than call it
+// in the draw function.
 
 
 
@@ -215,16 +159,8 @@ function something_y(h8) {
 
 
 
-
-
-
-
-
-
 /*
-
-
-          var x = 0;
+      var x = 0;
 
 
           function moving_square(){
@@ -280,13 +216,6 @@ function something_y(h8) {
 
 
 
-
-
-
-
-
-
-          //*********************
 
 
 
