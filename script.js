@@ -13,17 +13,17 @@ c.lineWidth=2;
 /*
 
 function addsquare(){
-  c.fillRect(0,300,50,50);
+  c.fillRect(100,0,50,50);
 }
 setInterval("addsquare()",500)
 
 function removesquare(){
-  c.clearRect(1,301,48,48);
+  c.clearRect(101,1,48,48);
 }
   setInterval("removesquare()",1000)
 
-*/
 
+*/
 
 
   // This is a nested for loop that draw square on all i and all j
@@ -32,17 +32,14 @@ function removesquare(){
 
 /*
 
-  for (i=0; i<=400; i=i+100){
-    for(j=0; j<=400; j=j+100){
+  for (i=50; i<=350; i=i+100){
+    for(j=0; j<=350; j=j+100){
       c.beginPath();
       c.fillRect(i,j,50,50)
       c.stroke();
       console.log(canvas);
     }
-      c.beginPath();
-      c.fillRect(i,300,50,50)
-      c.stroke();
-      console.log(canvas);
+
       }
 
 */
@@ -91,32 +88,35 @@ function removesquare(){
           c.fillText("h", 420, 420);
 
 
+// Chess Board
 
 
 
-function something_x(h7) {
-  return 400;
+          for(i=100; i<=400; i=i+100){
+            for(j=0 ;j<=350; j=j+100){
 
-}
+              c.beginPath();
+              c.fillRect(i,j,50,50)
+              c.stroke();
+            }
+          }
 
-function something_y(h7) {
-     return 300;
-}
+
+          for(i=50; i<=400; i=i+100){
+            for(j=50 ;j<=400; j=j+100){
+
+              c.beginPath();
+              c.fillRect(i,j,50,50)
+              c.stroke();
+            }
+          }
+
+
 
 /*
 
-function something_x(h8) {
-  return 400;
 
-}
-
-function something_y(h8) {
-     return 350;
-}
-*/
-
-
-        function draw(h7) {
+        function draw() {
 
             x = something_x();
             y = something_y();
@@ -126,6 +126,54 @@ function something_y(h8) {
         }
 
         draw();
+
+
+        function something_x() {
+          return 150;
+
+        }
+
+        function something_y() {
+             return 150;
+        }
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // Message to Joe
