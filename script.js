@@ -22,16 +22,12 @@ function removesquare(){
 }
   setInterval("removesquare()",1000)
 
-
 */
 
 
-  // This is a nested for loop that draw square on all i and all j
-
-
+// This is a nested for loop that draw square on all i and all j
 
 /*
-
   for (i=50; i<=350; i=i+100){
     for(j=0; j<=350; j=j+100){
       c.beginPath();
@@ -45,8 +41,7 @@ function removesquare(){
 */
 
 
-
-      // This is the grid
+  // This is the grid
 
 
 
@@ -88,9 +83,7 @@ function removesquare(){
           c.fillText("h", 420, 420);
 
 
-// Chess Board
-
-
+          // Chess Board
 
           for(i=100; i<=400; i=i+100){
             for(j=0 ;j<=350; j=j+100){
@@ -112,30 +105,149 @@ function removesquare(){
           }
 
 
+          /*
+
+          // First Attempt to move the square across the row
+
+          //A1
+
+          function addsquare(){
+            c.fillRect(50,0,50,50);
+          }
+          setTimeout("addsquare()",500)
+
+          function removesquare(){
+            c.clearRect(51,1,48,48);
+          }
+            setTimeout("removesquare()",1000)
+
+            //B1
+
+            function removesquare(){
+              c.clearRect(101,1,48,48);
+            }
+              setTimeout("removesquare()",1500)
+
+              function addsquare(){
+                c.fillRect(100,0,50,50);
+              }
+              setTimeout("addsquare()",2000)
+
+              //C1
+
+              function addsquare(){
+                c.fillRect(150,0,50,50);
+              }
+              setTimeout("addsquare()",2500)
+
+              function removesquare(){
+                c.clearRect(151,1,48,48);
+              }
+                setTimeout("removesquare()",3000)
+
+                //D1
+                function removesquare(){
+                  c.clearRect(201,1,48,48);
+                }
+                  setTimeout("removesquare()",3500)
+
+                  function addsquare(){
+                    c.fillRect(200,0,50,50);
+                  }
+                  setTimeout("addsquare()",4000)
+
+                  //E1
+                  function addsquare(){
+                    c.fillRect(250,0,50,50);
+                  }
+                  setTimeout("addsquare()",4500)
+
+                  function removesquare(){
+                    c.clearRect(251,1,48,48);
+                  }
+                    setTimeout("removesquare()",5000)
+
+                    //F1
+
+                    function removesquare(){
+                    c.clearRect(301,1,48,48);
+                    }
+                    setTimeout("removesquare()",5500)
+
+                    function addsquare(){
+                    c.fillRect(300,0,50,50);
+                      }
+                    setTimeout("addsquare()",6000)
+
+                      //G1
+                    function addsquare(){
+                      c.fillRect(350,0,50,50);
+                      }
+                      setTimeout("addsquare()",6500)
+
+                    function removesquare(){
+                        c.clearRect(351,1,48,48);
+                      }
+                        setTimeout("removesquare()",7000)
+
+                        //H1
+
+                    function removesquare(){
+                          c.clearRect(401,1,48,48);
+                        }
+                          setTimeout("removesquare()",7500)
+
+                      function addsquare(){
+                            c.fillRect(400,0,50,50);
+                          }
+                          setTimeout("addsquare()",8000)
+
+*/
+
+
+      // second Attempt to move the square across the row
 
 /*
 
+      //Making the white blink
 
-        function draw() {
+          for(x=50; x<400; x=x+100){
+          function fill_the_whites() {
 
-            x = something_x();
-            y = something_y();
-            c.fillRect(x,y,50,50);
-            c.beginPath();
-            c.stroke();
-        }
+              function black(){
+              c.fillRect(x,0,50,50);
+                      }
+              setTimeout("black()",500)
 
-        draw();
+      		    function white(){
+                c.clearRect(x-100,1,48,48);
+                        }
+                setTimeout("white()",1000)
+
+                        }
+                        }
 
 
-        function something_x() {
-          return 150;
 
-        }
+      //Making the black blink
 
-        function something_y() {
-             return 150;
-        }
+
+          for(x=100; x<400; x=x+100){
+            function empty_the_blacks() {
+
+            function white(){
+            c.clearRect(x-100,1,48,48);
+                      }
+              setTimeout("white()",500)
+
+                function black(){
+                      c.fillRect(x,0,50,50);
+                                }
+                  setTimeout("black()",1000)
+
+                      }
+
+                      }
 
 
 
@@ -143,67 +255,7 @@ function removesquare(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Message to Joe
-//In the function something_x(h8), I am returning a value of 400 and for the function something_y(h8) I am returning
-//a value of 350.
-// When I call the draw function and give it the argument h8, the two values (400,350) are read and the square
-//is drawn in this specific location.
-// I wanted to do the same to all the squares (write their something function to have all the square´s x and y defined)
-//but realized that it would not work.
-// If I want to activate a cell I need to create its something function ( = defining its location) than call it
-// in the draw function.
-
-
-
-
-
-
-
-
-
-
-
-          // moving square animation
-
-
-// What do we need:
-
-// to move the square we need to give the order of printing a square with specific x,y,w and H.
-// for every loop we need to add w to // X
-// we need to erase
+  // moving square animation
 
 
 
@@ -226,33 +278,27 @@ function removesquare(){
 
               }
 
-                moving_square();
 
-                // This has to be done on every iteration
-                //I need to draw a square at a specific x+w,y,w,h
-                // I need to erase the square on at x-w,y ,w,h
 */
 
 
 
 /*
 
-                              var w = 50;
-                              var x = 0;
+            var w = 50;
+            var x = 0;
 
-                            for(x=0;x<400; x = x+w){
+              for(x=0;x<400; x = x+w){
 
-                              function addsquare(){
-                                c.fillRect(x+w,300,w,50);
-                              }
-                              setInterval("addsquare()",1000)
+              function addsquare(){
+              c.fillRect(x+w,300,w,50);
+                    }
+              setInterval("addsquare()",1000)
 
-                              function removesquare(){
-                                c.clearRect(x-w,301,48,48);
-                              }
-                                setInterval("removesquare()",1500)
-
-
+              function removesquare(){
+              c.clearRect(x-w,301,48,48);
+                            }
+              setInterval("removesquare()",1500)
 
 
                             }
