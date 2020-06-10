@@ -1,6 +1,6 @@
 var canvas = document.querySelector('canvas');
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
+canvas.width=400;
+canvas.height=400;
 
 
 var c = canvas.getContext ('2d');
@@ -9,7 +9,7 @@ c.lineWidth=2;
 ;
 
 
-
+/*
           c.beginPath();
           c.font= "20px Calibri";
           c.fillText("1", 20, 30);
@@ -30,11 +30,13 @@ c.lineWidth=2;
           c.fillText("g", 370, 420);
           c.fillText("h", 420, 420);
 
-
+*/
           // Chess Board
 
-          for(i=100; i<=400; i=i+100){
-            for(j=0 ;j<=350; j=j+100){
+
+
+          for(i=Math.random()* 400; i<=400; i=i+100){
+            for(j=Math.random()* 400 ;j<=350; j=j+100){
 
               c.beginPath();
               c.fillRect(i,j,50,50)
