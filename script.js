@@ -33,13 +33,14 @@ c.lineWidth=2;
 */
           // Chess Board
 
+/*
 
+          for(i=50; i<=400; i=i+100){
+            for(j=0 ;j<=350; j=j+100){
 
-          for(i=Math.random()* 400; i<=400; i=i+100){
-            for(j=Math.random()* 400 ;j<=350; j=j+100){
 
               c.beginPath();
-              c.fillRect(i,j,50,50)
+             c.fillRect(i,j,50,50)
               c.fillRect(i-50,j-50,50,50)
               c.fillRect(i-50,350,50,50)
               c.stroke();
@@ -47,6 +48,45 @@ c.lineWidth=2;
 
             }
           }
+
+*/
+
+
+
+var i = 50;
+var j = 50;
+var w = 50;
+var h = 50;
+
+
+function draw_this_square(x,y){
+
+  var the_x_columns =['a','b','c','d','e','f','g','h'];
+  x = the_x_columns.indexOf(x);
+  c.beginPath();
+  c.fillRect(x*i,y*j,50,50)
+  c.stroke();
+}
+
+draw_this_square('b',2);
+
+
+
+/*
+function define_the_i(n){
+ return i=(n-1)*w;
+}
+
+function define_the_j(n){
+return j=(n-1)*w;
+
+}
+
+*/
+
+
+
+
 
 
 
