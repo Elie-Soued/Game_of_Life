@@ -49,17 +49,21 @@ c.lineWidth=2;
             }
           }
 
+
 */
 
+
+  // Calling individual cell with using a string as an argument
 
 
 var i = 50;
 var j = 50;
-var w = 50;
-var h = 50;
 
 
-function draw_this_square(x,y){
+function draw_this_square(cell){
+
+x = cell[0];
+y=parseInt(cell[1]);
 
   var the_x_columns =['a','b','c','d','e','f','g','h'];
   x = the_x_columns.indexOf(x);
@@ -68,21 +72,7 @@ function draw_this_square(x,y){
   c.stroke();
 }
 
-draw_this_square('b',2);
-
-
-
-/*
-function define_the_i(n){
- return i=(n-1)*w;
-}
-
-function define_the_j(n){
-return j=(n-1)*w;
-
-}
-
-*/
+draw_this_square('e6');
 
 
 
@@ -134,8 +124,8 @@ return j=(n-1)*w;
 
 
 
-      /*
 
+/*
     var w = 50;
     var x = 0;
 
@@ -151,35 +141,30 @@ return j=(n-1)*w;
           }
   setInterval("removesquare()",1500)
                 }
-
-      */
-
-
-
-
+*/
 
     // This is the ball animation bouncing on the border
+/*
 
-      /*
 
-          var x =Math.random()* innerWidth;
-          var y=Math.random()* innerHeight;
+          var x =Math.random()* 400;
+          var y=Math.random()* 400;
           var dx= (Math.random()-0.5)*8;
           var dy=(Math.random()-0.5)*8;
           var radius=30;
 
           function animate(){
             requestAnimationFrame(animate);
-            c.clearRect(0,0,innerWidth,innerHeight);
+            c.clearRect(0,0,400,400);
             c.beginPath();
             c.arc(x,y,radius,0,Math.PI*2,false);
             c.strokeStyle='blue';
             c.stroke();
 
-            if(x+radius>innerWidth||x-radius<0){
+            if(x+radius>400||x-radius<0){
               dx= -dx;
             }
-            if(y+radius>innerHeight || y-radius<0){
+            if(y+radius>400 || y-radius<0){
 
               dy=-dy;
             }
@@ -188,11 +173,11 @@ return j=(n-1)*w;
             }
 
             animate();
-        */
+
+*/
 
 
-
-        /*
+/*
 
 
           for (i=0;i<200;i++){
@@ -202,5 +187,4 @@ return j=(n-1)*w;
             c.arc(x,y,30,0,Math.PI*2,false);
             c.fill();
           }
-
-          */
+*/
