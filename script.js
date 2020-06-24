@@ -71,114 +71,18 @@ class Cell{
     c.beginPath();
     c.fillRect(this.x*this.i,this.y*this.j,50,50)
     c.stroke();
-
   }
   }
 
+var array = ['cellA1','cellA3','cellA5','cellA7','cellB2','cellB4','cellB6','cellB8','cellC1','cellC3','cellC5','cellC7','cellD2','cellD4','cellD6','cellD8','cellE1','cellE3','cellE5','cellE7','cellF2','cellF4','cellF6','cellF8','cellG1','cellG3','cellG5','cellG7','cellH2','cellH4','cellH6','cellH8'];
+var arrayx= [0,2,4,6,1,3,5,7,0,2,4,6,1,3,5,7,0,2,4,6,1,3,5,7,0,2,4,6,1,3,5,7];
+var arrayy= [0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7];
 
-let cellA1;
-let cellA3;
-let cellA5;
-let cellA7;
-let cellB2;
-let cellB4;
-let cellB6;
-let cellB8;
-let cellC1;
-let cellC3;
-let cellC5;
-let cellC7;
-let cellD2;
-let cellD4;
-let cellD6;
-let cellD8;
-let cellE1;
-let cellE3;
-let cellE5;
-let cellE7;
-let cellF2;
-let cellF4;
-let cellF6;
-let cellF8;
-let cellG1;
-let cellG3;
-let cellG5;
-let cellG7;
-let cellH2;
-let cellH4;
-let cellH6;
-let cellH8;
+for (let i =0; i<array.length; i++){
 
-
-
-cellA1=new Cell(0,0);
-cellA3=new Cell(2,0);
-cellA5=new Cell(4,0);
-cellA7=new Cell(6,0);
-cellB2=new Cell(1,1);
-cellB4=new Cell(3,1);
-cellB6=new Cell(5,1);
-cellB8=new Cell(7,1);
-cellC1=new Cell(0,2);
-cellC3=new Cell(2,2);
-cellC5=new Cell(4,2);
-cellC7=new Cell(6,2);
-cellD2=new Cell(1,3);
-cellD4=new Cell(3,3);
-cellD6=new Cell(5,3);
-cellD8=new Cell(7,3);
-cellE1=new Cell(0,4);
-cellE3=new Cell(2,4);
-cellE5=new Cell(4,4);
-cellE7=new Cell(6,4);
-cellF2=new Cell(1,5);
-cellF4=new Cell(3,5);
-cellF6=new Cell(5,5);
-cellF8=new Cell(7,5);
-cellG1=new Cell(0,6);
-cellG3=new Cell(2,6);
-cellG5=new Cell(4,6);
-cellG7=new Cell(6,6);
-cellH2=new Cell(1,7);
-cellH4=new Cell(3,7);
-cellH6=new Cell(5,7);
-cellH8=new Cell(7,7);
-
-
-cellA1.show();
-cellA3.show();
-cellA5.show();
-cellA7.show();
-cellB2.show();
-cellB4.show();
-cellB6.show();
-cellB8.show();
-cellC1.show();
-cellC3.show();
-cellC5.show();
-cellC7.show();
-cellD2.show();
-cellD4.show();
-cellD6.show();
-cellD8.show();
-cellE1.show();
-cellE3.show();
-cellE5.show();
-cellE7.show();
-cellF2.show();
-cellF4.show();
-cellF6.show();
-cellF8.show();
-cellG1.show();
-cellG3.show();
-cellG5.show();
-cellG7.show();
-cellH2.show();
-cellH4.show();
-cellH6.show();
-cellH8.show();
-
-
+array[i] = new Cell (arrayx[i],arrayy[i]);
+array[i].show();
+}
 
 
 
