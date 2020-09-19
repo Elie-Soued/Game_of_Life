@@ -1,6 +1,6 @@
 
 
-                // Game of Life//
+                
 
 //  a cell can have 2 states : Dead or alive, black or white, 0 or 1.
 //  a dead cell can come to life if it has 3 live neighbors.
@@ -29,9 +29,7 @@ let rows=interval;
 
 //Clear the cells while maintening the grid
 function cleargrid(){
-  c.beginPath();
   c.clearRect(0,0,interval*cols,interval*rows);
-  c.stroke();
   for(i=0; i<=innerWidth; i=i+interval){
     for(j=0; j<=innerWidth; j=j+interval){
           c.beginPath();
@@ -45,9 +43,6 @@ function cleargrid(){
           c.stroke();
   }
 }
-
-cleargrid();
-
 
 //Create an empty 2D Array called grid
 function make2DArray(cols,rows){
@@ -67,7 +62,6 @@ for(let i=0; i<cols; i++){
     }
 }
 
-
 // Counting the neighbors of a cell grid [i][j]
 function countNeighbors(grid,x,y){
   let sum =0;
@@ -82,8 +76,7 @@ function countNeighbors(grid,x,y){
   return sum;
 }
 
-
-// Create getnext and populate it with rules of Game od Life
+// Create getnext and populate it with rules of Game of Life
 function getnext(){
   let next=make2DArray(cols,rows);
   for(let i=0; i<cols; i++){
@@ -122,6 +115,7 @@ function drawgrid(){
     }
 
   grid=getnext();
+
 }
 
 drawgrid();
