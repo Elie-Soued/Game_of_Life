@@ -22,7 +22,7 @@ canvas.height=400;
 var c=canvas.getContext('2d');
 
 // Declare global variables
-let interval=40;
+let interval=60;
 let grid;
 let cols=interval;
 let rows=interval;
