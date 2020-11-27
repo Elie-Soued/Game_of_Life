@@ -1,6 +1,6 @@
 
 
-                
+
 
 //  a cell can have 2 states : Dead or alive, black or white, 0 or 1.
 //  a dead cell can come to life if it has 3 live neighbors.
@@ -22,7 +22,7 @@ canvas.height=400;
 var c=canvas.getContext('2d');
 
 // Declare global variables
-let interval=20;
+let interval=40;
 let grid;
 let cols=interval;
 let rows=interval;
