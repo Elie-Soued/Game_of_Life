@@ -42,17 +42,18 @@ function make2DArray(cols, rows) {
   return arr;
 }
 
+//Assign to the variable grid the Value of the execution of Make2DArray
 grid = make2DArray(cols, rows);
 
-// Randomly fill Grid with 0s and 1s
+// Randomly fill grid with 0s and 1s
 for (let i = 0; i < cols; i++) {
   for (let j = 0; j < rows; j++) {
     grid[i][j] = Math.floor(Math.random() * 2);
   }
 }
 
-// Counting the neighbors of a cell grid [i][j]
-function countNeighbors(grid, x, y) {
+// Counting the number of alive neighbors of a cell in grid
+function countAliveNeighbors(grid, x, y) {
   let sum = 0;
   for (let i = -1; i < 2; i++) {
     for (let j = -1; j < 2; j++) {
@@ -71,10 +72,10 @@ function getnext() {
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
       let state = grid[i][j];
-      let neighbors = countNeighbors(grid, i, j);
-      if (state == 0 && neighbors == 3) {
+      let aliveNeighbors = countAliveNeighbors(grid, i, j);
+      if (state == 0 && aliveNeighbors == 3) {
         next[i][j] = 1;
-      } else if (state == 1 && (neighbors < 2 || neighbors > 3)) {
+      } else if (state == 1 && (aliveNeighbors < 2 || aliveNeighbors > 3)) {
         next[i][j] = 0;
       } else {
         next[i][j] = state;
@@ -85,7 +86,11 @@ function getnext() {
   return next;
 }
 
-// Turning 1s into black squares
+// drawgrid does the following:
+//1- It clears the grid(line 93)
+//2- It draws a white square if grid[i][j] == 1
+//3- it gives grid the value of the execution of getnext()
+//4- As a result of point 3,
 function drawgrid() {
   requestAnimationFrame(drawgrid);
   cleargrid();
@@ -101,6 +106,5 @@ function drawgrid() {
       }
     }
   }
-
   grid = getnext();
 }
