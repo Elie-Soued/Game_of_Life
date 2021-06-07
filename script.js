@@ -13,8 +13,8 @@ let c = canvas.getContext("2d");
 // Declare global variables
 let interval = 10;
 let grid;
-let cols = interval * 16;
-let rows = interval * 16;
+let cols = canvas.width / interval;
+let rows = canvas.height / interval;
 
 //Clear the cells while maintening the grid
 function cleargrid() {
@@ -28,7 +28,7 @@ function cleargrid() {
     }
     c.beginPath();
     c.moveTo(i, 0);
-    c.lineTo(i, innerWidth);
+    c.lineTo(i, innerHeight);
     c.stroke();
   }
 }
@@ -88,24 +88,6 @@ function getnext() {
 // Turning 1s into black squares
 function drawgrid() {
   requestAnimationFrame(drawgrid);
-  cleargrid();
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      let x = i * interval;
-      let y = j * interval;
-      if (grid[i][j] == 1) {
-        c.beginPath();
-        c.fillStyle = "#FFFFFF";
-        c.fillRect(x, y, interval - 1, interval - 1);
-        c.stroke();
-      }
-    }
-  }
-
-  grid = getnext();
-}
-
-function freeze() {
   cleargrid();
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
