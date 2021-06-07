@@ -1,0 +1,21 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  border: 1px solid black;
+  background: black;
+}
+
+h1 {
+  text-align: center;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
