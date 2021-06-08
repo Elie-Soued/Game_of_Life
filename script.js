@@ -33,7 +33,7 @@ function cleargrid() {
   }
 }
 
-//Create an empty 2D Array called grid
+//Create an empty 2D Array called
 function make2DArray(cols, rows) {
   let arr = new Array(cols);
   for (let i = 0; i < arr.length; i++) {
@@ -66,7 +66,7 @@ function countAliveNeighbors(grid, x, y) {
   return sum;
 }
 
-// Create getnext and populate it with rules of Game of Life
+// Create a new grid and populate it with rules of Game of Life
 function getnext() {
   let next = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++) {
@@ -90,9 +90,9 @@ function getnext() {
 //1- It clears the grid(line 93)
 //2- It draws a white square if grid[i][j] == 1
 //3- it gives grid the value of the execution of getnext()
-//4- As a result of point 3,
+//4- It execute drawgrid again
+
 function drawgrid() {
-  requestAnimationFrame(drawgrid);
   cleargrid();
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -107,4 +107,5 @@ function drawgrid() {
     }
   }
   grid = getnext();
+  requestAnimationFrame(drawgrid);
 }
