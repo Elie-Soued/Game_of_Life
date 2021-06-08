@@ -16,6 +16,23 @@ let grid;
 let cols = canvas.width / interval;
 let rows = canvas.height / interval;
 
+function setGrid() {
+  for (i = 0; i <= innerWidth; i = i + interval) {
+    for (j = 0; j <= innerWidth; j = j + interval) {
+      c.beginPath();
+      c.moveTo(0, j);
+      c.lineTo(innerWidth, j);
+      c.stroke();
+    }
+    c.beginPath();
+    c.moveTo(i, 0);
+    c.lineTo(i, innerHeight);
+    c.stroke();
+  }
+}
+
+setGrid();
+
 //Clear the cells while maintening the grid
 function cleargrid() {
   c.clearRect(0, 0, interval * cols, interval * rows);
@@ -100,7 +117,7 @@ function drawgrid() {
       let y = j * interval;
       if (grid[i][j] == 1) {
         c.beginPath();
-        c.fillStyle = "#FFFFFF";
+        c.fillStyle = "#000000";
         c.fillRect(x, y, interval - 1, interval - 1);
         c.stroke();
       }
