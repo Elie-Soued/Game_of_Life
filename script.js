@@ -1,15 +1,12 @@
-//Putting Event Listener to the Buttons
-document.getElementById("run").addEventListener("click", drawgrid);
-document.getElementById("stop").addEventListener("click", () => {
-  location.reload();
-});
+//New EventListener
 document.querySelector("canvas").addEventListener("click", (e) => {
   const rect = e.target.getBoundingClientRect();
   const x = Math.floor((e.clientX - rect.left) / interval) * interval;
   const y = Math.floor((e.clientY - rect.top) / interval) * interval;
-  drawASquare(x, y);
   const square = { x: x, y: y, state: 1 };
-  console.log(square);
+  squares.push(square);
+  console.log(squares);
+  drawASquare(x, y);
 });
 
 //Set up the canvas
@@ -17,6 +14,7 @@ let canvas = document.querySelector("canvas");
 canvas.width = 500;
 canvas.height = 200;
 let c = canvas.getContext("2d");
+let squares = [];
 
 // Declare global variables
 let interval = 20;
@@ -58,19 +56,6 @@ function cleargrid() {
   }
 }
 
-// const squareObjectsArray = () => {
-//   const squaresArray = [];
-//   for (let i = 0; i < canvas.width; i = i + interval) {
-//     for (let j = 0; j < canvas.height; j = j + interval) {
-//       square = { x: i, y: j, state: 0 };
-//       squaresArray.push(square);
-//     }
-//   }
-//   return squaresArray;
-// };
-
-// squareObjectsArray();
-
 const drawASquare = (x, y) => {
   c.beginPath();
   c.fillStyle = "#000000";
@@ -78,28 +63,15 @@ const drawASquare = (x, y) => {
   c.stroke();
 };
 
-//Old code
-//---------
+const clearASquare = (x, y) => {
+  c.beginPath();
+  c.fillStyle = "#FFFFFF";
+  c.fillRect(x, y, interval - 1, interval - 1);
+  c.stroke();
+};
 
-//Create an empty 2D Array called
-// function make2DArray(cols, rows) {
-//   let arr = new Array(cols);
-//   for (let i = 0; i < arr.length; i++) {
-//     arr[i] = new Array(rows);
-//   }
-//   return arr;
-// }
-
-//Assign to the variable grid the Value of the execution of Make2DArray
-// grid = make2DArray(cols, rows);
-
-//Randomly fill grid with 0s and 1s
-// for (let i = 0; i < cols; i++) {
-//   for (let j = 0; j < rows; j++) {
-//     grid[i][j] = Math.floor(Math.random() * 2);
-//   }
-// }
-
+// Old Code : Might be reused at a later stage
+//------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 
 // Counting the number of alive neighbors of a cell in grid
