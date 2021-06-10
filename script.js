@@ -4,10 +4,43 @@ document.getElementById("stop").addEventListener("click", () => {
   location.reload();
 });
 
+document.getElementById("ZoomIn").addEventListener("click", () => {
+  interval = interval + 1;
+});
+
+document.getElementById("ZoomOut").addEventListener("click", () => {
+  interval = interval - 1;
+});
+
+document.getElementById("IncreaseCanvas").addEventListener("click", () => {
+  canvas.width = canvas.width + 10;
+  canvas.height = canvas.height + 10;
+});
+
+document.getElementById("DecreaseCanvas").addEventListener("click", () => {
+  canvas.width = canvas.width - 10;
+  canvas.height = canvas.height - 10;
+});
+
+document.getElementById("Black-White").addEventListener("click", () => {
+  if (canvas.style.backgroundColor === "black") {
+    canvas.style.backgroundColor = "white";
+    squareColor = "black";
+    gridColor = "white";
+  } else {
+    canvas.style.backgroundColor = "black";
+    squareColor = "white";
+    gridColor = "black";
+  }
+});
+
 //Set up the canvas
 let canvas = document.querySelector("canvas");
-canvas.width = 1500;
-canvas.height = 500;
+canvas.style.backgroundColor = "black";
+let squareColor = "white";
+let gridColor = "black";
+canvas.width = 1000;
+canvas.height = 400;
 let c = canvas.getContext("2d");
 
 // Declare global variables
@@ -24,11 +57,13 @@ function cleargrid() {
       c.beginPath();
       c.moveTo(0, j);
       c.lineTo(innerWidth, j);
+      c.strokeStyle = gridColor;
       c.stroke();
     }
     c.beginPath();
     c.moveTo(i, 0);
     c.lineTo(i, innerHeight);
+    c.strokeStyle = gridColor;
     c.stroke();
   }
 }
@@ -100,8 +135,9 @@ function drawgrid() {
       let y = j * interval;
       if (grid[i][j] == 1) {
         c.beginPath();
-        c.fillStyle = "#FFFFFF";
+        c.fillStyle = squareColor;
         c.fillRect(x, y, interval - 1, interval - 1);
+        c.strokeStyle = gridColor;
         c.stroke();
       }
     }
