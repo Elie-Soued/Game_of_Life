@@ -16,7 +16,9 @@ document.getElementById("ZoomIn").addEventListener("click", () => {
 
 //Zoom out
 document.getElementById("ZoomOut").addEventListener("click", () => {
-  interval = interval - 1;
+  if (interval > 10) {
+    interval = interval - 1;
+  }
 });
 
 //Increase Canvas Size
@@ -32,7 +34,7 @@ document.getElementById("DecreaseCanvas").addEventListener("click", () => {
 });
 
 //Change colors
-document.getElementById("Black-White").addEventListener("click", () => {
+document.getElementById("colorChange").addEventListener("click", () => {
   canvas.style.backgroundColor = randomColors();
   squareColor = randomColors();
   gridColor = randomColors();
