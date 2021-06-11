@@ -1,39 +1,3 @@
-//Putting Event Listener to the Buttons
-document.getElementById("run").addEventListener("click", drawgrid);
-document.getElementById("stop").addEventListener("click", () => {
-  location.reload();
-});
-
-document.getElementById("ZoomIn").addEventListener("click", () => {
-  interval = interval + 1;
-});
-
-document.getElementById("ZoomOut").addEventListener("click", () => {
-  interval = interval - 1;
-});
-
-document.getElementById("IncreaseCanvas").addEventListener("click", () => {
-  canvas.width = canvas.width + 10;
-  canvas.height = canvas.height + 10;
-});
-
-document.getElementById("DecreaseCanvas").addEventListener("click", () => {
-  canvas.width = canvas.width - 10;
-  canvas.height = canvas.height - 10;
-});
-
-document.getElementById("Black-White").addEventListener("click", () => {
-  if (canvas.style.backgroundColor === "black") {
-    canvas.style.backgroundColor = "white";
-    squareColor = "black";
-    gridColor = "white";
-  } else {
-    canvas.style.backgroundColor = "black";
-    squareColor = "white";
-    gridColor = "black";
-  }
-});
-
 //Set up the canvas
 let canvas = document.querySelector("canvas");
 canvas.style.backgroundColor = "black";
