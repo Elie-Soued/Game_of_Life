@@ -33,11 +33,19 @@ document.getElementById("DecreaseCanvas").addEventListener("click", () => {
   canvas.height = canvas.height - 10;
 });
 
-//Change colors
-document.getElementById("colorChange").addEventListener("click", () => {
+//Change background
+document.getElementById("background").addEventListener("click", () => {
   canvas.style.backgroundColor = randomColors();
-  squareColor = randomColors();
+});
+
+//Change grid
+document.getElementById("grid").addEventListener("click", () => {
   gridColor = randomColors();
+});
+
+//Change square
+document.getElementById("square").addEventListener("click", () => {
+  squareColor = randomColors();
 });
 
 const randomColors = () => {
