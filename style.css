@@ -49,3 +49,9 @@ a {
 #GOLLink {
   margin-top: 5rem;
 }
+
+#colorPickers div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
