@@ -13,22 +13,23 @@ let grid;
 let cols = canvas.width / interval;
 let rows = canvas.height / interval;
 
+//Drawing the lines of the grid
+function drawLine(init_x, init_y, final_x, final_y) {
+  c.beginPath();
+  c.moveTo(init_x, init_y);
+  c.lineTo(final_x, final_y);
+  c.strokeStyle = gridColor;
+  c.stroke();
+}
+
 //Clear the cells while maintening the grid
 function cleargrid() {
   c.clearRect(0, 0, interval * cols, interval * rows);
   for (i = 0; i <= innerWidth; i = i + interval) {
     for (j = 0; j <= innerWidth; j = j + interval) {
-      c.beginPath();
-      c.moveTo(0, j);
-      c.lineTo(innerWidth, j);
-      c.strokeStyle = gridColor;
-      c.stroke();
+      drawLine(0, j, innerWidth, j);
     }
-    c.beginPath();
-    c.moveTo(i, 0);
-    c.lineTo(i, innerHeight);
-    c.strokeStyle = gridColor;
-    c.stroke();
+    drawLine(i, 0, i, innerHeight);
   }
 }
 
@@ -86,7 +87,7 @@ function getnext() {
 }
 
 // drawgrid does the following:
-//1- It clears the grid(line 93)
+//1- It clears the grid(line 97)
 //2- It draws a white square if grid[i][j] == 1
 //3- it gives grid the value of the execution of getnext()
 //4- It execute drawgrid again
