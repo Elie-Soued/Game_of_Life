@@ -34,20 +34,19 @@ document.getElementById("DecreaseCanvas").addEventListener("click", () => {
 });
 
 //Change background
-document.getElementById("background").addEventListener("click", () => {
-  canvas.style.backgroundColor = randomColors();
+let colorPickerBackground = document.getElementById("colorPickerBackground");
+colorPickerBackground.addEventListener("input", () => {
+  canvas.style.backgroundColor = colorPickerBackground.value;
 });
 
 //Change grid
-document.getElementById("grid").addEventListener("click", () => {
-  gridColor = randomColors();
+let colorPickerGrid = document.getElementById("colorPickerGrid");
+colorPickerGrid.addEventListener("input", () => {
+  gridColor = colorPickerGrid.value;
 });
 
 //Change square
-document.getElementById("square").addEventListener("click", () => {
-  squareColor = randomColors();
+let colorPickerSquare = document.getElementById("colorPickerSquare");
+colorPickerSquare.addEventListener("input", () => {
+  squareColor = colorPickerSquare.value;
 });
-
-const randomColors = () => {
-  return "#" + Math.floor(Math.random() * 16777215).toString(16);
-};
