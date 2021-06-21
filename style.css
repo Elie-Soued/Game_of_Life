@@ -23,7 +23,6 @@ h1 {
   justify-content: space-around;
   align-items: center;
   position: absolute;
-  top: 42rem;
 }
 
 #buttons p {
@@ -60,6 +59,20 @@ a {
 #run_stop {
   display: flex;
   flex-direction: row;
+}
+
+@media (max-width: 1870px) {
+  #buttons {
+    position: absolute;
+    top: 50rem;
+  }
+}
+
+@media (max-width: 1295px) {
+  #buttons {
+    position: absolute;
+    top: 35rem;
+  }
 }
 
 @media (max-width: 1024px) {
