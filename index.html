@@ -6,23 +6,21 @@
     <title>Game of Life</title>
     <link rel="icon" href="./image/favicon.jpg" type="image/x-icon " />
     <link rel="stylesheet" href="style.css" />
-    <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-    integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-    crossorigin="anonymous"
-  />
+  
   </head>
 
   <body>
     <h1>Conway´s Game of Life</h1>
+    <a href="https://github.com/Elie-Soued/Game_of_Life">This page is open source</a >
    
+    <br/>
+    <canvas id="canvas"></canvas>
 
     <div id="buttons">
 
       <div id="run_stop">
-        <button id="run"><i class="fas fa-play"></i></button>
-        <button id="stop"><i class="fas fa-stop"></i></button>
+        <button id="run">Start</button>
+        <button id="stop">Stop</button>
         </div>
       <div>
         <p>Zoom In and Out</p>
@@ -41,18 +39,17 @@
         <div>
           <input id="colorPickerGrid" type ="color">Grid</input>
           <input id="colorPickerBackground" type ="color">Background</input>
-          <input id="colorPickerSquare" type ="color">Square</input>
+          <input id="colorPickerSquare" type ="color"  value="#ffffff">Square</input>
         </div>
   
       </div>
+      <button id="GOLLink">
+        <a href="https://www.youtube.com/watch?v=C2vgICfQawE">Play me</a>
+      </button>
+  
     </div>
    
- 
-    
-    <canvas id="canvas"></canvas>
-    
-
-  
+   
 
     <script src="script.js"></script>
     <script src="eventlisteners.js"></script>
