@@ -10,6 +10,7 @@ body {
 canvas {
   width: 80%;
   border: 1px solid black;
+  max-width: 1300px;
 }
 
 h1 {
@@ -23,6 +24,7 @@ h1 {
   justify-content: space-around;
   align-items: center;
   position: absolute;
+  top: 40rem;
 }
 
 #buttons p {
@@ -61,10 +63,17 @@ a {
   flex-direction: row;
 }
 
-@media (max-width: 1870px) {
+@media (max-width: 2000px) {
   #buttons {
     position: absolute;
-    top: 50rem;
+    top: 70rem;
+  }
+}
+
+@media (min-width: 1527px) {
+  #buttons {
+    position: absolute;
+    top: 42rem;
   }
 }
 
