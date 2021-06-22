@@ -8,9 +8,7 @@ body {
 }
 
 canvas {
-  width: 80%;
   border: 1px solid black;
-  max-width: 1300px;
 }
 
 h1 {
