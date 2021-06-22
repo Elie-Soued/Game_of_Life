@@ -1,17 +1,19 @@
 //Set up the canvas
 let canvas = document.querySelector("canvas");
-canvas.style.backgroundColor = "black";
-let squareColor = "white";
+canvas.style.backgroundColor = "white";
+let squareColor = "black";
 let gridColor = "black";
-canvas.width = 1000;
-canvas.height = 400;
+let width = 100;
+let height = 40;
 let c = canvas.getContext("2d");
 
 // Declare global variables
 let interval = 10;
 let grid;
-let cols = canvas.width / interval;
-let rows = canvas.height / interval;
+canvas.width = width * interval;
+canvas.height = height * interval;
+let cols = width;
+let rows = height;
 
 //Clear the cells while maintening the grid
 function cleargrid() {
