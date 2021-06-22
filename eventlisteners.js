@@ -1,3 +1,8 @@
+let zoomIn;
+let zoomOut;
+let increaseCanvas;
+let decreaseCanvas;
+
 //Event Listeners
 //----------------
 
@@ -10,27 +15,59 @@ document.getElementById("stop").addEventListener("click", () => {
 });
 
 //Zoom in
-document.getElementById("ZoomIn").addEventListener("click", () => {
-  interval = interval + 1;
+document.getElementById("ZoomIn").addEventListener("mousedown", () => {
+  zoomIn = setInterval(() => {
+    interval = interval + 1;
+    console.log(interval);
+  }, 100);
+});
+
+document.getElementById("ZoomIn").addEventListener("mouseup", () => {
+  if (zoomIn) {
+    clearInterval(zoomIn);
+  }
 });
 
 //Zoom out
-document.getElementById("ZoomOut").addEventListener("click", () => {
-  if (interval > 10) {
+document.getElementById("ZoomOut").addEventListener("mousedown", () => {
+  zoomOut = setInterval(() => {
     interval = interval - 1;
+    console.log(interval);
+  }, 100);
+});
+
+document.getElementById("ZoomOut").addEventListener("mouseup", () => {
+  if (zoomOut) {
+    clearInterval(zoomOut);
   }
 });
 
 //Increase Canvas Size
-document.getElementById("IncreaseCanvas").addEventListener("click", () => {
-  canvas.width = canvas.width + 10;
-  canvas.height = canvas.height + 10;
+document.getElementById("IncreaseCanvas").addEventListener("mousedown", () => {
+  increaseCanvas = setInterval(() => {
+    canvas.width = canvas.width + 10;
+    canvas.height = canvas.height + 10;
+  }, 100);
+});
+
+document.getElementById("IncreaseCanvas").addEventListener("mouseup", () => {
+  if (increaseCanvas) {
+    clearInterval(increaseCanvas);
+  }
 });
 
 //Decrease Canvas Size
-document.getElementById("DecreaseCanvas").addEventListener("click", () => {
-  canvas.width = canvas.width - 10;
-  canvas.height = canvas.height - 10;
+document.getElementById("DecreaseCanvas").addEventListener("mousedown", () => {
+  decreaseCanvas = setInterval(() => {
+    canvas.width = canvas.width - 10;
+    canvas.height = canvas.height - 10;
+  }, 100);
+});
+
+document.getElementById("DecreaseCanvas").addEventListener("mouseup", () => {
+  if (decreaseCanvas) {
+    clearInterval(decreaseCanvas);
+  }
 });
 
 //Change background
