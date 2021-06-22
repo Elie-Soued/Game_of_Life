@@ -1,36 +1,42 @@
-//Set up the canvas
+//Canvas set up
+
+//Selecting the canvas
 let canvas = document.querySelector("canvas");
+//Setting the colors
 canvas.style.backgroundColor = "white";
 let squareColor = "black";
 let gridColor = "black";
+//Defining the dimensions
+let interval = 10;
 let width = 100;
 let height = 40;
-let c = canvas.getContext("2d");
-
-// Declare global variables
-let interval = 10;
-let grid;
 canvas.width = width * interval;
 canvas.height = height * interval;
-let cols = width;
-let rows = height;
+let cols = canvas.width;
+let rows = canvas.height;
+
+//Initializing c to the value of the getContext(2D) execution on Canvas.
+let c = canvas.getContext("2d");
+//Declaring grid
+let grid;
+
+//Drawing the lines of the grid
+function drawLine(init_x, init_y, final_x, final_y) {
+  c.beginPath();
+  c.moveTo(init_x, init_y);
+  c.lineTo(final_x, final_y);
+  c.strokeStyle = gridColor;
+  c.stroke();
+}
 
 //Clear the cells while maintening the grid
 function cleargrid() {
   c.clearRect(0, 0, interval * cols, interval * rows);
-  for (i = 0; i <= innerWidth; i = i + interval) {
-    for (j = 0; j <= innerWidth; j = j + interval) {
-      c.beginPath();
-      c.moveTo(0, j);
-      c.lineTo(innerWidth, j);
-      c.strokeStyle = gridColor;
-      c.stroke();
+  for (i = 0; i <= canvas.width; i = i + interval) {
+    for (j = 0; j <= canvas.height; j = j + interval) {
+      drawLine(0, j, canvas.width, j);
     }
-    c.beginPath();
-    c.moveTo(i, 0);
-    c.lineTo(i, innerHeight);
-    c.strokeStyle = gridColor;
-    c.stroke();
+    drawLine(i, 0, i, canvas.height);
   }
 }
 
