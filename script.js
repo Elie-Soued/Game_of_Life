@@ -1,10 +1,12 @@
 //Canvas set up
 //Selecting the canvas
 let canvas = document.querySelector("canvas");
+
 //Setting the colors
 canvas.style.backgroundColor = "white";
 let squareColor = "black";
 let gridColor = "black";
+
 //Defining the dimensions
 let interval = 10;
 let width = 100;
