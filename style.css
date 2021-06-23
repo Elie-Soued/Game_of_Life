@@ -9,6 +9,8 @@ body {
 
 canvas {
   border: 1px solid black;
+  width: 70%;
+  height: 400px;
 }
 
 h1 {
@@ -16,13 +18,30 @@ h1 {
 }
 
 #buttons {
-  width: 80%;
+  max-width: 1000px;
+  width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   position: absolute;
   top: 40rem;
+}
+
+#IncreaseCanvas,
+#DecreaseCanvas {
+  width: 2rem;
+  height: auto;
+}
+
+.buttonElement {
+  margin: 1rem;
+}
+
+.inputLabel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 #buttons p {
@@ -57,64 +76,37 @@ a {
 }
 
 #run_stop {
+  width: 10rem;
+  height: auto;
   display: flex;
   flex-direction: row;
 }
 
-@media (max-width: 2000px) {
-  #buttons {
-    position: absolute;
-    top: 70rem;
-  }
-}
-
-@media (min-width: 1527px) {
-  #buttons {
-    position: absolute;
-    top: 42rem;
-  }
-}
-
-@media (max-width: 1295px) {
+@media (min-width: 1500px) {
   #buttons {
     position: absolute;
     top: 35rem;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1400px) {
   #buttons {
     position: absolute;
-    top: 30rem;
+    top: 35rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
   #buttons {
     position: absolute;
-    top: 25rem;
+    top: 35rem;
   }
 }
 
-@media (max-width: 540px) {
+@media (max-width: 480px) {
   #buttons {
     display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 20rem;
-  }
-}
-
-@media (max-width: 280px) {
-  #buttons {
-    position: absolute;
-    top: 20rem;
-  }
-}
-
-@media (max-width: 320px) {
-  #buttons {
-    position: absolute;
-    top: 20rem;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
