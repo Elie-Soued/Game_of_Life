@@ -1,5 +1,4 @@
 //Canvas set up
-
 //Selecting the canvas
 let canvas = document.querySelector("canvas");
 //Setting the colors
@@ -32,8 +31,8 @@ function drawLine(init_x, init_y, final_x, final_y) {
 //Clear the cells while maintening the grid
 function cleargrid() {
   c.clearRect(0, 0, interval * cols, interval * rows);
-  for (i = 0; i <= canvas.width; i = i + interval) {
-    for (j = 0; j <= canvas.height; j = j + interval) {
+  for (let i = 0; i <= canvas.width; i = i + interval) {
+    for (let j = 0; j <= canvas.height; j = j + interval) {
       drawLine(0, j, canvas.width, j);
     }
     drawLine(i, 0, i, canvas.height);
