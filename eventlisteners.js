@@ -14,7 +14,10 @@ document.getElementById("stop").addEventListener("click", () => {
   location.reload();
 });
 
+//--------------------------------------------------------------------
+
 //Zoom in
+//********/
 document.getElementById("ZoomIn").addEventListener("mousedown", () => {
   zoomIn = setInterval(() => {
     interval = interval + 1;
@@ -22,22 +25,38 @@ document.getElementById("ZoomIn").addEventListener("mousedown", () => {
   }, 100);
 });
 
+document.getElementById("ZoomIn").addEventListener("click", () => {
+  interval = interval + 1;
+  console.log(interval);
+});
+
 document.getElementById("ZoomIn").addEventListener("mouseup", () => {
   clearInterval(zoomIn);
 });
 
+//----------------------------------------------------------------------
+
 //Zoom out
+//********/
 document.getElementById("ZoomOut").addEventListener("mousedown", () => {
   zoomOut = setInterval(() => {
     interval = interval - 1;
   }, 100);
 });
 
+document.getElementById("ZoomOut").addEventListener("click", () => {
+  interval = interval - 1;
+  console.log(interval);
+});
+
 document.getElementById("ZoomOut").addEventListener("mouseup", () => {
   clearInterval(zoomOut);
 });
 
+//----------------------------------------------------------------------
+
 //Increase Canvas Size
+//*********************/
 document.getElementById("IncreaseCanvas").addEventListener("mousedown", () => {
   increaseCanvas = setInterval(() => {
     canvas.width = canvas.width + 10;
@@ -45,11 +64,19 @@ document.getElementById("IncreaseCanvas").addEventListener("mousedown", () => {
   }, 100);
 });
 
+document.getElementById("IncreaseCanvas").addEventListener("click", () => {
+  canvas.width = canvas.width + 10;
+  canvas.height = canvas.height + 10;
+});
+
 document.getElementById("IncreaseCanvas").addEventListener("mouseup", () => {
   clearInterval(increaseCanvas);
 });
 
+//----------------------------------------------------------------------
+
 //Decrease Canvas Size
+//********************/
 document.getElementById("DecreaseCanvas").addEventListener("mousedown", () => {
   decreaseCanvas = setInterval(() => {
     canvas.width = canvas.width - 10;
@@ -57,9 +84,15 @@ document.getElementById("DecreaseCanvas").addEventListener("mousedown", () => {
   }, 100);
 });
 
+document.getElementById("DecreaseCanvas").addEventListener("click", () => {
+  canvas.width = canvas.width - 10;
+  canvas.height = canvas.height - 10;
+});
+
 document.getElementById("DecreaseCanvas").addEventListener("mouseup", () => {
   clearInterval(decreaseCanvas);
 });
+//----------------------------------------------------------------------
 
 //Change background
 let colorPickerBackground = document.getElementById("colorPickerBackground");
