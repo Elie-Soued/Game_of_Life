@@ -4,52 +4,45 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial –scale =1.0" />
     <title>Game of Life</title>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
     <link rel="icon" href="./image/favicon.jpg" type="image/x-icon " />
     <link rel="stylesheet" href="style.css" />
-  
   </head>
 
   <body>
-    <h1>Conway´s Game of Life</h1>
-    <a href="https://github.com/Elie-Soued/Game_of_Life">This page is open source</a >
-   
-    <br/>
+    <h1>Play the Game of Life</h1>
+    <p><a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">learn more about Conway´s Game of Life</a></p>
+
+    <br />
     <canvas id="canvas"></canvas>
 
     <div id="buttons">
+      <i id="run" class="fas fa-play buttonElement"></i>
+      <i id="stop" class="fas fa-stop buttonElement"></i>
+      <i id="ZoomIn" class="fas fa-search-plus buttonElement"></i>
+      <i id="ZoomOut" class="fas fa-search-minus buttonElement"></i>
+      <img id="IncreaseCanvas" class="buttonElement" src="./image/increaseCanvas.png" />
+      <img id="DecreaseCanvas" class="buttonElement"src="./image/decreaseCanvas.png" />
+      <div class="inputLabel buttonElement">
+        <input id="colorPickerGrid" type ="color" value="#000000" id="Grid"></input>
+        <label for="Grid">Grid</label>
+      </div>
+      <div class="inputLabel buttonElement">
+        <input id="colorPickerBackground" type ="color" value="#FFFFFF" id="Background"></input>
+        <label for="Background">Background</label>
+       </div>
+       <div class="inputLabel buttonElement">
+        <input id="colorPickerSquare" type ="color"  value="#000000" id="Square"></input>
+        <label for="Square">Square</label>
 
-      <div id="run_stop">
-        <button id="run">Start</button>
-        <button id="stop">Stop</button>
-        </div>
-      <div>
-    
-        <div>
-          <button id="ZoomIn">Zoom In</button>
-          <button id="ZoomOut">Zoom Out</button>
-        </div>
-      </div>
-      <div>
-    
-        <button id="IncreaseCanvas">Increase Canvas</button>
-        <button id="DecreaseCanvas">Decrease Canvas</button>
-      </div>
-      <div id="colorPickers">
-        <div>
-          <input id="colorPickerGrid" type ="color" value="#000000"></input>
-          <input id="colorPickerBackground" type ="color" value="#FFFFFF"></input>
-          <input id="colorPickerSquare" type ="color"  value="#000000"></input>
-        </div>
-  
-      </div>
-      <button id="GOLLink">
-        <a href="https://www.youtube.com/watch?v=C2vgICfQawE">Play me</a>
-      </button>
-  
-    </div>
-   
-   
+       </div>
 
+  
     <script src="script.js"></script>
     <script src="eventlisteners.js"></script>
   </body>
