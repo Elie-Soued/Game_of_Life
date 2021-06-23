@@ -110,3 +110,17 @@ a {
     flex-wrap: wrap;
   }
 }
+
+@media (max-width: 375px) {
+  #buttons {
+    position: absolute;
+    top: 37rem;
+  }
+}
+
+@media (max-width: 320px) {
+  #buttons {
+    position: absolute;
+    top: 40rem;
+  }
+}
