@@ -23,23 +23,18 @@ document.getElementById("ZoomIn").addEventListener("mousedown", () => {
 });
 
 document.getElementById("ZoomIn").addEventListener("mouseup", () => {
-  if (zoomIn) {
-    clearInterval(zoomIn);
-  }
+  clearInterval(zoomIn);
 });
 
 //Zoom out
 document.getElementById("ZoomOut").addEventListener("mousedown", () => {
   zoomOut = setInterval(() => {
     interval = interval - 1;
-    console.log(interval);
   }, 100);
 });
 
 document.getElementById("ZoomOut").addEventListener("mouseup", () => {
-  if (zoomOut) {
-    clearInterval(zoomOut);
-  }
+  clearInterval(zoomOut);
 });
 
 //Increase Canvas Size
@@ -51,9 +46,7 @@ document.getElementById("IncreaseCanvas").addEventListener("mousedown", () => {
 });
 
 document.getElementById("IncreaseCanvas").addEventListener("mouseup", () => {
-  if (increaseCanvas) {
-    clearInterval(increaseCanvas);
-  }
+  clearInterval(increaseCanvas);
 });
 
 //Decrease Canvas Size
@@ -65,9 +58,7 @@ document.getElementById("DecreaseCanvas").addEventListener("mousedown", () => {
 });
 
 document.getElementById("DecreaseCanvas").addEventListener("mouseup", () => {
-  if (decreaseCanvas) {
-    clearInterval(decreaseCanvas);
-  }
+  clearInterval(decreaseCanvas);
 });
 
 //Change background
