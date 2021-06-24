@@ -1,13 +1,5 @@
-//Canvas set up
-//Selecting the canvas
-let canvas = document.querySelector("canvas");
-
-//Setting the colors
-canvas.style.backgroundColor = "white";
-let squareColor = "black";
-let gridColor = "black";
-
 //Defining the dimensions
+
 let interval = 10;
 let width = 100;
 let height = 40;
@@ -17,8 +9,8 @@ canvas.width = width * interval;
 canvas.height = height * interval;
 let cols = canvas.width;
 let rows = canvas.height;
-
-//Initializing c to the value of the getContext(2D) execution on Canvas.
+let gridColor = "black";
+let squareColor = "black";
 
 //Declaring grid
 

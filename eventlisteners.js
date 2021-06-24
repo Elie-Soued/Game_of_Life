@@ -1,3 +1,5 @@
+//imports
+
 import {
   run,
   stop,
@@ -5,11 +7,14 @@ import {
   zoomOut,
   increaseCanvas,
   decreaseCanvas,
+  canvas,
   colorPickerBackground,
   colorPickerSquare,
   colorPickerGrid,
 } from "./constants.js";
 
+//Variables
+//----------
 let zoomInAction;
 let zoomOutAction;
 let increaseCanvasAction;
@@ -33,13 +38,11 @@ stop.addEventListener("click", () => {
 zoomIn.addEventListener("mousedown", () => {
   zoomInAction = setInterval(() => {
     interval = interval + 1;
-    console.log(interval);
   }, 100);
 });
 
 zoomIn.addEventListener("click", () => {
   interval = interval + 1;
-  console.log(interval);
 });
 
 zoomIn.addEventListener("mouseup", () => {
@@ -58,7 +61,6 @@ zoomOut.addEventListener("mousedown", () => {
 
 zoomOut.addEventListener("click", () => {
   interval = interval - 1;
-  console.log(interval);
 });
 
 zoomOut.addEventListener("mouseup", () => {
@@ -107,19 +109,16 @@ decreaseCanvas.addEventListener("mouseup", () => {
 //----------------------------------------------------------------------
 
 //Change background
-
 colorPickerBackground.addEventListener("input", () => {
   canvas.style.backgroundColor = colorPickerBackground.value;
 });
 
 //Change grid
-
 colorPickerGrid.addEventListener("input", () => {
   gridColor = colorPickerGrid.value;
 });
 
 //Change square
-
 colorPickerSquare.addEventListener("input", () => {
   squareColor = colorPickerSquare.value;
 });
