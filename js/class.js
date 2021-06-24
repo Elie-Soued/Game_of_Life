@@ -11,15 +11,15 @@ class Canvas {
     height
   ) {
     this.c = element.getContext("2d");
-    this.element = element;
-    this.element.style.backgroundColor = backgroundColor;
     this.squareColor = squareColor;
     this.gridColor = gridColor;
     this.interval = interval;
-    this.width = width * this.interval;
-    this.height = height * this.interval;
-    this.cols = this.width;
-    this.rows = this.height;
+    this.element = element;
+    this.element.style.backgroundColor = backgroundColor;
+    this.element.width = width * this.interval;
+    this.element.height = height * this.interval;
+    this.cols = this.element.width;
+    this.rows = this.element.height;
   }
 
   increaseInterval() {
@@ -31,19 +31,19 @@ class Canvas {
   }
 
   increaseWidth() {
-    return (this.width = this.width + 10);
+    return (this.element.width = this.element.width + 10);
   }
 
   increaseHeight() {
-    return (this.height = this.height + 10);
+    return (this.element.height = this.element.height + 10);
   }
 
   decreaseWidth() {
-    return (this.width = this.width - 10);
+    return (this.element.width = this.element.width - 10);
   }
 
   decreaseHeight() {
-    return (this.height = this.height - 10);
+    return (this.element.height = this.element.height - 10);
   }
 
   setSquareColor(squareColor) {
