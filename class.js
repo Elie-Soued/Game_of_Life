@@ -1,5 +1,4 @@
 let canvasHTML = document.querySelector("canvas");
-let grid;
 
 class Canvas {
   constructor(
@@ -12,7 +11,8 @@ class Canvas {
     height
   ) {
     this.c = element.getContext("2d");
-    this.backgroundColor = backgroundColor;
+    this.element = element;
+    this.element.backgroundColor = backgroundColor;
     this.squareColor = squareColor;
     this.gridColor = gridColor;
     this.interval = interval;
@@ -55,8 +55,10 @@ class Canvas {
   }
 
   setBackgroundColor(backgroundColor) {
-    this.backgroundColor = backgroundColor;
+    this.element.backgroundColor = backgroundColor;
   }
 }
 
 const canvas = new Canvas(canvasHTML, "white", "black", "black", 10, 100, 40);
+
+export { canvas };
