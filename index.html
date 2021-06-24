@@ -15,11 +15,15 @@
   </head>
 
   <body>
-    <h1>Play the Game of Life</h1>
-    <p><a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">learn more about Conway´s Game of Life</a></p>
+
+
+  <h1>Play the Game of Life </h1> 
+  <img src="image/favicon.jpg">
+ 
+    <p><a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Learn more about Conway´s Game of Life</a></p>
 
     <br />
-    <canvas id="canvas"></canvas>
+  
 
     <div id="buttons">
       <i id="run" class="fas fa-play buttonElement"></i>
@@ -29,21 +33,25 @@
       <img id="IncreaseCanvas" class="buttonElement" src="./image/increaseCanvas.png" />
       <img id="DecreaseCanvas" class="buttonElement"src="./image/decreaseCanvas.png" />
       <div class="inputLabel buttonElement">
-        <input id="colorPickerGrid" type ="color" value="#000000" id="Grid"></input>
-        <label for="Grid">Grid</label>
+        <input id="colorPickerGrid" type ="color" value="#000000"></input>
+        <label for="colorPickerGrid">Grid</label>
       </div>
       <div class="inputLabel buttonElement">
-        <input id="colorPickerBackground" type ="color" value="#FFFFFF" id="Background"></input>
-        <label for="Background">Background</label>
+        <input id="colorPickerBackground" type ="color" value="#FFFFFF" ></input>
+        <label for="colorPickerBackground">Background</label>
        </div>
        <div class="inputLabel buttonElement">
-        <input id="colorPickerSquare" type ="color"  value="#000000" id="Square"></input>
-        <label for="Square">Square</label>
+        <input id="colorPickerSquare" type ="color"  value="#000000" ></input>
+        <label for="colorPickerSquare">Square</label>
 
        </div>
+      </div>
+    </div>
+      
+       <canvas id="canvas"></canvas>
 
-  
-    <script src="script.js"></script>
-    <script src="eventlisteners.js"></script>
+    <script src="constants.js" type="module"></script>
+    <script src="script.js" type="module"></script></script>
+    <script src="eventlisteners.js" type="module"></script>
   </body>
 </html>
