@@ -7,11 +7,14 @@ import {
   zoomOut,
   increaseCanvas,
   decreaseCanvas,
-  canvas,
   colorPickerBackground,
   colorPickerSquare,
   colorPickerGrid,
 } from "./constants.js";
+
+import { drawgrid } from "./script.js";
+
+import { canvas } from "./class.js";
 
 //Variables
 //----------
@@ -37,12 +40,12 @@ stop.addEventListener("click", () => {
 //********/
 zoomIn.addEventListener("mousedown", () => {
   zoomInAction = setInterval(() => {
-    interval = interval + 1;
+    canvas.increaseInterval();
   }, 100);
 });
 
 zoomIn.addEventListener("click", () => {
-  interval = interval + 1;
+  canvas.increaseInterval();
 });
 
 zoomIn.addEventListener("mouseup", () => {
@@ -55,12 +58,12 @@ zoomIn.addEventListener("mouseup", () => {
 //********/
 zoomOut.addEventListener("mousedown", () => {
   zoomOutAction = setInterval(() => {
-    interval = interval - 1;
+    canvas.decreaseInterval();
   }, 100);
 });
 
 zoomOut.addEventListener("click", () => {
-  interval = interval - 1;
+  canvas.decreaseInterval();
 });
 
 zoomOut.addEventListener("mouseup", () => {
@@ -73,14 +76,14 @@ zoomOut.addEventListener("mouseup", () => {
 //*********************/
 increaseCanvas.addEventListener("mousedown", () => {
   increaseCanvasAction = setInterval(() => {
-    canvas.width = canvas.width + 10;
-    canvas.height = canvas.height + 10;
+    canvas.width();
+    canvas.height();
   }, 100);
 });
 
 increaseCanvas.addEventListener("click", () => {
-  canvas.width = canvas.width + 10;
-  canvas.height = canvas.height + 10;
+  canvas.width();
+  canvas.height();
 });
 
 increaseCanvas.addEventListener("mouseup", () => {
@@ -110,15 +113,15 @@ decreaseCanvas.addEventListener("mouseup", () => {
 
 //Change background
 colorPickerBackground.addEventListener("input", () => {
-  canvas.style.backgroundColor = colorPickerBackground.value;
+  canvas.setBackgroundColor(colorPickerBackground.value);
 });
 
 //Change grid
 colorPickerGrid.addEventListener("input", () => {
-  gridColor = colorPickerGrid.value;
+  canvas.setGridColor(colorPickerGrid.value);
 });
 
 //Change square
 colorPickerSquare.addEventListener("input", () => {
-  squareColor = colorPickerSquare.value;
+  canvas.setSquareColor(colorPickerSquare.value);
 });
