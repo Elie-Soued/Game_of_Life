@@ -11,15 +11,18 @@ let gridColor = "black";
 let interval = 10;
 let width = 100;
 let height = 40;
+let c = canvas.getContext("2d");
+let grid;
 canvas.width = width * interval;
 canvas.height = height * interval;
 let cols = canvas.width;
 let rows = canvas.height;
 
 //Initializing c to the value of the getContext(2D) execution on Canvas.
-let c = canvas.getContext("2d");
+
 //Declaring grid
-let grid;
+
+//Game of life Logic
 
 //Drawing the lines of the grid
 function drawLine(init_x, init_y, final_x, final_y) {
@@ -94,7 +97,7 @@ function getnext() {
   return next;
 }
 
-// drawgrid does the following:
+// drawgrid the grid
 //1- It clears the grid(line 93)
 //2- It draws a white square if grid[i][j] == 1
 //3- it gives grid the value of the execution of getnext()
