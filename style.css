@@ -4,13 +4,14 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
 }
 
 canvas {
-  border: 1px solid black;
-  width: 70%;
-  height: 400px;
+  max-width: 100%;
+}
+
+img {
+  width: 3rem;
 }
 
 h1 {
@@ -24,8 +25,8 @@ h1 {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  position: absolute;
-  top: 40rem;
+  flex-wrap: wrap;
+  max-width: 100%;
 }
 
 #IncreaseCanvas,
@@ -80,47 +81,4 @@ a {
   height: auto;
   display: flex;
   flex-direction: row;
-}
-
-@media (min-width: 1500px) {
-  #buttons {
-    position: absolute;
-    top: 35rem;
-  }
-}
-
-@media (max-width: 1400px) {
-  #buttons {
-    position: absolute;
-    top: 35rem;
-  }
-}
-
-@media (max-width: 1000px) {
-  #buttons {
-    position: absolute;
-    top: 35rem;
-  }
-}
-
-@media (max-width: 480px) {
-  #buttons {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 375px) {
-  #buttons {
-    position: absolute;
-    top: 37rem;
-  }
-}
-
-@media (max-width: 320px) {
-  #buttons {
-    position: absolute;
-    top: 40rem;
-  }
 }
