@@ -1,7 +1,4 @@
-
 //imports
-
-
 
 import {
   run,
@@ -14,7 +11,6 @@ import {
   colorPickerSquare,
   colorPickerGrid,
 } from "./constants.js";
-
 
 import { drawgrid } from "./script.js";
 
@@ -47,14 +43,12 @@ zoomIn.addEventListener("mousedown", () => {
   zoomInAction = setInterval(() => {
     canvas.increaseInterval();
     interval = interval + 1;
-  
   }, 100);
 });
 
 zoomIn.addEventListener("click", () => {
   canvas.increaseInterval();
   interval = interval + 1;
-
 });
 
 zoomIn.addEventListener("mouseup", () => {
@@ -113,7 +107,6 @@ decreaseCanvas.addEventListener("mousedown", () => {
 });
 
 decreaseCanvas.addEventListener("click", () => {
-
   canvas.decreaseWidth();
   canvas.decreaseHeight();
 });
@@ -122,7 +115,6 @@ decreaseCanvas.addEventListener("mouseup", () => {
   clearInterval(decreaseCanvasAction);
 });
 //----------------------------------------------------------------------
-
 
 //Change background color
 colorPickerBackground.addEventListener("input", () => {
@@ -137,5 +129,4 @@ colorPickerGrid.addEventListener("input", () => {
 //Change square color
 colorPickerSquare.addEventListener("input", () => {
   canvas.setSquareColor(colorPickerSquare.value);
-
 });
