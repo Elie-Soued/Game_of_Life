@@ -77,11 +77,13 @@ zoomOut.addEventListener("mouseup", () => {
 increaseCanvas.addEventListener("mousedown", () => {
   increaseCanvasAction = setInterval(() => {
     canvas.increaseWidth();
+    canvas.increaseHeight();
   }, 100);
 });
 
 increaseCanvas.addEventListener("click", () => {
   canvas.increaseWidth();
+  canvas.increaseHeight();
 });
 
 increaseCanvas.addEventListener("mouseup", () => {
@@ -94,14 +96,14 @@ increaseCanvas.addEventListener("mouseup", () => {
 //********************/
 decreaseCanvas.addEventListener("mousedown", () => {
   decreaseCanvasAction = setInterval(() => {
-    canvas.width = canvas.width - 10;
-    canvas.height = canvas.height - 10;
+    canvas.decreaseWidth();
+    canvas.decreaseHeight();
   }, 100);
 });
 
 decreaseCanvas.addEventListener("click", () => {
-  canvas.width = canvas.width - 10;
-  canvas.height = canvas.height - 10;
+  canvas.decreaseWidth();
+  canvas.decreaseHeight();
 });
 
 decreaseCanvas.addEventListener("mouseup", () => {
