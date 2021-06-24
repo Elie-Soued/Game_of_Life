@@ -1,16 +1,28 @@
-let zoomIn;
-let zoomOut;
-let increaseCanvas;
-let decreaseCanvas;
+import {
+  run,
+  stop,
+  zoomIn,
+  zoomOut,
+  increaseCanvas,
+  decreaseCanvas,
+  colorPickerBackground,
+  colorPickerSquare,
+  colorPickerGrid,
+} from "./constants.js";
+
+let zoomInAction;
+let zoomOutAction;
+let increaseCanvasAction;
+let decreaseCanvasAction;
 
 //Event Listeners
 //----------------
 
 //Start Game of life
-document.getElementById("run").addEventListener("click", drawgrid);
+run.addEventListener("click", drawgrid);
 
 //Stop Game of life
-document.getElementById("stop").addEventListener("click", () => {
+stop.addEventListener("click", () => {
   location.reload();
 });
 
@@ -18,96 +30,96 @@ document.getElementById("stop").addEventListener("click", () => {
 
 //Zoom in
 //********/
-document.getElementById("ZoomIn").addEventListener("mousedown", () => {
-  zoomIn = setInterval(() => {
+zoomIn.addEventListener("mousedown", () => {
+  zoomInAction = setInterval(() => {
     interval = interval + 1;
     console.log(interval);
   }, 100);
 });
 
-document.getElementById("ZoomIn").addEventListener("click", () => {
+zoomIn.addEventListener("click", () => {
   interval = interval + 1;
   console.log(interval);
 });
 
-document.getElementById("ZoomIn").addEventListener("mouseup", () => {
-  clearInterval(zoomIn);
+zoomIn.addEventListener("mouseup", () => {
+  clearInterval(zoomInAction);
 });
 
 //----------------------------------------------------------------------
 
 //Zoom out
 //********/
-document.getElementById("ZoomOut").addEventListener("mousedown", () => {
-  zoomOut = setInterval(() => {
+zoomOut.addEventListener("mousedown", () => {
+  zoomOutAction = setInterval(() => {
     interval = interval - 1;
   }, 100);
 });
 
-document.getElementById("ZoomOut").addEventListener("click", () => {
+zoomOut.addEventListener("click", () => {
   interval = interval - 1;
   console.log(interval);
 });
 
-document.getElementById("ZoomOut").addEventListener("mouseup", () => {
-  clearInterval(zoomOut);
+zoomOut.addEventListener("mouseup", () => {
+  clearInterval(zoomOutAction);
 });
 
 //----------------------------------------------------------------------
 
 //Increase Canvas Size
 //*********************/
-document.getElementById("IncreaseCanvas").addEventListener("mousedown", () => {
-  increaseCanvas = setInterval(() => {
+increaseCanvas.addEventListener("mousedown", () => {
+  increaseCanvasAction = setInterval(() => {
     canvas.width = canvas.width + 10;
     canvas.height = canvas.height + 10;
   }, 100);
 });
 
-document.getElementById("IncreaseCanvas").addEventListener("click", () => {
+increaseCanvas.addEventListener("click", () => {
   canvas.width = canvas.width + 10;
   canvas.height = canvas.height + 10;
 });
 
-document.getElementById("IncreaseCanvas").addEventListener("mouseup", () => {
-  clearInterval(increaseCanvas);
+increaseCanvas.addEventListener("mouseup", () => {
+  clearInterval(increaseCanvasAction);
 });
 
 //----------------------------------------------------------------------
 
 //Decrease Canvas Size
 //********************/
-document.getElementById("DecreaseCanvas").addEventListener("mousedown", () => {
-  decreaseCanvas = setInterval(() => {
+decreaseCanvas.addEventListener("mousedown", () => {
+  decreaseCanvasAction = setInterval(() => {
     canvas.width = canvas.width - 10;
     canvas.height = canvas.height - 10;
   }, 100);
 });
 
-document.getElementById("DecreaseCanvas").addEventListener("click", () => {
+decreaseCanvas.addEventListener("click", () => {
   canvas.width = canvas.width - 10;
   canvas.height = canvas.height - 10;
 });
 
-document.getElementById("DecreaseCanvas").addEventListener("mouseup", () => {
-  clearInterval(decreaseCanvas);
+decreaseCanvas.addEventListener("mouseup", () => {
+  clearInterval(decreaseCanvasAction);
 });
 //----------------------------------------------------------------------
 
 //Change background
-let colorPickerBackground = document.getElementById("colorPickerBackground");
+
 colorPickerBackground.addEventListener("input", () => {
   canvas.style.backgroundColor = colorPickerBackground.value;
 });
 
 //Change grid
-let colorPickerGrid = document.getElementById("colorPickerGrid");
+
 colorPickerGrid.addEventListener("input", () => {
   gridColor = colorPickerGrid.value;
 });
 
 //Change square
-let colorPickerSquare = document.getElementById("colorPickerSquare");
+
 colorPickerSquare.addEventListener("input", () => {
   squareColor = colorPickerSquare.value;
 });
