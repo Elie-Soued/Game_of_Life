@@ -1,5 +1,4 @@
 1- Try include the square fill function to the drawline function
-2- Find a way to store the global variables 
-3- Remove the 2d Array
+2- Remove the 2d Array
 
 
