@@ -12,12 +12,12 @@ class Canvas {
   ) {
     this.c = element.getContext("2d");
     this.element = element;
-    this.element.backgroundColor = backgroundColor;
+    this.element.style.backgroundColor = backgroundColor;
     this.squareColor = squareColor;
     this.gridColor = gridColor;
     this.interval = interval;
-    this.width = this.interval * width;
-    this.height = this.interval * height;
+    this.width = width * this.interval;
+    this.height = height * this.interval;
     this.cols = this.width;
     this.rows = this.height;
   }
@@ -55,7 +55,7 @@ class Canvas {
   }
 
   setBackgroundColor(backgroundColor) {
-    this.element.backgroundColor = backgroundColor;
+    this.element.style.backgroundColor = backgroundColor;
   }
 }
 

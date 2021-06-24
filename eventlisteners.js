@@ -76,14 +76,12 @@ zoomOut.addEventListener("mouseup", () => {
 //*********************/
 increaseCanvas.addEventListener("mousedown", () => {
   increaseCanvasAction = setInterval(() => {
-    canvas.width();
-    canvas.height();
+    canvas.increaseWidth();
   }, 100);
 });
 
 increaseCanvas.addEventListener("click", () => {
-  canvas.width();
-  canvas.height();
+  canvas.increaseWidth();
 });
 
 increaseCanvas.addEventListener("mouseup", () => {
