@@ -22,11 +22,11 @@ function cleargrid() {
     canvas.interval * canvas.cols,
     canvas.interval * canvas.rows
   );
-  for (let i = 0; i <= canvas.width; i = i + canvas.interval) {
-    for (let j = 0; j <= canvas.height; j = j + canvas.interval) {
-      drawLine(0, j, canvas.width, j);
+  for (let i = 0; i <= canvas.element.width; i = i + canvas.interval) {
+    for (let j = 0; j <= canvas.element.height; j = j + canvas.interval) {
+      drawLine(0, j, canvas.element.width, j);
     }
-    drawLine(i, 0, i, canvas.height);
+    drawLine(i, 0, i, canvas.element.height);
   }
 }
 
