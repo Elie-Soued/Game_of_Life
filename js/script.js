@@ -1,46 +1,38 @@
-//Canvas set up
-//Selecting the canvas
-let canvas = document.querySelector("canvas");
 
-//Setting the colors
-canvas.style.backgroundColor = "white";
-let squareColor = "black";
-let gridColor = "black";
-
-//Defining the dimensions
-let interval = 10;
-let width = 100;
-let height = 40;
-let c = canvas.getContext("2d");
-let grid;
-canvas.width = width * interval;
-canvas.height = height * interval;
-let cols = canvas.width;
-let rows = canvas.height;
-
-//Initializing c to the value of the getContext(2D) execution on Canvas.
+import { canvas } from "./class.js";
 
 //Declaring grid
+let grid;
+
 
 //Game of life Logic
 
 //Drawing the lines of the grid
 function drawLine(init_x, init_y, final_x, final_y) {
-  c.beginPath();
-  c.moveTo(init_x, init_y);
-  c.lineTo(final_x, final_y);
-  c.strokeStyle = gridColor;
-  c.stroke();
+
+  canvas.c.beginPath();
+  canvas.c.moveTo(init_x, init_y);
+  canvas.c.lineTo(final_x, final_y);
+  canvas.c.strokeStyle = canvas.gridColor;
+  canvas.c.stroke();
+
 }
 
 //Clear the cells while maintening the grid
 function cleargrid() {
-  c.clearRect(0, 0, interval * cols, interval * rows);
-  for (let i = 0; i <= canvas.width; i = i + interval) {
-    for (let j = 0; j <= canvas.height; j = j + interval) {
-      drawLine(0, j, canvas.width, j);
+
+  canvas.c.clearRect(
+    0,
+    0,
+    canvas.interval * canvas.cols,
+    canvas.interval * canvas.rows
+  );
+  for (let i = 0; i <= canvas.element.width; i = i + canvas.interval) {
+    for (let j = 0; j <= canvas.element.height; j = j + canvas.interval) {
+      drawLine(0, j, canvas.element.width, j);
     }
-    drawLine(i, 0, i, canvas.height);
+    drawLine(i, 0, i, canvas.element.height);
+
   }
 }
 
@@ -54,11 +46,13 @@ function make2DArray(cols, rows) {
 }
 
 //Assign to the variable grid the Value of the execution of Make2DArray
-grid = make2DArray(cols, rows);
+
+grid = make2DArray(canvas.cols, canvas.rows);
 
 // Randomly fill grid with 0s and 1s
-for (let i = 0; i < cols; i++) {
-  for (let j = 0; j < rows; j++) {
+for (let i = 0; i < canvas.cols; i++) {
+  for (let j = 0; j < canvas.rows; j++) {
+
     grid[i][j] = Math.floor(Math.random() * 2);
   }
 }
@@ -68,8 +62,11 @@ function countAliveNeighbors(grid, x, y) {
   let sum = 0;
   for (let i = -1; i < 2; i++) {
     for (let j = -1; j < 2; j++) {
-      let col = (x + i + cols) % cols;
-      let row = (y + j + rows) % rows;
+
+      let col = (x + i + canvas.cols) % canvas.cols;
+      let row = (y + j + canvas.rows) % canvas.rows;
+
+
       sum += grid[col][row];
     }
   }
@@ -79,9 +76,11 @@ function countAliveNeighbors(grid, x, y) {
 
 // Create a new grid and populate it with rules of Game of Life
 function getnext() {
-  let next = make2DArray(cols, rows);
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
+
+  let next = make2DArray(canvas.cols, canvas.rows);
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
+
       let state = grid[i][j];
       let aliveNeighbors = countAliveNeighbors(grid, i, j);
       if (state == 0 && aliveNeighbors == 3) {
@@ -105,19 +104,24 @@ function getnext() {
 
 function drawgrid() {
   cleargrid();
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      let x = i * interval;
-      let y = j * interval;
+
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
+      let x = i * canvas.interval;
+      let y = j * canvas.interval;
       if (grid[i][j] == 1) {
-        c.beginPath();
-        c.fillStyle = squareColor;
-        c.fillRect(x, y, interval - 1, interval - 1);
-        c.strokeStyle = gridColor;
-        c.stroke();
+        canvas.c.beginPath();
+        canvas.c.fillStyle = canvas.squareColor;
+        canvas.c.fillRect(x, y, canvas.interval - 1, canvas.interval - 1);
+        canvas.c.strokeStyle = canvas.gridColor;
+        canvas.c.stroke();
+
       }
     }
   }
   grid = getnext();
   requestAnimationFrame(drawgrid);
 }
+
+
+export { drawgrid };
