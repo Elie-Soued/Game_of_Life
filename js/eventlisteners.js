@@ -1,3 +1,8 @@
+
+//imports
+
+
+
 import {
   run,
   stop,
@@ -9,6 +14,14 @@ import {
   colorPickerSquare,
   colorPickerGrid,
 } from "./constants.js";
+
+
+import { drawgrid } from "./script.js";
+
+import { canvas } from "./class.js";
+
+//Variables
+//----------
 
 let zoomInAction;
 let zoomOutAction;
@@ -32,14 +45,16 @@ stop.addEventListener("click", () => {
 //********/
 zoomIn.addEventListener("mousedown", () => {
   zoomInAction = setInterval(() => {
+    canvas.increaseInterval();
     interval = interval + 1;
-    console.log(interval);
+  
   }, 100);
 });
 
 zoomIn.addEventListener("click", () => {
+  canvas.increaseInterval();
   interval = interval + 1;
-  console.log(interval);
+
 });
 
 zoomIn.addEventListener("mouseup", () => {
@@ -52,13 +67,14 @@ zoomIn.addEventListener("mouseup", () => {
 //********/
 zoomOut.addEventListener("mousedown", () => {
   zoomOutAction = setInterval(() => {
+    canvas.decreaseInterval();
     interval = interval - 1;
   }, 100);
 });
 
 zoomOut.addEventListener("click", () => {
+  canvas.decreaseInterval();
   interval = interval - 1;
-  console.log(interval);
 });
 
 zoomOut.addEventListener("mouseup", () => {
@@ -71,14 +87,14 @@ zoomOut.addEventListener("mouseup", () => {
 //*********************/
 increaseCanvas.addEventListener("mousedown", () => {
   increaseCanvasAction = setInterval(() => {
-    canvas.width = canvas.width + 10;
-    canvas.height = canvas.height + 10;
+    canvas.increaseWidth();
+    canvas.increaseHeight();
   }, 100);
 });
 
 increaseCanvas.addEventListener("click", () => {
-  canvas.width = canvas.width + 10;
-  canvas.height = canvas.height + 10;
+  canvas.increaseWidth();
+  canvas.increaseHeight();
 });
 
 increaseCanvas.addEventListener("mouseup", () => {
@@ -91,14 +107,15 @@ increaseCanvas.addEventListener("mouseup", () => {
 //********************/
 decreaseCanvas.addEventListener("mousedown", () => {
   decreaseCanvasAction = setInterval(() => {
-    canvas.width = canvas.width - 10;
-    canvas.height = canvas.height - 10;
+    canvas.decreaseWidth();
+    canvas.decreaseHeight();
   }, 100);
 });
 
 decreaseCanvas.addEventListener("click", () => {
-  canvas.width = canvas.width - 10;
-  canvas.height = canvas.height - 10;
+
+  canvas.decreaseWidth();
+  canvas.decreaseHeight();
 });
 
 decreaseCanvas.addEventListener("mouseup", () => {
@@ -106,20 +123,19 @@ decreaseCanvas.addEventListener("mouseup", () => {
 });
 //----------------------------------------------------------------------
 
-//Change background
 
+//Change background color
 colorPickerBackground.addEventListener("input", () => {
-  canvas.style.backgroundColor = colorPickerBackground.value;
+  canvas.setBackgroundColor(colorPickerBackground.value);
 });
 
-//Change grid
-
+//Change grid color
 colorPickerGrid.addEventListener("input", () => {
-  gridColor = colorPickerGrid.value;
+  canvas.setGridColor(colorPickerGrid.value);
 });
 
-//Change square
-
+//Change square color
 colorPickerSquare.addEventListener("input", () => {
-  squareColor = colorPickerSquare.value;
+  canvas.setSquareColor(colorPickerSquare.value);
+
 });
