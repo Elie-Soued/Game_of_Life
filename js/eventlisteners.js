@@ -111,17 +111,17 @@ decreaseCanvas.addEventListener("mouseup", () => {
 });
 //----------------------------------------------------------------------
 
-//Change background
+//Change background color
 colorPickerBackground.addEventListener("input", () => {
   canvas.setBackgroundColor(colorPickerBackground.value);
 });
 
-//Change grid
+//Change grid color
 colorPickerGrid.addEventListener("input", () => {
   canvas.setGridColor(colorPickerGrid.value);
 });
 
-//Change square
+//Change square color
 colorPickerSquare.addEventListener("input", () => {
   canvas.setSquareColor(colorPickerSquare.value);
 });
