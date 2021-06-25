@@ -42,13 +42,11 @@ stop.addEventListener("click", () => {
 zoomIn.addEventListener("mousedown", () => {
   zoomInAction = setInterval(() => {
     canvas.increaseInterval();
-    interval = interval + 1;
   }, 100);
 });
 
 zoomIn.addEventListener("click", () => {
   canvas.increaseInterval();
-  interval = interval + 1;
 });
 
 zoomIn.addEventListener("mouseup", () => {
@@ -62,13 +60,11 @@ zoomIn.addEventListener("mouseup", () => {
 zoomOut.addEventListener("mousedown", () => {
   zoomOutAction = setInterval(() => {
     canvas.decreaseInterval();
-    interval = interval - 1;
   }, 100);
 });
 
 zoomOut.addEventListener("click", () => {
   canvas.decreaseInterval();
-  interval = interval - 1;
 });
 
 zoomOut.addEventListener("mouseup", () => {
