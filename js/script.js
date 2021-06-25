@@ -44,11 +44,11 @@ function make2DArray(cols, rows) {
 grid = make2DArray(canvas.cols, canvas.rows);
 
 // Randomly fill grid with 0s and 1s
-for (let i = 0; i < canvas.cols; i++) {
-  for (let j = 0; j < canvas.rows; j++) {
-    grid[i][j] = Math.floor(Math.random() * 2);
-  }
-}
+// for (let i = 0; i < canvas.cols; i++) {
+//   for (let j = 0; j < canvas.rows; j++) {
+//     grid[i][j] = Math.floor(Math.random() * 2);
+//   }
+// }
 
 // Counting the number of alive neighbors of a cell in grid
 function countAliveNeighbors(grid, x, y) {
