@@ -14,7 +14,7 @@ import {
 
 import { renderSquares } from "./script.js";
 
-import { canvas } from "./class.js";
+import { canvas } from "./canvasClass.js";
 
 //Variables
 //----------
