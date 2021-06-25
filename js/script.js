@@ -28,6 +28,8 @@ function drawGrid() {
   }
 }
 
+drawGrid();
+
 //Create an empty 2D Array called
 function make2DArray(cols, rows) {
   let arr = new Array(cols);
@@ -44,7 +46,7 @@ grid = make2DArray(canvas.cols, canvas.rows);
 // Randomly fill grid with 0s and 1s
 for (let i = 0; i < canvas.cols; i++) {
   for (let j = 0; j < canvas.rows; j++) {
-    grid[i][j] = Math.floor(Math.random() * 2);
+    grid[i][j] = 0;
   }
 }
 
