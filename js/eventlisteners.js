@@ -12,7 +12,7 @@ import {
   colorPickerGrid,
 } from "./constants.js";
 
-import { drawgrid } from "./script.js";
+import { renderSquares } from "./script.js";
 
 import { canvas } from "./class.js";
 
@@ -28,7 +28,7 @@ let decreaseCanvasAction;
 //----------------
 
 //Start Game of life
-run.addEventListener("click", drawgrid);
+run.addEventListener("click", renderSquares);
 
 //Stop Game of life
 stop.addEventListener("click", () => {
