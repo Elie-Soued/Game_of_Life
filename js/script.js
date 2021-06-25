@@ -1,26 +1,21 @@
-
 import { canvas } from "./class.js";
 
 //Declaring grid
 let grid;
 
-
 //Game of life Logic
 
 //Drawing the lines of the grid
 function drawLine(init_x, init_y, final_x, final_y) {
-
   canvas.c.beginPath();
   canvas.c.moveTo(init_x, init_y);
   canvas.c.lineTo(final_x, final_y);
   canvas.c.strokeStyle = canvas.gridColor;
   canvas.c.stroke();
-
 }
 
 //Clear the cells while maintening the grid
-function cleargrid() {
-
+function drawGrid() {
   canvas.c.clearRect(
     0,
     0,
@@ -32,9 +27,10 @@ function cleargrid() {
       drawLine(0, j, canvas.element.width, j);
     }
     drawLine(i, 0, i, canvas.element.height);
-
   }
 }
+
+drawGrid();
 
 //Create an empty 2D Array called
 function make2DArray(cols, rows) {
@@ -52,7 +48,6 @@ grid = make2DArray(canvas.cols, canvas.rows);
 // Randomly fill grid with 0s and 1s
 for (let i = 0; i < canvas.cols; i++) {
   for (let j = 0; j < canvas.rows; j++) {
-
     grid[i][j] = Math.floor(Math.random() * 2);
   }
 }
@@ -62,10 +57,8 @@ function countAliveNeighbors(grid, x, y) {
   let sum = 0;
   for (let i = -1; i < 2; i++) {
     for (let j = -1; j < 2; j++) {
-
       let col = (x + i + canvas.cols) % canvas.cols;
       let row = (y + j + canvas.rows) % canvas.rows;
-
 
       sum += grid[col][row];
     }
@@ -76,11 +69,9 @@ function countAliveNeighbors(grid, x, y) {
 
 // Create a new grid and populate it with rules of Game of Life
 function getnext() {
-
   let next = make2DArray(canvas.cols, canvas.rows);
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
-
       let state = grid[i][j];
       let aliveNeighbors = countAliveNeighbors(grid, i, j);
       if (state == 0 && aliveNeighbors == 3) {
@@ -97,13 +88,12 @@ function getnext() {
 }
 
 // drawgrid the grid
-//1- It clears the grid(line 93)
-//2- It draws a white square if grid[i][j] == 1
-//3- it gives grid the value of the execution of getnext()
-//4- It execute drawgrid again
+// It draws a white square if grid[i][j] == 1
+// it gives grid the value of the execution of getnext()
+// It execute drawgrid again
 
-function drawgrid() {
-  cleargrid();
+function renderSquares() {
+  drawGrid();
 
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
@@ -115,13 +105,11 @@ function drawgrid() {
         canvas.c.fillRect(x, y, canvas.interval - 1, canvas.interval - 1);
         canvas.c.strokeStyle = canvas.gridColor;
         canvas.c.stroke();
-
       }
     }
   }
   grid = getnext();
-  requestAnimationFrame(drawgrid);
+  requestAnimationFrame(renderSquares);
 }
 
-
-export { drawgrid };
+export { renderSquares };
