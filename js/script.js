@@ -1,9 +1,7 @@
-import { canvas } from "./class.js";
+import { canvas } from "./canvasClass.js";
 
 //Declaring grid
 let grid;
-
-//Game of life Logic
 
 //Drawing the lines of the grid
 function drawLine(init_x, init_y, final_x, final_y) {
@@ -48,7 +46,7 @@ grid = make2DArray(canvas.cols, canvas.rows);
 // Randomly fill grid with 0s and 1s
 for (let i = 0; i < canvas.cols; i++) {
   for (let j = 0; j < canvas.rows; j++) {
-    grid[i][j] = Math.floor(Math.random() * 2);
+    grid[i][j] = 1;
   }
 }
 
@@ -108,8 +106,8 @@ function renderSquares() {
       }
     }
   }
-  grid = getnext();
-  requestAnimationFrame(renderSquares);
+  // grid = getnext();
+  // requestAnimationFrame(renderSquares);
 }
 
 export { renderSquares };
