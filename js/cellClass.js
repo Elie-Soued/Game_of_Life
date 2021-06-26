@@ -6,7 +6,6 @@ let cell;
 
 class Cell {
   constructor(x, y, canvasObject) {
-    this.id = `id number ${x} - ${y}`;
     this.x = x;
     this.y = y;
     this.state = 0;
@@ -63,6 +62,8 @@ class Cell {
   }
 }
 
+//--------------end of Cell Class ----------------------------
+
 const createGridArray = () => {
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
@@ -76,6 +77,9 @@ const createGridArray = () => {
 
 createGridArray();
 
+//Get the x and y of the location I clicked on the canvas and assign a cell in the gridArray that has these specs.
+//Once we found the cell, toggle its state
+//for a state === 1 : fill the square, for a state === 0 : clear the cell.
 canvasHTML.addEventListener("click", (e) => {
   const rect = e.target.getBoundingClientRect();
   const x =
