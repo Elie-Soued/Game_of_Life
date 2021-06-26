@@ -27,7 +27,6 @@ function drawGrid() {
     drawLine(i, 0, i, canvas.element.height);
   }
 }
-
 drawGrid();
 
 //Create an empty 2D Array called
