@@ -9,6 +9,7 @@ const decreaseCanvas = document.getElementById("DecreaseCanvas");
 const colorPickerBackground = document.getElementById("colorPickerBackground");
 const colorPickerGrid = document.getElementById("colorPickerGrid");
 const colorPickerSquare = document.getElementById("colorPickerSquare");
+const GOLRandom = document.getElementById("GOLRandom");
 
 export {
   run,
@@ -20,4 +21,5 @@ export {
   colorPickerBackground,
   colorPickerSquare,
   colorPickerGrid,
+  GOLRandom,
 };
