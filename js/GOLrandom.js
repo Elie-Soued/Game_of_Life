@@ -1,51 +1,17 @@
-import { canvas } from "./canvasClass.js";
+//Apply randomly 1 or 0 on the grid
+//---------------------------------
 
-//Declaring grid
+import { canvas } from "./canvasClass.js";
+import { drawGrid, make2DArray } from "./constants.js";
 let grid;
 
-//Drawing the lines of the grid
-function drawLine(init_x, init_y, final_x, final_y) {
-  canvas.c.beginPath();
-  canvas.c.moveTo(init_x, init_y);
-  canvas.c.lineTo(final_x, final_y);
-  canvas.c.strokeStyle = canvas.gridColor;
-  canvas.c.stroke();
-}
-
-//Clear the cells while maintening the grid
-function drawGrid() {
-  canvas.c.clearRect(
-    0,
-    0,
-    canvas.interval * canvas.cols,
-    canvas.interval * canvas.rows
-  );
-  for (let i = 0; i <= canvas.element.width; i = i + canvas.interval) {
-    for (let j = 0; j <= canvas.element.height; j = j + canvas.interval) {
-      drawLine(0, j, canvas.element.width, j);
-    }
-    drawLine(i, 0, i, canvas.element.height);
-  }
-}
-drawGrid();
-
-//Create an empty 2D Array called
-function make2DArray(cols, rows) {
-  let arr = new Array(cols);
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = new Array(rows);
-  }
-  return arr;
-}
-
 //Assign to the variable grid the Value of the execution of Make2DArray
-
 grid = make2DArray(canvas.cols, canvas.rows);
 
-// Randomly fill grid with 0s and 1s
+// fill grid with cells
 for (let i = 0; i < canvas.cols; i++) {
   for (let j = 0; j < canvas.rows; j++) {
-    grid[i][j] = 0;
+    grid[i][j] = Math.floor(Math.random() * 2);
   }
 }
 
@@ -69,14 +35,16 @@ function getnext() {
   let next = make2DArray(canvas.cols, canvas.rows);
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
-      let state = grid[i][j];
       let aliveNeighbors = countAliveNeighbors(grid, i, j);
-      if (state == 0 && aliveNeighbors == 3) {
+      if (grid[i][j] == 0 && aliveNeighbors == 3) {
         next[i][j] = 1;
-      } else if (state == 1 && (aliveNeighbors < 2 || aliveNeighbors > 3)) {
+      } else if (
+        grid[i][j] == 1 &&
+        (aliveNeighbors < 2 || aliveNeighbors > 3)
+      ) {
         next[i][j] = 0;
       } else {
-        next[i][j] = state;
+        next[i][j] = grid[i][j];
       }
     }
   }
@@ -84,12 +52,7 @@ function getnext() {
   return next;
 }
 
-// drawgrid the grid
-// It draws a white square if grid[i][j] == 1
-// it gives grid the value of the execution of getnext()
-// It execute drawgrid again
-
-function renderSquares() {
+function renderRandomSquares() {
   drawGrid();
 
   for (let i = 0; i < canvas.cols; i++) {
@@ -106,7 +69,7 @@ function renderSquares() {
     }
   }
   grid = getnext();
-  requestAnimationFrame(renderSquares);
+  requestAnimationFrame(renderRandomSquares);
 }
 
-export { renderSquares };
+export { renderRandomSquares };

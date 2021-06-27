@@ -15,42 +15,120 @@
   </head>
 
   <body>
+    <h1>Play the Game of Life</h1>
+    <br />
 
+    <div id="upperSection">
+      <div id="randomSection">
+        <ol>
+          <li id="title1">Discover the below commands</li>
+          <li>
+            <i id="GOLRandom" class="fas fa-random"></i>
+            <i id="stop" class="fas fa-stop buttonElement"></i>
+            <i id="ZoomIn" class="fas fa-search-plus buttonElement"></i>
+            <i id="ZoomOut" class="fas fa-search-minus buttonElement"></i>
+            <img
+              id="IncreaseCanvas"
+              class="buttonElement"
+              src="./image/increaseCanvas.png"
+            />
+            <img
+              id="DecreaseCanvas"
+              class="buttonElement"
+              src="./image/decreaseCanvas.png"
+            />
 
-  <h1>Play the Game of Life </h1> 
-  <img src="image/favicon.jpg"/>
- 
-    <p><a href="https://en.wikipedia.org/wiki/Conway's_Game_of_Life">Learn more about Conway´s Game of Life</a></p>
+            <div class="inputLabel buttonElement">
+              <input id="colorPickerGrid" type="color" value="#000000" />
+              <label for="colorPickerGrid">Grid</label>
+            </div>
 
-    <br/>
-  
+            <div class="inputLabel buttonElement">
+              <input id="colorPickerBackground" type="color" value="#FFFFFF" />
+              <label for="colorPickerBackground">Background</label>
+            </div>
 
-    <div id="buttons">
-      <i id="run" class="fas fa-play buttonElement"></i>
-      <i id="stop" class="fas fa-stop buttonElement"></i>
-      <i id="ZoomIn" class="fas fa-search-plus buttonElement"></i>
-      <i id="ZoomOut" class="fas fa-search-minus buttonElement"></i>
-      <img id="IncreaseCanvas" class="buttonElement" src="./image/increaseCanvas.png" />
-      <img id="DecreaseCanvas" class="buttonElement"src="./image/decreaseCanvas.png" />
-     
-      <div class="inputLabel buttonElement">
-        <input id="colorPickerGrid" type ="color" value="#000000"></input>
-        <label for="colorPickerGrid">Grid</label>
+            <div class="inputLabel buttonElement">
+              <input id="colorPickerSquare" type="color" value="#000000" />
+              <label for="colorPickerSquare">Square</label>
+            </div>
+          </li>
+        </ol>
       </div>
-     
-      <div class="inputLabel buttonElement">
-        <input id="colorPickerBackground" type ="color" value="#FFFFFF" ></input>
-        <label for="colorPickerBackground">Background</label>
-       </div>
-     
-       <div class="inputLabel buttonElement">
-        <input id="colorPickerSquare" type ="color"  value="#000000" ></input>
-        <label for="colorPickerSquare">Square</label>
-       </div>
+      <div id="drawingSection">
+        <ol id="title2">
+          <li>
+            Draw by clicking on the board : Use the below forms for inspiration
+            and click on <i id="run" class="fas fa-play buttonElement"></i>
+          </li>
+        </ol>
+        <div id="holder">
+          <div id="imageHolder">
+            <div>
+              <img
+                src="./image/oscillators/Beacon (Period2).JPG"
+                class="drawExample"
+              />
+            </div>
+            <div>
+              <img
+                src="./image/oscillators/blinker(period2).JPG"
+                class="drawExample"
+              />
+            </div>
+            <div>
+              <img
+                src="./image/oscillators/Pulsar (Period3).JPG"
+                class="drawExample"
+              />
+            </div>
+            <div>
+              <img
+                src="./image/oscillators/Toad (period2).JPG"
+                class="drawExample"
+              />
+            </div>
+            <div>
+              <img
+                src="./image/oscillators/Pentadecathlon (Period 15).JPG"
+                class="drawExample"
+              />
+            </div>
+            <div>
+              <img
+                src="./image/spaceships/Lightweight spaceship.JPG"
+                class="drawExample"
+              />
+            </div>
+            <div>
+              <img
+                src="./image/spaceships/middleweight spaceship.JPG"
+                class="drawExample"
+              />
+            </div>
+            <div>
+              <img
+                src="./image/spaceships/heavyweight spaceship.JPG"
+                class="drawExample"
+              />
+            </div>
+            <div>
+              <img src="./image/spaceships/Glider.JPG" class="drawExample" />
+            </div>
+            <div class="drawExample">
+              <img
+                id="Gospel"
+                src="./image/spaceships/Gospel Glider Gun.JPG"
+                ;
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-       <canvas id="canvas"></canvas>
-    <script src="./js/script.js" type="module" ></script>
+
+    <canvas id="canvas"></canvas>
     <script src="./js/eventlisteners.js" type="module"></script>
-    <script src="js/cellClass.js" type ="module"></script>
+    <script src="js/cellClass.js" type="module"></script>
   </body>
 </html>

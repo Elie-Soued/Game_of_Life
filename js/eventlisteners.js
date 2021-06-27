@@ -10,11 +10,12 @@ import {
   colorPickerBackground,
   colorPickerSquare,
   colorPickerGrid,
+  GOLRandom,
 } from "./constants.js";
 
-import { renderSquares } from "./script.js";
-
+import { renderSquares } from "./clickAndFill.js";
 import { canvas } from "./canvasClass.js";
+import { renderRandomSquares } from "./GOLrandom.js";
 
 //Variables
 //----------
@@ -26,6 +27,8 @@ let decreaseCanvasAction;
 
 //Event Listeners
 //----------------
+
+GOLRandom.addEventListener("click", renderRandomSquares);
 
 //Start Game of life
 run.addEventListener("click", renderSquares);
