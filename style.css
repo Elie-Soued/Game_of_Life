@@ -46,7 +46,7 @@ li {
   width: 100%;
 }
 
-#gray {
+#title1 {
   margin: 0px;
 }
 
@@ -58,8 +58,8 @@ li {
   align-items: flex-start;
 }
 
-#brown {
-  height: 1rem;
+#title2 {
+  margin-bottom: 0.5rem;
 }
 
 #watchAlgoirthm,
@@ -68,7 +68,7 @@ li {
   text-decoration: underline;
 }
 
-.osc {
+.drawExample {
   width: 5rem;
   margin: 0.5rem;
 }
@@ -84,10 +84,6 @@ li {
   width: 100%;
   text-align: center;
   font-weight: bold;
-}
-
-#simkinGlider {
-  width: 20rem;
 }
 
 #buttons {
@@ -110,6 +106,15 @@ li {
 
 #gol {
   margin: 0.5rem;
+}
+
+#Gospel {
+  width: 16rem;
+}
+
+#Gospel:hover {
+  transition: all 0.5s ease;
+  width: 24rem;
 }
 
 .buttonElement {
