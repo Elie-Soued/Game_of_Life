@@ -1,39 +1,9 @@
+//Apply randomly 1 or 0 on the grid
+//---------------------------------
+
 import { canvas } from "./canvasClass.js";
+import { drawGrid, make2DArray } from "./constants.js";
 let grid;
-
-//Drawing the lines of the grid
-function drawLine(init_x, init_y, final_x, final_y) {
-  canvas.c.beginPath();
-  canvas.c.moveTo(init_x, init_y);
-  canvas.c.lineTo(final_x, final_y);
-  canvas.c.strokeStyle = canvas.gridColor;
-  canvas.c.stroke();
-}
-
-//Clear the cells while maintening the grid
-function drawGrid() {
-  canvas.c.clearRect(
-    0,
-    0,
-    canvas.interval * canvas.cols,
-    canvas.interval * canvas.rows
-  );
-  for (let i = 0; i <= canvas.element.width; i = i + canvas.interval) {
-    for (let j = 0; j <= canvas.element.height; j = j + canvas.interval) {
-      drawLine(0, j, canvas.element.width, j);
-    }
-    drawLine(i, 0, i, canvas.element.height);
-  }
-}
-
-//Create an empty 2D Array called
-function make2DArray(cols, rows) {
-  let arr = new Array(cols);
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = new Array(rows);
-  }
-  return arr;
-}
 
 //Assign to the variable grid the Value of the execution of Make2DArray
 grid = make2DArray(canvas.cols, canvas.rows);
