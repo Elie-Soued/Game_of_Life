@@ -13,10 +13,9 @@ import {
   GOLRandom,
 } from "./constants.js";
 
-import { renderSquares } from "./cellClass.js";
-
+import { renderSquares } from "./clickAndFill.js";
 import { canvas } from "./canvasClass.js";
-import { renderRandomSquares } from "./random.js";
+import { renderRandomSquares } from "./GOLrandom.js";
 
 //Variables
 //----------
