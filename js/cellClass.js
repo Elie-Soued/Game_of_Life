@@ -88,6 +88,8 @@ function drawGrid() {
   }
 }
 
+drawGrid();
+
 //Create an empty 2D Array called
 function make2DArray(cols, rows) {
   let arr = new Array(cols);
@@ -103,8 +105,9 @@ grid = make2DArray(canvas.cols, canvas.rows);
 // fill grid with cells
 for (let i = 0; i < canvas.cols; i++) {
   for (let j = 0; j < canvas.rows; j++) {
-    grid[i][j] = Math.floor(Math.random() * 2);
-    // grid[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
+    // grid[i][j] = Math.floor(Math.random() * 2);
+    grid[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
+    // grid[i][j] = 0;
   }
 }
 
@@ -116,10 +119,10 @@ function countAliveNeighbors(grid, x, y) {
       let col = (x + i + canvas.cols) % canvas.cols;
       let row = (y + j + canvas.rows) % canvas.rows;
 
-      sum += grid[col][row];
+      sum += grid[col][row].state;
     }
   }
-  sum = sum - grid[x][y];
+  sum = sum - grid[x][y].state;
   return sum;
 }
 
@@ -128,16 +131,22 @@ function getnext() {
   let next = make2DArray(canvas.cols, canvas.rows);
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
+      next[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
+    }
+  }
+
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
       let aliveNeighbors = countAliveNeighbors(grid, i, j);
-      if (grid[i][j] == 0 && aliveNeighbors == 3) {
-        next[i][j] = 1;
+      if (grid[i][j].state == 0 && aliveNeighbors == 3) {
+        next[i][j].state = 1;
       } else if (
-        grid[i][j] == 1 &&
+        grid[i][j].state == 1 &&
         (aliveNeighbors < 2 || aliveNeighbors > 3)
       ) {
-        next[i][j] = 0;
+        next[i][j].state = 0;
       } else {
-        next[i][j] = grid[i][j];
+        next[i][j].state = grid[i][j].state;
       }
     }
   }
@@ -152,7 +161,7 @@ function renderSquares() {
     for (let j = 0; j < canvas.rows; j++) {
       let x = i * canvas.interval;
       let y = j * canvas.interval;
-      if (grid[i][j] == 1) {
+      if (grid[i][j].state == 1) {
         canvas.c.beginPath();
         canvas.c.fillStyle = canvas.squareColor;
         canvas.c.fillRect(x, y, canvas.interval - 1, canvas.interval - 1);
@@ -179,7 +188,7 @@ canvasHTML.addEventListener("click", (e) => {
     for (let j = 0; j < canvas.rows; j++) {
       if (grid[i][j].x === x && grid[i][j].y === y) {
         grid[i][j].toggleState();
-        renderSquares();
+        // renderSquares();
       }
     }
   }
