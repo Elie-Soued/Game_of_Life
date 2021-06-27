@@ -12,7 +12,7 @@ import {
   colorPickerGrid,
 } from "./constants.js";
 
-import { renderSquares } from "./script.js";
+import { renderSquares } from "./cellClass.js";
 
 import { canvas } from "./canvasClass.js";
 
@@ -46,6 +46,7 @@ zoomIn.addEventListener("mousedown", () => {
 });
 
 zoomIn.addEventListener("click", () => {
+  renderSquares();
   canvas.increaseInterval();
 });
 
