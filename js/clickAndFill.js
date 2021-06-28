@@ -62,7 +62,7 @@ function getnext() {
   return next;
 }
 
-function renderSquares() {
+function renderDrawnSquares() {
   drawGrid();
 
   for (let i = 0; i < canvas.cols; i++) {
@@ -79,7 +79,7 @@ function renderSquares() {
     }
   }
   grid = getnext();
-  requestAnimationFrame(renderSquares);
+  requestAnimationFrame(renderDrawnSquares);
 }
 
 //Get the x and y of the location I clicked on the canvas and assign a cell in the gridArray that has these specs.
@@ -87,11 +87,14 @@ function renderSquares() {
 //for a state === 1 : fill the square, for a state === 0 : clear the cell.
 canvasHTML.addEventListener("click", (e) => {
   const rect = e.target.getBoundingClientRect();
+
   const x =
     Math.floor((e.clientX - rect.left) / canvas.interval) * canvas.interval;
+  // console.log("this is x =" + x);
+  // console.log(e.clientX - rect.left);
+
   const y =
     Math.floor((e.clientY - rect.top) / canvas.interval) * canvas.interval;
-
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
       if (grid[i][j].x === x && grid[i][j].y === y) {
@@ -101,4 +104,34 @@ canvasHTML.addEventListener("click", (e) => {
   }
 });
 
-export { renderSquares };
+// let x;
+// let y;
+
+// canvasHTML.addEventListener("touchstart", (e) => {
+//   // console.log(e.targetTouches[0]);
+//   const rect = e.target.getBoundingClientRect();
+
+//   console.log(e);
+
+//   x =
+//     Math.ceil((e.touches[0].clientX - rect.left) / canvas.interval) *
+//     canvas.interval;
+//   console.log("x = " + x);
+
+//   y =
+//     Math.ceil((e.touches[0].clientY - rect.top) / canvas.interval) *
+//     canvas.interval;
+//   console.log("y = " + y);
+// });
+
+// canvasHTML.addEventListener("touchend", (e) => {
+//   for (let i = 0; i < canvas.cols; i++) {
+//     for (let j = 0; j < canvas.rows; j++) {
+//       if (grid[i][j].x === x && grid[i][j].y === y) {
+//         grid[i][j].toggleState();
+//       }
+//     }
+//   }
+// });
+
+export { renderDrawnSquares };
