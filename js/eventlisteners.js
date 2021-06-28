@@ -1,7 +1,6 @@
 //imports
 
 import {
-  run,
   stop,
   zoomIn,
   zoomOut,
@@ -10,12 +9,15 @@ import {
   colorPickerBackground,
   colorPickerSquare,
   colorPickerGrid,
-  GOLRandom,
+  fillRandomSquaresButton,
+  runRandomSquaresButton,
+  runDrawnSquaresButton,
+  stopDrawing,
 } from "./constants.js";
 
-import { renderSquares } from "./clickAndFill.js";
+import { renderDrawnSquares } from "./clickAndFill.js";
 import { canvas } from "./canvasClass.js";
-import { renderRandomSquares } from "./GOLrandom.js";
+import { renderRandomSquares, runRandomSquares } from "./GOLrandom.js";
 
 //Variables
 //----------
@@ -28,13 +30,18 @@ let decreaseCanvasAction;
 //Event Listeners
 //----------------
 
-GOLRandom.addEventListener("click", renderRandomSquares);
+fillRandomSquaresButton.addEventListener("click", renderRandomSquares);
 
-//Start Game of life
-run.addEventListener("click", renderSquares);
+runRandomSquaresButton.addEventListener("click", runRandomSquares);
+
+runDrawnSquaresButton.addEventListener("click", renderDrawnSquares);
 
 //Stop Game of life
 stop.addEventListener("click", () => {
+  location.reload();
+});
+
+stopDrawing.addEventListener("click", () => {
   location.reload();
 });
 
@@ -99,6 +106,7 @@ increaseCanvas.addEventListener("mouseup", () => {
 //Decrease Canvas Size
 //********************/
 decreaseCanvas.addEventListener("mousedown", () => {
+  console.log(canvas.interval);
   decreaseCanvasAction = setInterval(() => {
     canvas.decreaseWidth();
     canvas.decreaseHeight();

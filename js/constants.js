@@ -1,8 +1,9 @@
 import { canvas } from "./canvasClass.js";
 
 //Variables
-const run = document.getElementById("run");
+const runDrawnSquaresButton = document.getElementById("runDrawnSquaresButton");
 const stop = document.getElementById("stop");
+const stopDrawing = document.getElementById("stopDrawing");
 const zoomIn = document.getElementById("ZoomIn");
 const zoomOut = document.getElementById("ZoomOut");
 const increaseCanvas = document.getElementById("IncreaseCanvas");
@@ -10,7 +11,10 @@ const decreaseCanvas = document.getElementById("DecreaseCanvas");
 const colorPickerBackground = document.getElementById("colorPickerBackground");
 const colorPickerGrid = document.getElementById("colorPickerGrid");
 const colorPickerSquare = document.getElementById("colorPickerSquare");
-const GOLRandom = document.getElementById("GOLRandom");
+const runRandomSquaresButton = document.getElementById("runRandomSquares");
+const fillRandomSquaresButton = document.getElementById(
+  "fillRandomSquaresButton"
+);
 
 //Functions
 
@@ -46,8 +50,11 @@ function make2DArray(cols, rows) {
 }
 
 export {
-  run,
+  runDrawnSquaresButton,
+  fillRandomSquaresButton,
+  runRandomSquaresButton,
   stop,
+  stopDrawing,
   zoomIn,
   zoomOut,
   increaseCanvas,
@@ -55,7 +62,6 @@ export {
   colorPickerBackground,
   colorPickerSquare,
   colorPickerGrid,
-  GOLRandom,
   make2DArray,
   drawLine,
   drawGrid,
