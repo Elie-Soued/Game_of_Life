@@ -59,6 +59,6 @@ class Canvas {
   }
 }
 
-const canvas = new Canvas(canvasHTML, "white", "black", "grey", 10, 100, 40);
+const canvas = new Canvas(canvasHTML, "white", "black", "grey", 20, 40, 20);
 
 export { canvas };
