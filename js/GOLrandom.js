@@ -57,6 +57,25 @@ function renderRandomSquares() {
 
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
+      grid[i][j] = Math.floor(Math.random() * 2);
+      let x = i * canvas.interval;
+      let y = j * canvas.interval;
+      if (grid[i][j] == 1) {
+        canvas.c.beginPath();
+        canvas.c.fillStyle = canvas.squareColor;
+        canvas.c.fillRect(x, y, canvas.interval - 1, canvas.interval - 1);
+        canvas.c.strokeStyle = canvas.gridColor;
+        canvas.c.stroke();
+      }
+    }
+  }
+}
+
+function runRandomSquares() {
+  drawGrid();
+
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
       let x = i * canvas.interval;
       let y = j * canvas.interval;
       if (grid[i][j] == 1) {
@@ -69,7 +88,7 @@ function renderRandomSquares() {
     }
   }
   grid = getnext();
-  requestAnimationFrame(renderRandomSquares);
+  requestAnimationFrame(runRandomSquares);
 }
 
-export { renderRandomSquares };
+export { renderRandomSquares, runRandomSquares };
