@@ -106,7 +106,6 @@ increaseCanvas.addEventListener("mouseup", () => {
 //Decrease Canvas Size
 //********************/
 decreaseCanvas.addEventListener("mousedown", () => {
-  console.log(canvas.interval);
   decreaseCanvasAction = setInterval(() => {
     canvas.decreaseWidth();
     canvas.decreaseHeight();
