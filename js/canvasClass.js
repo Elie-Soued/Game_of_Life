@@ -27,23 +27,33 @@ class Canvas {
   }
 
   decreaseInterval() {
-    return (this.interval = this.interval - 1);
+    if (this.interval > 2) {
+      return (this.interval = this.interval - 1);
+    }
   }
 
   increaseWidth() {
-    return (this.element.width = this.element.width + 10);
+    if (this.element.width < window.innerWidth) {
+      return (this.element.width = this.element.width + 10);
+    }
   }
 
   increaseHeight() {
-    return (this.element.height = this.element.height + 10);
+    if (this.element.height < window.innerHeight) {
+      return (this.element.height = this.element.height + 10);
+    }
   }
 
   decreaseWidth() {
-    return (this.element.width = this.element.width - 10);
+    if (this.element.width > this.interval) {
+      return (this.element.width = this.element.width - 10);
+    }
   }
 
   decreaseHeight() {
-    return (this.element.height = this.element.height - 10);
+    if (this.element.height > this.interval) {
+      return (this.element.height = this.element.height - 10);
+    }
   }
 
   setSquareColor(squareColor) {
