@@ -20,6 +20,7 @@ class Canvas {
     this.element.height = height * this.interval;
     this.cols = this.element.width;
     this.rows = this.element.height;
+    this.isRunning = true;
   }
 
   increaseInterval() {
@@ -66,6 +67,14 @@ class Canvas {
 
   setBackgroundColor(backgroundColor) {
     this.element.style.backgroundColor = backgroundColor;
+  }
+
+  stopGameofLife() {
+    this.isRunning = false;
+  }
+
+  restartGameofLife() {
+    this.isRunning = true;
   }
 }
 
