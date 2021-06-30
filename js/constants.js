@@ -3,6 +3,7 @@ import { canvas } from "./canvasClass.js";
 //Variables
 const runGameofLifeButton = document.getElementById("runGameofLifeButton");
 const stop = document.getElementById("stop");
+const reload = document.getElementById("reload");
 const zoomIn = document.getElementById("ZoomIn");
 const zoomOut = document.getElementById("ZoomOut");
 const increaseCanvas = document.getElementById("IncreaseCanvas");
@@ -51,6 +52,7 @@ export {
   runGameofLifeButton,
   fillRandomSquaresButton,
   stop,
+  reload,
   zoomIn,
   zoomOut,
   increaseCanvas,
