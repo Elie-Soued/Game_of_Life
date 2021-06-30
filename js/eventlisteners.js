@@ -10,14 +10,12 @@ import {
   colorPickerSquare,
   colorPickerGrid,
   fillRandomSquaresButton,
-  runRandomSquaresButton,
-  runDrawnSquaresButton,
-  stopDrawing,
+  runGameofLifeButton,
 } from "./constants.js";
 
-import { renderDrawnSquares } from "./clickAndFill.js";
+import { renderRandomSquares, runGameofLife } from "./script.js";
+
 import { canvas } from "./canvasClass.js";
-import { renderRandomSquares, runRandomSquares } from "./GOLrandom.js";
 
 //Variables
 //----------
@@ -32,19 +30,12 @@ let decreaseCanvasAction;
 
 fillRandomSquaresButton.addEventListener("click", renderRandomSquares);
 
-runRandomSquaresButton.addEventListener("click", runRandomSquares);
-
-runDrawnSquaresButton.addEventListener("click", renderDrawnSquares);
+runGameofLifeButton.addEventListener("click", runGameofLife);
 
 //Stop Game of life
 stop.addEventListener("click", () => {
   location.reload();
 });
-
-stopDrawing.addEventListener("click", () => {
-  location.reload();
-});
-
 //--------------------------------------------------------------------
 
 //Zoom in
