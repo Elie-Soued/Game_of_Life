@@ -103,7 +103,20 @@ function runGameofLife() {
     grid = getnext();
     requestAnimationFrame(runGameofLife);
   } else {
-    renderRandomSquares();
+    for (let i = 0; i < canvas.cols; i++) {
+      for (let j = 0; j < canvas.rows; j++) {
+        let x = i * canvas.interval;
+        let y = j * canvas.interval;
+        if (grid[i][j].state == 1) {
+          canvas.c.beginPath();
+          canvas.c.fillStyle = canvas.squareColor;
+          canvas.c.fillRect(x, y, canvas.interval - 1, canvas.interval - 1);
+          canvas.c.strokeStyle = canvas.gridColor;
+          canvas.c.stroke();
+        }
+      }
+    }
+    grid = getnext();
   }
 }
 
