@@ -2,6 +2,7 @@
 
 import {
   stop,
+  reload,
   zoomIn,
   zoomOut,
   increaseCanvas,
@@ -30,10 +31,17 @@ let decreaseCanvasAction;
 
 fillRandomSquaresButton.addEventListener("click", renderRandomSquares);
 
-runGameofLifeButton.addEventListener("click", runGameofLife);
+runGameofLifeButton.addEventListener("click", () => {
+  canvas.restartGameofLife();
+  runGameofLife();
+});
 
 //Stop Game of life
 stop.addEventListener("click", () => {
+  canvas.stopGameofLife();
+});
+
+reload.addEventListener("click", () => {
   location.reload();
 });
 //--------------------------------------------------------------------
