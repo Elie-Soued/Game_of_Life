@@ -1,2 +1,2 @@
 1-Fix the drawing functionality for mobile devices
-2- Stop Button = should stop the animation (not clear the grid)
+
