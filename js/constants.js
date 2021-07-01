@@ -17,15 +17,15 @@ const fillRandomSquaresButton = document.getElementById(
 
 //Functions
 
-function drawLine(init_x, init_y, final_x, final_y) {
+const drawLine = (init_x, init_y, final_x, final_y) => {
   canvas.c.beginPath();
   canvas.c.moveTo(init_x, init_y);
   canvas.c.lineTo(final_x, final_y);
   canvas.c.strokeStyle = canvas.gridColor;
   canvas.c.stroke();
-}
+};
 
-function drawGrid() {
+const drawGrid = () => {
   canvas.c.clearRect(
     0,
     0,
@@ -38,15 +38,30 @@ function drawGrid() {
     }
     drawLine(i, 0, i, canvas.element.height);
   }
-}
+};
 
-function make2DArray(cols, rows) {
+const make2DArray = (cols, rows) => {
   let arr = new Array(cols);
   for (let i = 0; i < arr.length; i++) {
     arr[i] = new Array(rows);
   }
   return arr;
-}
+};
+
+// Counting the number of alive neighbors of a cell in grid
+const countAliveNeighbors = (grid, x, y) => {
+  let sum = 0;
+  for (let i = -1; i < 2; i++) {
+    for (let j = -1; j < 2; j++) {
+      let col = (x + i + canvas.cols) % canvas.cols;
+      let row = (y + j + canvas.rows) % canvas.rows;
+
+      sum += grid[col][row].state;
+    }
+  }
+  sum = sum - grid[x][y].state;
+  return sum;
+};
 
 export {
   runGameofLifeButton,
@@ -63,4 +78,5 @@ export {
   make2DArray,
   drawLine,
   drawGrid,
+  countAliveNeighbors,
 };
