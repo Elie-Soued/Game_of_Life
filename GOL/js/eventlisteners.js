@@ -12,6 +12,7 @@ import {
   colorPickerGrid,
   fillRandomSquaresButton,
   runGameofLifeButton,
+  drawGrid,
 } from "./constants.js";
 
 import { renderRandomSquares, runGameofLife } from "./script.js";
