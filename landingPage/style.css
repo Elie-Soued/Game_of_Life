@@ -3,6 +3,8 @@ canvas {
 }
 
 button {
+  width: 10rem;
+  height: 3rem;
   position: absolute;
   top: 50%;
   right: 50%;
