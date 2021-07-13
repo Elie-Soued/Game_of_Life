@@ -2,6 +2,7 @@
 import { canvas, canvasHTML } from "./canvasClass.js";
 import { Cell } from "./cellClass.js";
 import { drawGrid, make2DArray, countAliveNeighbors } from "./constants.js";
+import { Traverser } from "./TraverserClass.js";
 
 let grid;
 grid = make2DArray(canvas.cols, canvas.rows);
