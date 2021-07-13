@@ -12,12 +12,17 @@ import {
   colorPickerGrid,
   fillRandomSquaresButton,
   runGameofLifeButton,
-  drawGrid,
+  previousPicture,
+  nextPicture,
+  centralPicture,
+  imagesArray,
 } from "./constants.js";
 
 import { renderRandomSquares, runGameofLife } from "./script.js";
 
 import { canvas } from "./canvasClass.js";
+
+//Images at the button of the page
 
 //Variables
 //----------
