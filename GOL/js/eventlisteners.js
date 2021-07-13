@@ -1,5 +1,3 @@
-//imports
-
 import {
   stop,
   reload,
@@ -12,10 +10,6 @@ import {
   colorPickerGrid,
   fillRandomSquaresButton,
   runGameofLifeButton,
-  previousPicture,
-  nextPicture,
-  centralPicture,
-  imagesArray,
 } from "./constants.js";
 
 import { renderRandomSquares, runGameofLife } from "./script.js";
