@@ -80,4 +80,4 @@ class Canvas {
 
 const canvas = new Canvas(canvasHTML, "black", "white", "black", 20, 40, 20);
 
-export { canvas, Canvas };
+export { canvas, Canvas, canvasHTML };
