@@ -2,6 +2,7 @@ import { canvas } from "./canvasClass.js";
 
 //Variables
 //**********/
+const canvasHTML = document.getElementById("canvasHTML");
 const runGameofLifeButton = document.getElementById("runGameofLifeButton");
 const stop = document.getElementById("stop");
 const reload = document.getElementById("reload");
@@ -82,6 +83,7 @@ const countAliveNeighbors = (grid, x, y) => {
 //-------------------------------------------------------------------------------
 
 export {
+  canvasHTML,
   runGameofLifeButton,
   fillRandomSquaresButton,
   stop,
