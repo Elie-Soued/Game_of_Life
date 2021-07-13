@@ -2,10 +2,132 @@ canvas {
   position: relative;
 }
 
-button {
+h1 {
+  width: 40rem;
+  height: 10rem;
+  position: absolute;
+  top: 40%;
+  right: 30%;
+  color: black;
+  font-size: 5rem;
+}
+
+#play {
   width: 10rem;
   height: 3rem;
   position: absolute;
-  top: 50%;
+  top: 55%;
   right: 50%;
+}
+
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 3rem;
+    position: absolute;
+    top: 40%;
+    right: 10%;
+  }
+  #play {
+    width: 10rem;
+    height: 3rem;
+    position: absolute;
+    top: 55%;
+    right: 47%;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3rem;
+    position: absolute;
+    top: 40%;
+    right: -20%;
+  }
+  #play {
+    width: 10rem;
+    height: 3rem;
+    position: absolute;
+    top: 55%;
+    right: 30%;
+  }
+}
+
+@media (max-width: 540px) {
+  h1 {
+    font-size: 3rem;
+    position: absolute;
+    top: 40%;
+    right: -45%;
+  }
+  #play {
+    width: 10rem;
+    height: 3rem;
+    position: absolute;
+    top: 55%;
+    right: 30%;
+  }
+}
+
+@media (max-width: 414px) {
+  h1 {
+    font-size: 3rem;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+  }
+  #play {
+    width: 10rem;
+    height: 3rem;
+    position: absolute;
+    top: 55%;
+    right: 30%;
+  }
+}
+
+@media (max-width: 360px) {
+  h1 {
+    font-size: 3rem;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+  }
+  #play {
+    width: 10rem;
+    height: 3rem;
+    position: absolute;
+    top: 55%;
+    right: 25%;
+  }
+}
+
+@media (max-width: 320px) {
+  h1 {
+    font-size: 3rem;
+    position: absolute;
+    top: 40%;
+    left: 10%;
+  }
+  #play {
+    width: 10rem;
+    height: 3rem;
+    position: absolute;
+    top: 55%;
+    right: 20%;
+  }
+}
+
+@media (max-width: 280px) {
+  h1 {
+    font-size: 3rem;
+    position: absolute;
+    top: 40%;
+    left: 40%;
+  }
+  #play {
+    width: 10rem;
+    height: 3rem;
+    position: absolute;
+    top: 55%;
+    left: 70%;
+  }
 }
