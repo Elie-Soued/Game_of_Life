@@ -1,4 +1,4 @@
-import { canvasHTML } from "./constants";
+let canvasHTML = document.querySelector("canvas");
 
 class Canvas {
   constructor(
