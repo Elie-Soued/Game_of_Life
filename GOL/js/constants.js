@@ -15,7 +15,22 @@ const colorPickerSquare = document.getElementById("colorPickerSquare");
 const fillRandomSquaresButton = document.getElementById(
   "fillRandomSquaresButton"
 );
+const nextPicture = document.getElementById("nextPicture");
+const previousPicture = document.getElementById("previousPicture");
 
+const imagesArray = [
+  "../image/oscillators/Beacon (Period2).JPG",
+  "../image/oscillators/blinker(period2).JPG",
+  "../image/oscillators/Pulsar (Period3).JPG",
+  "../image/oscillators/Toad (period2).JPG",
+  "../image/spaceships/Lightweight spaceship.JPG",
+  "../image/spaceships/middleweight spaceship.JPG",
+  "../image/spaceships/heavyweight spaceship.JPG",
+  "../image/spaceships/Glider.JPG",
+  "../image/favicon.jpg",
+];
+
+const centralPicture = imagesArray[0];
 //Functions
 //**********/
 
@@ -78,6 +93,10 @@ export {
   colorPickerBackground,
   colorPickerSquare,
   colorPickerGrid,
+  nextPicture,
+  previousPicture,
+  centralPicture,
+  imagesArray,
   make2DArray,
   drawLine,
   drawGrid,
