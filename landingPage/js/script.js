@@ -3,7 +3,7 @@ let mouseX;
 let mouseY;
 let maxRadius = 40;
 let minRadius = 2;
-let colorArray = ["#ffaa33", "#99ffaa", "#00ff00", "#ff1100", "#4411aa"];
+let colorArray = ["#2b2d42", "#8d99ae", "#edf2f4", "#ef233c"];
 let canvas = document.querySelector("canvas");
 let c = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -37,7 +37,7 @@ class Circle {
   }
   draw() {
     this.c.beginPath();
-    this.c.fillStyle = "black";
+    this.c.fillStyle = this.color;
     this.c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
     this.c.strokeStyle = "black";
     this.c.fillStyle = this.color;
