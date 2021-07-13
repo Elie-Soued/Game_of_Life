@@ -1,14 +1,10 @@
 //Imports and variable declaration
-import { canvas } from "./canvasClass.js";
+import { canvas, canvasHTML } from "./canvasClass.js";
 import { Cell } from "./cellClass.js";
 import { drawGrid, make2DArray, countAliveNeighbors } from "./constants.js";
 
-const canvasHTML = document.querySelector("canvas");
 let grid;
 grid = make2DArray(canvas.cols, canvas.rows);
-
-//Draw an empty grid
-drawGrid();
 
 //Fill the grid with cell Objects
 for (let i = 0; i < canvas.cols; i++) {
