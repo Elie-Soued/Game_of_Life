@@ -15,8 +15,8 @@
   </head>
 
   <body>
-    <h1>Play the Game of Life</h1>
-    <div id="holder">
+    <!-- <h1>Play the Game of Life</h1> -->
+    <!-- <div id="holder">
       <div id="imageHolder">
         <div>
           <img
@@ -68,27 +68,25 @@
         </div>
       </div>
     </div>
-    <br />
+    <br /> -->
 
     <div id="upperSection">
       <div id="randomSection">
-        <p id="title1">Discover the below commands</p>
+        <!-- <p id="title1">Discover the below commands</p> -->
         <div id="buttons">
           <i id="fillRandomSquaresButton" class="fas fa-random"></i>
           <i id="runGameofLifeButton" class="fas fa-play buttonElement"></i>
-          <i id="stop" class="fas fa-stop buttonElement"></i>
-          <i id="reload" class="fas fa-sync-alt"></i>
 
-          <img
+          <i
             id="IncreaseCanvas"
-            class="buttonElement"
-            src="../image/increaseCanvas.png"
-          />
-          <img
+            class="fas fa-expand-arrows-alt buttonElement"
+          ></i>
+
+          <i
             id="DecreaseCanvas"
-            class="buttonElement"
-            src="../image/decreaseCanvas.png"
-          />
+            class="fas fa-compress-arrows-alt buttonElement"
+          ></i>
+
           <i id="ZoomIn" class="fas fa-search-plus buttonElement"></i>
           <i id="ZoomOut" class="fas fa-search-minus buttonElement"></i>
 
@@ -106,8 +104,10 @@
             <input id="colorPickerSquare" type="color" value="#000000" />
             <label for="colorPickerSquare">Square</label>
           </div>
+          <i id="stop" class="fas fa-stop buttonElement"></i>
         </div>
       </div>
+      <i id="reload" class="fas fa-sync-alt"></i>
       <div id="drawingSection">
         <ol id="title2">
           <!-- <li>
@@ -121,6 +121,13 @@
     </div>
 
     <canvas id="canvas"></canvas>
+
+    <div>
+      <i id="nextPicture" class="fas fa-arrow-left"></i>
+      <img id="centralPicture" src="" alt="" />
+      <i id="previouPicture" class="fas fa-arrow-right"></i>
+    </div>
     <script src="./js/eventlisteners.js" type="module"></script>
+    <script src="./js/constants.js" type="module"></script>
   </body>
 </html>
