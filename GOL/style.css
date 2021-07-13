@@ -4,10 +4,13 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: black;
+  color: white;
 }
 
 canvas {
   max-width: 100%;
+  border: 1px solid white;
 }
 
 img {
