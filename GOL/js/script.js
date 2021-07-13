@@ -8,11 +8,11 @@ let grid;
 grid = make2DArray(canvas.cols, canvas.rows);
 
 //Fill the grid with cell Objects
-for (let i = 0; i < canvas.cols; i++) {
-  for (let j = 0; j < canvas.rows; j++) {
-    grid[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
-  }
-}
+const populateGrid = (i, j) => {
+  grid[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
+};
+const traverseAndPopulateGrid = new Traverser(canvas, populateGrid, canvas);
+traverseAndPopulateGrid.iterate();
 
 //Create a new grid and populate it with rules of Game of Life
 const getnext = () => {
@@ -65,6 +65,7 @@ const renderRandomSquares = () => {
       grid[i][j].state = Math.floor(Math.random() * 2);
     }
   }
+
   renderSquares();
 };
 
