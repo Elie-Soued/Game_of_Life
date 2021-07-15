@@ -10,6 +10,7 @@ class Circle {
     this.radius = Math.random() * 3 + 1;
     this.minRadius = this.radius;
     this.c = canvas.getContext("2d");
+    this.distance = 50;
     this.color = colorArray[Math.floor(Math.random() * colorArray.length + 1)];
   }
 
@@ -33,10 +34,10 @@ class Circle {
     this.y += this.dy;
 
     if (
-      mouseX - this.x < 50 &&
-      mouseX - this.x > -50 &&
-      mouseY - this.y < 50 &&
-      mouseY - this.y > -50
+      mouseX - this.x < this.distance &&
+      mouseX - this.x > -this.distance &&
+      mouseY - this.y < this.distance &&
+      mouseY - this.y > -this.distance
     ) {
       if (this.radius < maxRadius) {
         this.radius += 1;
