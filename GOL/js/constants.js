@@ -18,6 +18,7 @@ const fillRandomSquaresButton = document.getElementById(
 );
 const nextPicture = document.getElementById("nextPicture");
 const previousPicture = document.getElementById("previousPicture");
+const centralPicture = document.getElementById("centralPicture");
 
 const imagesArray = [
   "../image/oscillators/Beacon (Period2).JPG",
@@ -31,7 +32,8 @@ const imagesArray = [
   "../image/favicon.jpg",
 ];
 
-const centralPicture = imagesArray[0];
+centralPicture.scr = imagesArray[0];
+
 //Functions
 //**********/
 

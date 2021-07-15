@@ -10,6 +10,9 @@ import {
   colorPickerGrid,
   fillRandomSquaresButton,
   runGameofLifeButton,
+  centralPicture,
+  nextPicture,
+  imagesArray,
 } from "./constants.js";
 
 import { renderRandomSquares, runGameofLife } from "./script.js";
@@ -134,4 +137,26 @@ colorPickerGrid.addEventListener("input", () => {
 //Change square color
 colorPickerSquare.addEventListener("input", () => {
   canvas.setSquareColor(colorPickerSquare.value);
+});
+
+//---------------------------------------------------
+
+//Change the icon under the canvas
+let index = 0;
+nextPicture.addEventListener("click", () => {
+  if (index < imagesArray.length - 1) {
+    index = index + 1;
+  } else {
+    index = 0;
+  }
+  centralPicture.src = imagesArray[index];
+});
+
+previousPicture.addEventListener("click", () => {
+  if (index === 0) {
+    index = imagesArray.length - 1;
+  } else {
+    index = index - 1;
+  }
+  centralPicture.src = imagesArray[index];
 });
