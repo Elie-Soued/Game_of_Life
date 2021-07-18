@@ -10,6 +10,7 @@ body {
 
 canvas {
   max-width: 100%;
+  min-width: 804px;
   border: 1px solid white;
 }
 
@@ -33,6 +34,7 @@ h1 {
 }
 
 #upperSection {
+  border: 5px dashed white;
   display: flex;
   flex-direction: column;
 }
@@ -179,4 +181,10 @@ a {
   height: auto;
   display: flex;
   flex-direction: row;
+}
+
+@media (max-width: 804px) {
+  #upperSection {
+    flex-wrap: wrap;
+  }
 }
