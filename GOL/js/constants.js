@@ -1,4 +1,5 @@
 import { canvas } from "./canvasClass.js";
+import { Cell } from "./cellClass.js";
 
 //Variables
 //**********/
@@ -61,10 +62,15 @@ const drawGrid = () => {
   }
 };
 //-------------------------------------------------------------------------
-const make2DArray = (cols, rows) => {
+const make2DArray = (cols, rows, canvas) => {
   let arr = new Array(cols);
   for (let i = 0; i < arr.length; i++) {
     arr[i] = new Array(rows);
+  }
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      arr[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
+    }
   }
   return arr;
 };
@@ -83,6 +89,55 @@ const countAliveNeighbors = (grid, x, y) => {
   return sum;
 };
 //-------------------------------------------------------------------------------
+
+const buildNext = (grid, next) => {
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
+      let aliveNeighbors = countAliveNeighbors(grid, i, j);
+      if (grid[i][j].state == 0 && aliveNeighbors == 3) {
+        next[i][j].state = 1;
+      } else if (
+        grid[i][j].state == 1 &&
+        (aliveNeighbors < 2 || aliveNeighbors > 3)
+      ) {
+        next[i][j].state = 0;
+      } else {
+        next[i][j].state = grid[i][j].state;
+      }
+    }
+  }
+};
+
+//------------------------------------------------------------------------------------
+
+const fillSquares = (x, y) => {
+  canvas.c.beginPath();
+  canvas.c.fillStyle = canvas.squareColor;
+  canvas.c.fillRect(x, y, canvas.interval - 1, canvas.interval - 1);
+  canvas.c.strokeStyle = canvas.gridColor;
+  canvas.c.stroke();
+};
+
+//-----------------------------------------------------------------------------
+
+const fillRandomly = () => {
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
+      grid[i][j].state = Math.floor(Math.random() * 2);
+    }
+  }
+};
+
+//----------------------------------------------
+
+const setCoordinates = () => {
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
+      let x = i * canvas.interval;
+      let y = j * canvas.interval;
+    }
+  }
+};
 
 export {
   canvasHTML,
@@ -105,4 +160,8 @@ export {
   drawLine,
   drawGrid,
   countAliveNeighbors,
+  buildNext,
+  fillSquares,
+  fillRandomly,
+  setCoordinates,
 };
