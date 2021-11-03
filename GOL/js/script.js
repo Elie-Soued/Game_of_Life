@@ -2,19 +2,16 @@
 import { canvas, canvasHTML } from "./canvasClass.js";
 import { Cell } from "./cellClass.js";
 import { drawGrid, make2DArray, countAliveNeighbors } from "./constants.js";
-import { Traverser } from "./TraverserClass.js";
 
-let grid;
-grid = make2DArray(canvas.cols, canvas.rows);
+//1-Create a 2D Array called Grid and fill it with empty cells
+let grid = make2DArray(canvas.cols, canvas.rows);
+for (let i = 0; i < canvas.cols; i++) {
+  for (let j = 0; j < canvas.rows; j++) {
+    grid[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
+  }
+}
 
-//Fill the grid with cell Objects
-const populateGrid = (i, j) => {
-  grid[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
-};
-const traverseAndPopulateGrid = new Traverser(canvas, populateGrid, canvas);
-traverseAndPopulateGrid.iterate();
-
-//Create a new grid and populate it with rules of Game of Life
+//2-getnext will create a 2D Array called Next based on Grid and on the Rules of GOL
 const getnext = () => {
   let next = make2DArray(canvas.cols, canvas.rows);
   for (let i = 0; i < canvas.cols; i++) {
@@ -22,9 +19,12 @@ const getnext = () => {
       next[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
     }
   }
+
+  //3- Here we check the state of the grid cells + numb of living neighbors
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
       let aliveNeighbors = countAliveNeighbors(grid, i, j);
+      //4- these are the GOL Rules
       if (grid[i][j].state == 0 && aliveNeighbors == 3) {
         next[i][j].state = 1;
       } else if (
@@ -40,7 +40,7 @@ const getnext = () => {
   return next;
 };
 
-//Function that renders the squares
+//5- renderSquares colors the living cells
 const renderSquares = () => {
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
@@ -57,7 +57,7 @@ const renderSquares = () => {
   }
 };
 
-//Function that display random squares on the grid
+//6- renderRandomSquares gives the grid cells a random value of 1 or 0
 const renderRandomSquares = () => {
   drawGrid();
   for (let i = 0; i < canvas.cols; i++) {
@@ -65,11 +65,10 @@ const renderRandomSquares = () => {
       grid[i][j].state = Math.floor(Math.random() * 2);
     }
   }
-
   renderSquares();
 };
 
-//Function that executes the GOL rules on the squares that are displayed on the grid
+//7-runGameOflife runs or stops the GOL Algorithm depending on the value of isRunning
 const runGameofLife = () => {
   drawGrid();
   if (canvas.isRunning) {
