@@ -120,10 +120,10 @@ const fillSquares = (x, y) => {
 
 //-----------------------------------------------------------------------------
 
-const fillRandomly = () => {
+const fillRandomly = (state) => {
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
-      grid[i][j].state = Math.floor(Math.random() * 2);
+      state = Math.floor(Math.random() * 2);
     }
   }
 };
@@ -138,6 +138,54 @@ const setCoordinates = () => {
     }
   }
 };
+
+//---------------------------------------------------------
+
+const toggleCell = (x, y, grid) => {
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
+      if (grid[i][j].x === x && grid[i][j].y === y) {
+        grid[i][j].toggleState();
+      }
+    }
+  }
+};
+
+//---------------------------------------------------------
+
+const renderTheSquares = (grid) => {
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
+      let x = i * canvas.interval;
+      let y = j * canvas.interval;
+      if (grid[i][j].state == 1) {
+        canvas.c.beginPath();
+        canvas.c.fillStyle = canvas.squareColor;
+        canvas.c.fillRect(x, y, canvas.interval - 1, canvas.interval - 1);
+        canvas.c.strokeStyle = canvas.gridColor;
+        canvas.c.stroke();
+      }
+    }
+  }
+};
+
+//-------------------------------------------------------------------------
+
+const getNext = (grid) => {
+  let next = make2DArray(canvas.cols, canvas.rows, canvas);
+  buildNext(grid, next);
+  return next;
+};
+
+//--------------------------------------------------------------------------
+
+const renderRandomSquares = () => {
+  drawGrid();
+  fillRandomly();
+  renderTheSquares(grid);
+};
+
+//--------------------------------------------------------------------------
 
 export {
   canvasHTML,
@@ -160,8 +208,11 @@ export {
   drawLine,
   drawGrid,
   countAliveNeighbors,
-  buildNext,
   fillSquares,
   fillRandomly,
   setCoordinates,
+  toggleCell,
+  renderTheSquares,
+  getNext,
+  renderRandomSquares,
 };
