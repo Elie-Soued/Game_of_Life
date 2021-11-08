@@ -1,5 +1,5 @@
-import { canvas } from "./canvasClass.js";
-import { Cell } from "./cellClass.js";
+import { canvas } from "./Canvas.js";
+import { Cell } from "./Cell.js";
 
 //Assigning HTML Elements to variables
 const canvasHTML = document.getElementById("canvasHTML");

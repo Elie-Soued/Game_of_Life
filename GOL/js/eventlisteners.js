@@ -20,7 +20,7 @@ import {
 } from "./constants.js";
 
 
-import { canvas, canvasHTML } from "./canvasClass.js";
+import { canvas, canvasHTML } from "./Canvas.js";
 
 //Images at the button of the page
 
