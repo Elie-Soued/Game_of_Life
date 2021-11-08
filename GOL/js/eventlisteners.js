@@ -16,41 +16,44 @@ import {
   imagesArray,
   renderRandomSquares,
   runGameofLife,
-  grid 
+  grid,
 } from "./constants.js";
-
 
 import { canvas, canvasHTML } from "./Canvas.js";
 
-//Images at the button of the page
-
-//Variables
-//----------
-
+//Local Variables
+//***************/
 let zoomInAction;
 let zoomOutAction;
 let increaseCanvasAction;
 let decreaseCanvasAction;
 
 //Event Listeners
-//----------------
+//************************************************************************************/
 
+//Fill the grid ramdomly
+//*********************/
 fillRandomSquaresButton.addEventListener("click", renderRandomSquares);
 
+//Start Game of life
+//*****************/
 runGameofLifeButton.addEventListener("click", () => {
   canvas.restartGameofLife();
   runGameofLife();
 });
 
 //Stop Game of life
+//*****************/
 stop.addEventListener("click", () => {
   canvas.stopGameofLife();
 });
 
+//Reload the page
+//***************/
 reload.addEventListener("click", () => {
   location.reload();
 });
-//--------------------------------------------------------------------
+//************************************************************************************/
 
 //Zoom in
 //********/
@@ -68,7 +71,7 @@ zoomIn.addEventListener("mouseup", () => {
   clearInterval(zoomInAction);
 });
 
-//----------------------------------------------------------------------
+//************************************************************************************/
 
 //Zoom out
 //********/
@@ -85,11 +88,10 @@ zoomOut.addEventListener("click", () => {
 zoomOut.addEventListener("mouseup", () => {
   clearInterval(zoomOutAction);
 });
-
-//----------------------------------------------------------------------
+//************************************************************************************/
 
 //Increase Canvas Size
-//*********************/
+//********************/
 increaseCanvas.addEventListener("mousedown", () => {
   increaseCanvasAction = setInterval(() => {
     canvas.increaseWidth();
@@ -106,7 +108,7 @@ increaseCanvas.addEventListener("mouseup", () => {
   clearInterval(increaseCanvasAction);
 });
 
-//----------------------------------------------------------------------
+//************************************************************************************/
 
 //Decrease Canvas Size
 //********************/
@@ -125,26 +127,31 @@ decreaseCanvas.addEventListener("click", () => {
 decreaseCanvas.addEventListener("mouseup", () => {
   clearInterval(decreaseCanvasAction);
 });
-//----------------------------------------------------------------------
 
+//************************************************************************************/
 //Change background color
+//********************/
+
 colorPickerBackground.addEventListener("input", () => {
   canvas.setBackgroundColor(colorPickerBackground.value);
 });
 
 //Change grid color
+//*******************/
 colorPickerGrid.addEventListener("input", () => {
   canvas.setGridColor(colorPickerGrid.value);
 });
 
 //Change square color
+//******************/
 colorPickerSquare.addEventListener("input", () => {
   canvas.setSquareColor(colorPickerSquare.value);
 });
 
-//---------------------------------------------------
+//************************************************************************************/
 
 //Change the icon under the canvas
+//********************************/
 let index = 0;
 nextPicture.addEventListener("click", () => {
   if (index < imagesArray.length - 1) {
@@ -164,13 +171,15 @@ previousPicture.addEventListener("click", () => {
   centralPicture.src = imagesArray[index];
 });
 
+//************************************************************************************/
 
-
-//--------------------------------------------
-
+//Toggle cell´s state onclick
+//********************************/
 canvasHTML.addEventListener("click", (e) => {
   const rect = e.target.getBoundingClientRect();
-  const x =Math.floor((e.clientX - rect.left) / canvas.interval) * canvas.interval;
-  const y =Math.floor((e.clientY - rect.top) / canvas.interval) * canvas.interval;
+  const x =
+    Math.floor((e.clientX - rect.left) / canvas.interval) * canvas.interval;
+  const y =
+    Math.floor((e.clientY - rect.top) / canvas.interval) * canvas.interval;
   toggleCell(x, y, grid);
 });
