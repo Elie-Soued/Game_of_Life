@@ -10,7 +10,6 @@ checkout the below wikipedia page :https://en.wikipedia.org/wiki/Conway%27s_Game
 
 #### Game of life
 
-<br>
 was created in 1970 by the British matematician John Conway.
 <br>
 He divided a grid into cells.
@@ -30,7 +29,6 @@ In addition to having a state, cells had also 8 neigbors.
 
 #### Rules of the Game
 
-<br>
 If a living cell has 2 or 3 neighbors, it lives on to the next generation.
 <br>
 If a living cell has less than 2 neighbors, it dies of underpopulation.
