@@ -1,7 +1,12 @@
 import { canvas } from "./Canvas.js";
 import { Cell } from "./Cell.js";
 
-//Assigning HTML Elements to variables
+
+// This Module is designed to export constants to eventlistener.js.
+//**************************************************************** */
+
+//1-Assigning HTML Elements to variables
+//************************************/
 const canvasHTML = document.getElementById("canvasHTML");
 const runGameofLifeButton = document.getElementById("runGameofLifeButton");
 const stop = document.getElementById("stop");
@@ -20,7 +25,8 @@ const nextPicture = document.getElementById("nextPicture");
 const previousPicture = document.getElementById("previousPicture");
 const centralPicture = document.getElementById("centralPicture");
 
-//Importing all images and storing them in an Array
+//2-Importing all images and storing them in an Array
+//*************************************************/
 const imagesArray = [
   "../image/oscillators/Beacon (Period2).JPG",
   "../image/oscillators/blinker(period2).JPG",
@@ -37,15 +43,12 @@ centralPicture.scr = imagesArray[0];
 
 
 
+//3-Helper Functions 
+//*****************/
 
 
-
-//-----------------------------------------------------------------------------
-
-
-//Functions
-//**********/
-
+//Functions related to the 2DArray
+//-------------------------------/
 
 const make2DArray = (cols, rows, canvas) => {
   let arr = new Array(cols);
@@ -60,14 +63,10 @@ const make2DArray = (cols, rows, canvas) => {
   return arr;
 };
 
-//-------------------------------------------------------------------------
-//Newly imported
 
 let grid = make2DArray(canvas.cols, canvas.rows, canvas);
 
-//------------------------------------------------------------
 
-//Fill the grid randomly using 1 or 0
 const fillRandomly = () => {
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
@@ -76,7 +75,7 @@ const fillRandomly = () => {
   }
 };
 
-//Render the Square depending on their states (1 or 0)
+
 const renderTheSquares = () => {
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
@@ -89,69 +88,8 @@ const renderTheSquares = () => {
   }
 };
 
-const renderRandomSquares = () => {
-  fillRandomly();
-  renderTheSquares();
-};
 
 
-//3-runGameOflife runs or stops the GOL Algorithm depending on the value of isRunning
-const runGameofLife = () => {
-  drawGrid();
-  if (canvas.isRunning) {
-    renderTheSquares(grid);
-    grid = getNext(grid);
-    requestAnimationFrame(runGameofLife);
-  } else {
-    drawGrid();
-    renderTheSquares(grid);
-    grid = getNext(grid);
-  }
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const drawLine = (init_x, init_y, final_x, final_y) => {
-  canvas.c.beginPath();
-  canvas.c.moveTo(init_x, init_y);
-  canvas.c.lineTo(final_x, final_y);
-  canvas.c.strokeStyle = canvas.gridColor;
-  canvas.c.stroke();
-};
-//---------------------------------------------------------------
-const drawGrid = () => {
-  canvas.c.clearRect(
-    0,
-    0,
-    canvas.interval * canvas.cols,
-    canvas.interval * canvas.rows
-  );
-  for (let i = 0; i <= canvas.element.width; i = i + canvas.interval) {
-    for (let j = 0; j <= canvas.element.height; j = j + canvas.interval) {
-      drawLine(0, j, canvas.element.width, j);
-    }
-    drawLine(i, 0, i, canvas.element.height);
-  }
-};
-
-//---------------------------------------------------------------------------
 const countAliveNeighbors = (grid, x, y) => {
   let sum = 0;
   for (let i = -1; i < 2; i++) {
@@ -165,7 +103,8 @@ const countAliveNeighbors = (grid, x, y) => {
   sum = sum - grid[x][y].state;
   return sum;
 };
-//-------------------------------------------------------------------------------
+
+
 
 const buildNext = (grid, next) => {
   for (let i = 0; i < canvas.cols; i++) {
@@ -185,7 +124,42 @@ const buildNext = (grid, next) => {
   }
 };
 
-//------------------------------------------------------------------------------------
+const getNext = (grid) => {
+  let next = make2DArray(canvas.cols, canvas.rows, canvas);
+  buildNext(grid, next);
+  return next;
+};
+
+
+
+
+//Functions related to building the grid
+//-------------------------------------
+
+const drawLine = (init_x, init_y, final_x, final_y) => {
+  canvas.c.beginPath();
+  canvas.c.moveTo(init_x, init_y);
+  canvas.c.lineTo(final_x, final_y);
+  canvas.c.strokeStyle = canvas.gridColor;
+  canvas.c.stroke();
+};
+
+
+const drawGrid = () => {
+  canvas.c.clearRect(
+    0,
+    0,
+    canvas.interval * canvas.cols,
+    canvas.interval * canvas.rows
+  );
+  for (let i = 0; i <= canvas.element.width; i = i + canvas.interval) {
+    for (let j = 0; j <= canvas.element.height; j = j + canvas.interval) {
+      drawLine(0, j, canvas.element.width, j);
+    }
+    drawLine(i, 0, i, canvas.element.height);
+  }
+};
+
 
 const fillSquares = (x, y) => {
   canvas.c.beginPath();
@@ -195,22 +169,29 @@ const fillSquares = (x, y) => {
   canvas.c.stroke();
 };
 
-//-----------------------------------------------------------------------------
+
+//4-Functions to export
+//*******************/
+
+const renderRandomSquares = () => {
+  fillRandomly();
+  renderTheSquares();
+};
 
 
-
-
-
-const setCoordinates = () => {
-  for (let i = 0; i < canvas.cols; i++) {
-    for (let j = 0; j < canvas.rows; j++) {
-      let x = i * canvas.interval;
-      let y = j * canvas.interval;
-    }
+const runGameofLife = () => {
+  drawGrid();
+  if (canvas.isRunning) {
+    renderTheSquares(grid);
+    grid = getNext(grid);
+    requestAnimationFrame(runGameofLife);
+  } else {
+    drawGrid();
+    renderTheSquares(grid);
+    grid = getNext(grid);
   }
 };
 
-//---------------------------------------------------------
 
 const toggleCell = (x, y, grid) => {
   for (let i = 0; i < canvas.cols; i++) {
@@ -222,50 +203,29 @@ const toggleCell = (x, y, grid) => {
   }
 };
 
-//---------------------------------------------------------
 
 
-
-//-------------------------------------------------------------------------
-
-const getNext = (grid) => {
-  let next = make2DArray(canvas.cols, canvas.rows, canvas);
-  buildNext(grid, next);
-  return next;
-};
-
-
-
-
-//--------------------------------------------------------------------------
 
 export {
-  grid,
-  canvasHTML,
-  runGameofLifeButton,
-  fillRandomSquaresButton,
-  stop,
-  reload,
-  zoomIn,
-  zoomOut,
-  increaseCanvas,
-  decreaseCanvas,
-  colorPickerBackground,
-  colorPickerSquare,
-  colorPickerGrid,
-  nextPicture,
-  previousPicture,
-  centralPicture,
-  imagesArray,
-  make2DArray,
-  drawLine,
-  drawGrid,
-  countAliveNeighbors,
-  fillSquares,
-  setCoordinates,
-  toggleCell,
-  getNext,
-  renderRandomSquares,
-  runGameofLife
- 
+//HTML elements turned to variables and exported
+stop,
+reload,
+zoomIn,
+zoomOut,
+increaseCanvas,
+decreaseCanvas,
+colorPickerBackground,
+colorPickerSquare,
+colorPickerGrid,
+fillRandomSquaresButton,
+runGameofLifeButton,
+centralPicture,
+nextPicture,
+imagesArray,
+//exporting the grid variable
+grid,
+//exporting functions
+renderRandomSquares,
+runGameofLife,
+toggleCell,
 };
