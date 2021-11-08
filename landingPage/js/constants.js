@@ -1,4 +1,4 @@
-import { Circle } from "./circleClass.js";
+import { Circle } from "./Circle.js";
 
 //Variables
 let maxRadius = 40;
@@ -22,5 +22,11 @@ const animate = () => {
     circleArray[i].update();
   }
 };
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+init();
+animate();
 
 export { maxRadius, colorArray, canvas, init, animate };
