@@ -1,4 +1,4 @@
-# Conway´s Game of Life with Javascript
+# Conway´s Game of Life
 
 ## Introduction
 
