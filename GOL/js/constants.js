@@ -1,8 +1,7 @@
 import { canvas } from "./canvasClass.js";
 import { Cell } from "./cellClass.js";
 
-//Variables
-//**********/
+//Assigning HTML Elements to variables
 const canvasHTML = document.getElementById("canvasHTML");
 const runGameofLifeButton = document.getElementById("runGameofLifeButton");
 const stop = document.getElementById("stop");
@@ -21,6 +20,7 @@ const nextPicture = document.getElementById("nextPicture");
 const previousPicture = document.getElementById("previousPicture");
 const centralPicture = document.getElementById("centralPicture");
 
+//Importing all images and storing them in an Array
 const imagesArray = [
   "../image/oscillators/Beacon (Period2).JPG",
   "../image/oscillators/blinker(period2).JPG",
@@ -35,10 +35,99 @@ const imagesArray = [
 
 centralPicture.scr = imagesArray[0];
 
+
+
+
+
+
+//-----------------------------------------------------------------------------
+
+
 //Functions
 //**********/
 
+
+const make2DArray = (cols, rows, canvas) => {
+  let arr = new Array(cols);
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = new Array(rows);
+  }
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      arr[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
+    }
+  }
+  return arr;
+};
+
+//-------------------------------------------------------------------------
+//Newly imported
+
+let grid = make2DArray(canvas.cols, canvas.rows, canvas);
+
 //------------------------------------------------------------
+
+//Fill the grid randomly using 1 or 0
+const fillRandomly = () => {
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
+      grid[i][j].state = Math.floor(Math.random() * 2);
+    }
+  }
+};
+
+//Render the Square depending on their states (1 or 0)
+const renderTheSquares = () => {
+  for (let i = 0; i < canvas.cols; i++) {
+    for (let j = 0; j < canvas.rows; j++) {
+      let x = i * canvas.interval;
+      let y = j * canvas.interval;
+      if (grid[i][j].state == 1) {
+        fillSquares(x, y);
+      }
+    }
+  }
+};
+
+const renderRandomSquares = () => {
+  fillRandomly();
+  renderTheSquares();
+};
+
+
+//3-runGameOflife runs or stops the GOL Algorithm depending on the value of isRunning
+const runGameofLife = () => {
+  drawGrid();
+  if (canvas.isRunning) {
+    renderTheSquares(grid);
+    grid = getNext(grid);
+    requestAnimationFrame(runGameofLife);
+  } else {
+    drawGrid();
+    renderTheSquares(grid);
+    grid = getNext(grid);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const drawLine = (init_x, init_y, final_x, final_y) => {
   canvas.c.beginPath();
   canvas.c.moveTo(init_x, init_y);
@@ -61,19 +150,7 @@ const drawGrid = () => {
     drawLine(i, 0, i, canvas.element.height);
   }
 };
-//-------------------------------------------------------------------------
-const make2DArray = (cols, rows, canvas) => {
-  let arr = new Array(cols);
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = new Array(rows);
-  }
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      arr[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
-    }
-  }
-  return arr;
-};
+
 //---------------------------------------------------------------------------
 const countAliveNeighbors = (grid, x, y) => {
   let sum = 0;
@@ -120,15 +197,9 @@ const fillSquares = (x, y) => {
 
 //-----------------------------------------------------------------------------
 
-const fillRandomly = (state) => {
-  for (let i = 0; i < canvas.cols; i++) {
-    for (let j = 0; j < canvas.rows; j++) {
-      state = Math.floor(Math.random() * 2);
-    }
-  }
-};
 
-//----------------------------------------------
+
+
 
 const setCoordinates = () => {
   for (let i = 0; i < canvas.cols; i++) {
@@ -153,21 +224,7 @@ const toggleCell = (x, y, grid) => {
 
 //---------------------------------------------------------
 
-const renderTheSquares = (grid) => {
-  for (let i = 0; i < canvas.cols; i++) {
-    for (let j = 0; j < canvas.rows; j++) {
-      let x = i * canvas.interval;
-      let y = j * canvas.interval;
-      if (grid[i][j].state == 1) {
-        canvas.c.beginPath();
-        canvas.c.fillStyle = canvas.squareColor;
-        canvas.c.fillRect(x, y, canvas.interval - 1, canvas.interval - 1);
-        canvas.c.strokeStyle = canvas.gridColor;
-        canvas.c.stroke();
-      }
-    }
-  }
-};
+
 
 //-------------------------------------------------------------------------
 
@@ -177,17 +234,13 @@ const getNext = (grid) => {
   return next;
 };
 
-//--------------------------------------------------------------------------
 
-const renderRandomSquares = () => {
-  drawGrid();
-  fillRandomly();
-  renderTheSquares(grid);
-};
+
 
 //--------------------------------------------------------------------------
 
 export {
+  grid,
   canvasHTML,
   runGameofLifeButton,
   fillRandomSquaresButton,
@@ -209,10 +262,10 @@ export {
   drawGrid,
   countAliveNeighbors,
   fillSquares,
-  fillRandomly,
   setCoordinates,
   toggleCell,
-  renderTheSquares,
   getNext,
   renderRandomSquares,
+  runGameofLife
+ 
 };

@@ -1,4 +1,5 @@
 import {
+  toggleCell,
   stop,
   reload,
   zoomIn,
@@ -13,11 +14,13 @@ import {
   centralPicture,
   nextPicture,
   imagesArray,
+  renderRandomSquares,
+  runGameofLife,
+  grid 
 } from "./constants.js";
 
-import { renderRandomSquares, runGameofLife } from "./script.js";
 
-import { canvas } from "./canvasClass.js";
+import { canvas, canvasHTML } from "./canvasClass.js";
 
 //Images at the button of the page
 
@@ -159,4 +162,15 @@ previousPicture.addEventListener("click", () => {
     index = index - 1;
   }
   centralPicture.src = imagesArray[index];
+});
+
+
+
+//--------------------------------------------
+
+canvasHTML.addEventListener("click", (e) => {
+  const rect = e.target.getBoundingClientRect();
+  const x =Math.floor((e.clientX - rect.left) / canvas.interval) * canvas.interval;
+  const y =Math.floor((e.clientY - rect.top) / canvas.interval) * canvas.interval;
+  toggleCell(x, y, grid);
 });
