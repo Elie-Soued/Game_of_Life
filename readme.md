@@ -20,11 +20,11 @@ Black or white.
 <br>
 1 or 0.
 <br>
-<br>
 
 In addition to having a state, cells had also 8 neigbors.
 <br>
 Rules of the Game
+<br>
 If a living cell has 2 or 3 neighbors, it lives on to the next generation.
 If a living cell has less than 2 neighbors, it dies of underpopulation.
 If a living cell has more than 3 neigbors, it dies of overpopulation.
