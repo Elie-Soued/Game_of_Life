@@ -1,23 +1,29 @@
 # Conway´s Game of Life with Javascript
 
-=======================================
-
 ## Introduction
 
 ---
 
-To understand the Game of life algorithm, checkout the below wikipedia page :
-https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+checkout the below wikipedia page :https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
 ### My short summary:
 
 Game of life was created in 1970 by the British matematician John Conway.
+<br>
 He divided a grid into cells.
+<br>
 Each cell had a state :
+<br>
 It could be dead or alive.
+<br>
 Black or white.
+<br>
 1 or 0.
+<br>
+<br>
+
 In addition to having a state, cells had also 8 neigbors.
+<br>
 Rules of the Game
 If a living cell has 2 or 3 neighbors, it lives on to the next generation.
 If a living cell has less than 2 neighbors, it dies of underpopulation.
