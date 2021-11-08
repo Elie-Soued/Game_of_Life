@@ -6,7 +6,7 @@
 
 checkout the below wikipedia page :https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
-### My short summary:
+### My summary:
 
 Game of life was created in 1970 by the British matematician John Conway.
 <br>
@@ -47,12 +47,19 @@ The project is basically composed of 2 sections:
 ### I-Landing page Animation
 
 1- Circle.js (Class)
+<br>
 2- constant.js
+<br>
 3- eventListener.js
+<br>
 
 ### II-Game of Life Algorithm
 
 1-Canvas.js (class)
+<br>
 2-Cell.js (class)
+<br>
 3-constants.js
+<br>
 4-eventListener.js
+<br>
