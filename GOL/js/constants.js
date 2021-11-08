@@ -1,13 +1,11 @@
 import { canvas } from "./Canvas.js";
 import { Cell } from "./Cell.js";
 
-
 // This Module is designed to export constants to eventlistener.js.
 //**************************************************************** */
 
 //1-Assigning HTML Elements to variables
 //************************************/
-const canvasHTML = document.getElementById("canvasHTML");
 const runGameofLifeButton = document.getElementById("runGameofLifeButton");
 const stop = document.getElementById("stop");
 const reload = document.getElementById("reload");
@@ -22,7 +20,6 @@ const fillRandomSquaresButton = document.getElementById(
   "fillRandomSquaresButton"
 );
 const nextPicture = document.getElementById("nextPicture");
-const previousPicture = document.getElementById("previousPicture");
 const centralPicture = document.getElementById("centralPicture");
 
 //2-Importing all images and storing them in an Array
@@ -41,11 +38,8 @@ const imagesArray = [
 
 centralPicture.scr = imagesArray[0];
 
-
-
-//3-Helper Functions 
+//3-Helper Functions
 //*****************/
-
 
 //Functions related to the 2DArray
 //-------------------------------/
@@ -63,9 +57,7 @@ const make2DArray = (cols, rows, canvas) => {
   return arr;
 };
 
-
 let grid = make2DArray(canvas.cols, canvas.rows, canvas);
-
 
 const fillRandomly = () => {
   for (let i = 0; i < canvas.cols; i++) {
@@ -74,7 +66,6 @@ const fillRandomly = () => {
     }
   }
 };
-
 
 const renderTheSquares = () => {
   for (let i = 0; i < canvas.cols; i++) {
@@ -87,8 +78,6 @@ const renderTheSquares = () => {
     }
   }
 };
-
-
 
 const countAliveNeighbors = (grid, x, y) => {
   let sum = 0;
@@ -103,8 +92,6 @@ const countAliveNeighbors = (grid, x, y) => {
   sum = sum - grid[x][y].state;
   return sum;
 };
-
-
 
 const buildNext = (grid, next) => {
   for (let i = 0; i < canvas.cols; i++) {
@@ -130,9 +117,6 @@ const getNext = (grid) => {
   return next;
 };
 
-
-
-
 //Functions related to building the grid
 //-------------------------------------
 
@@ -143,7 +127,6 @@ const drawLine = (init_x, init_y, final_x, final_y) => {
   canvas.c.strokeStyle = canvas.gridColor;
   canvas.c.stroke();
 };
-
 
 const drawGrid = () => {
   canvas.c.clearRect(
@@ -160,7 +143,6 @@ const drawGrid = () => {
   }
 };
 
-
 const fillSquares = (x, y) => {
   canvas.c.beginPath();
   canvas.c.fillStyle = canvas.squareColor;
@@ -169,7 +151,6 @@ const fillSquares = (x, y) => {
   canvas.c.stroke();
 };
 
-
 //4-Functions to export
 //*******************/
 
@@ -177,7 +158,6 @@ const renderRandomSquares = () => {
   fillRandomly();
   renderTheSquares();
 };
-
 
 const runGameofLife = () => {
   drawGrid();
@@ -192,7 +172,6 @@ const runGameofLife = () => {
   }
 };
 
-
 const toggleCell = (x, y, grid) => {
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
@@ -203,29 +182,26 @@ const toggleCell = (x, y, grid) => {
   }
 };
 
-
-
-
 export {
-//HTML elements turned to variables and exported
-stop,
-reload,
-zoomIn,
-zoomOut,
-increaseCanvas,
-decreaseCanvas,
-colorPickerBackground,
-colorPickerSquare,
-colorPickerGrid,
-fillRandomSquaresButton,
-runGameofLifeButton,
-centralPicture,
-nextPicture,
-imagesArray,
-//exporting the grid variable
-grid,
-//exporting functions
-renderRandomSquares,
-runGameofLife,
-toggleCell,
+  //HTML elements turned to variables and exported
+  stop,
+  reload,
+  zoomIn,
+  zoomOut,
+  increaseCanvas,
+  decreaseCanvas,
+  colorPickerBackground,
+  colorPickerSquare,
+  colorPickerGrid,
+  fillRandomSquaresButton,
+  runGameofLifeButton,
+  centralPicture,
+  nextPicture,
+  imagesArray,
+  //exporting the grid variable
+  grid,
+  //exporting functions
+  renderRandomSquares,
+  runGameofLife,
+  toggleCell,
 };
