@@ -6,8 +6,6 @@
 
 checkout the below wikipedia page :https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
 
-### My summary:
-
 #### Game of life
 
 was created in 1970 by the British matematician John Conway.
