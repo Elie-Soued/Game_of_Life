@@ -27,9 +27,13 @@ In addition to having a state, cells had also 8 neigbors.
 Rules of the Game
 <br>
 If a living cell has 2 or 3 neighbors, it lives on to the next generation.
+<br>
 If a living cell has less than 2 neighbors, it dies of underpopulation.
+<br>
 If a living cell has more than 3 neigbors, it dies of overpopulation.
+<br>
 If a dead cell has exactly 3 living neigbors. it comes back to life.
+<br>
 
 ## The Project Structure
 
