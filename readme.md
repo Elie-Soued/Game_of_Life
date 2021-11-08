@@ -23,6 +23,7 @@ Black or white.
 
 In addition to having a state, cells had also 8 neigbors.
 <br>
+<br>
 Rules of the Game
 <br>
 If a living cell has 2 or 3 neighbors, it lives on to the next generation.
