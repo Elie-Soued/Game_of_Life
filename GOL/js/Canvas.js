@@ -1,5 +1,3 @@
-let canvasHTML = document.querySelector("canvas");
-
 class Canvas {
   constructor(
     element,
@@ -78,6 +76,4 @@ class Canvas {
   }
 }
 
-const canvas = new Canvas(canvasHTML, "black", "white", "black", 20, 40, 20);
-
-export { canvas, Canvas, canvasHTML };
+export { Canvas };

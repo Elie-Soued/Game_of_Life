@@ -1,4 +1,4 @@
-import { canvas } from "./Canvas.js";
+import { Canvas } from "./Canvas.js";
 import { Cell } from "./Cell.js";
 
 // This Module is designed to export constants to eventlistener.js.
@@ -6,6 +6,7 @@ import { Cell } from "./Cell.js";
 
 //1-Assigning HTML Elements to variables
 //************************************/
+const canvasHTML = document.querySelector("canvas");
 const runGameofLifeButton = document.getElementById("runGameofLifeButton");
 const stop = document.getElementById("stop");
 const reload = document.getElementById("reload");
@@ -37,6 +38,8 @@ const imagesArray = [
 ];
 
 centralPicture.scr = imagesArray[0];
+
+const canvas = new Canvas(canvasHTML, "black", "white", "black", 20, 40, 20);
 
 //3-Helper Functions
 //*****************/
@@ -184,6 +187,8 @@ const toggleCell = (x, y, grid) => {
 
 export {
   //HTML elements turned to variables and exported
+  canvas,
+  canvasHTML,
   stop,
   reload,
   zoomIn,

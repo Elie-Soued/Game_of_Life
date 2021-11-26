@@ -17,9 +17,11 @@ import {
   renderRandomSquares,
   runGameofLife,
   grid,
+  canvasHTML,
+  canvas,
 } from "./constants.js";
 
-import { canvas, canvasHTML } from "./Canvas.js";
+// import { canvas, canvasHTML } from "./Canvas.js";
 
 //Local Variables
 //***************/
