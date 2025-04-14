@@ -1,135 +1,37 @@
+/* Make canvas cover full screen */
 canvas {
-  position: relative;
-}
-
-h1 {
-  transform: translate(10%);
-  width: 40rem;
-  height: 10rem;
+  display: block;
   position: absolute;
-  top: 40%;
-  right: 30%;
-  color: black;
-  font-size: 5rem;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
 }
 
+/* The overlay div */
 #play {
-  transform: translate(50%);
-  width: 10rem;
-  height: 3rem;
   position: absolute;
-  top: 55%;
-  right: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  justify-content: center;
+  align-items: center;
+  width: 100vw; /* fill full width to prevent text from wrapping */
+  z-index: 1;
 }
 
-@media (max-width: 1024px) {
-  h1 {
-    font-size: 3rem;
-    position: absolute;
-    top: 40%;
-    right: 10%;
-  }
-  #play {
-    width: 10rem;
-    height: 3rem;
-    position: absolute;
-    top: 55%;
-    right: 47%;
-  }
+#play a {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3rem;
+  white-space: nowrap;
+  color: black;
+  text-decoration: none;
 }
 
-@media (max-width: 768px) {
-  h1 {
-    font-size: 3rem;
-    position: absolute;
-    top: 40%;
-    right: -20%;
-  }
-  #play {
-    width: 10rem;
-    height: 3rem;
-    position: absolute;
-    top: 55%;
-    right: 30%;
-  }
-}
 
-@media (max-width: 540px) {
-  h1 {
-    font-size: 3rem;
-    position: absolute;
-    top: 40%;
-    right: -45%;
-  }
-  #play {
-    width: 10rem;
-    height: 3rem;
-    position: absolute;
-    top: 55%;
-    right: 30%;
-  }
-}
-
-@media (max-width: 414px) {
-  h1 {
-    font-size: 3rem;
-    position: absolute;
-    top: 40%;
-    left: 10%;
-  }
-  #play {
-    width: 10rem;
-    height: 3rem;
-    position: absolute;
-    top: 55%;
-    right: 30%;
-  }
-}
-
-@media (max-width: 360px) {
-  h1 {
-    font-size: 3rem;
-    position: absolute;
-    top: 40%;
-    left: 10%;
-  }
-  #play {
-    width: 10rem;
-    height: 3rem;
-    position: absolute;
-    top: 55%;
-    right: 25%;
-  }
-}
-
-@media (max-width: 320px) {
-  h1 {
-    font-size: 3rem;
-    position: absolute;
-    top: 40%;
-    left: 10%;
-  }
-  #play {
-    width: 10rem;
-    height: 3rem;
-    position: absolute;
-    top: 55%;
-    right: 20%;
-  }
-}
-
-@media (max-width: 280px) {
-  h1 {
-    font-size: 3rem;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-  }
-  #play {
-    width: 10rem;
-    height: 3rem;
-    position: absolute;
-    top: 55%;
-    left: 70%;
-  }
+#icon{
+  width: 3rem;
 }
