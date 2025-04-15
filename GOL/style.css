@@ -236,6 +236,10 @@ a {
   .title{
     display: none;
   }
+
+  .images{
+    display: none;
+  }
   
   
 }
