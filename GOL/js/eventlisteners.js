@@ -2,8 +2,6 @@ import {
   toggleCell,
   pause,
   reload,
-  zoomIn,
-  zoomOut,
   increaseCanvas,
   decreaseCanvas,
   colorPickerBackground,
@@ -59,37 +57,46 @@ reload.addEventListener("click", () => {
 
 //Zoom in
 //********/
-zoomIn.addEventListener("mousedown", () => {
-  zoomInAction = setInterval(() => {
+
+const zoomInButtons = document.querySelectorAll(".ZoomIn");
+zoomInButtons.forEach((button) => {
+  button.addEventListener("mousedown", () => {
+    zoomInAction = setInterval(() => {
+      canvas.increaseInterval();
+    }, 100);
+  });
+
+  button.addEventListener("click", () => {
     canvas.increaseInterval();
-  }, 100);
-});
+  });
 
-zoomIn.addEventListener("click", () => {
-  canvas.increaseInterval();
-});
-
-zoomIn.addEventListener("mouseup", () => {
-  clearInterval(zoomInAction);
+  button.addEventListener("mouseup", () => {
+    clearInterval(zoomInAction);
+  });
 });
 
 //************************************************************************************/
 
 //Zoom out
 //********/
-zoomOut.addEventListener("mousedown", () => {
-  zoomOutAction = setInterval(() => {
+
+const zoomOutButtons = document.querySelectorAll(".ZoomOut");
+zoomOutButtons.forEach((button) => {
+  button.addEventListener("mousedown", () => {
+    zoomOutAction = setInterval(() => {
+      canvas.decreaseInterval();
+    }, 100);
+  });
+
+  button.addEventListener("click", () => {
     canvas.decreaseInterval();
-  }, 100);
+  });
+
+  button.addEventListener("mouseup", () => {
+    clearInterval(zoomOutAction);
+  });
 });
 
-zoomOut.addEventListener("click", () => {
-  canvas.decreaseInterval();
-});
-
-zoomOut.addEventListener("mouseup", () => {
-  clearInterval(zoomOutAction);
-});
 //************************************************************************************/
 
 //Increase Canvas Size

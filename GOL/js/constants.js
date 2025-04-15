@@ -10,8 +10,6 @@ const canvasHTML = document.querySelector("canvas");
 const runGameofLifeButton = document.getElementById("runGameofLifeButton");
 const pause = document.getElementById("pause");
 const reload = document.getElementById("reload");
-const zoomIn = document.getElementById("ZoomIn");
-const zoomOut = document.getElementById("ZoomOut");
 const increaseCanvas = document.getElementById("IncreaseCanvas");
 const decreaseCanvas = document.getElementById("DecreaseCanvas");
 const colorPickerBackground = document.getElementById("colorPickerBackground");
@@ -189,8 +187,6 @@ export {
   canvasHTML,
   pause,
   reload,
-  zoomIn,
-  zoomOut,
   increaseCanvas,
   decreaseCanvas,
   colorPickerBackground,
