@@ -8,7 +8,7 @@ import { Cell } from "./Cell.js";
 //************************************/
 const canvasHTML = document.querySelector("canvas");
 const runGameofLifeButton = document.getElementById("runGameofLifeButton");
-const stop = document.getElementById("stop");
+const pause = document.getElementById("pause");
 const reload = document.getElementById("reload");
 const zoomIn = document.getElementById("ZoomIn");
 const zoomOut = document.getElementById("ZoomOut");
@@ -36,8 +36,6 @@ const imagesArray = [
   "../image/spaceships/Glider.JPG",
   "../image/favicon.jpg",
 ];
-
-centralPicture.scr = imagesArray[0];
 
 const canvas = new Canvas(canvasHTML, "black", "white", "black", 20, 40, 20);
 
@@ -189,7 +187,7 @@ export {
   //HTML elements turned to variables and exported
   canvas,
   canvasHTML,
-  stop,
+  pause,
   reload,
   zoomIn,
   zoomOut,

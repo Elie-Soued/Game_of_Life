@@ -1,6 +1,6 @@
 import {
   toggleCell,
-  stop,
+  pause,
   reload,
   zoomIn,
   zoomOut,
@@ -44,10 +44,10 @@ runGameofLifeButton.addEventListener("click", () => {
   runGameofLife();
 });
 
-//Stop Game of life
+//Pause Game of life
 //*****************/
-stop.addEventListener("click", () => {
-  canvas.stopGameofLife();
+pause.addEventListener("click", () => {
+  canvas.pauseGameofLife();
 });
 
 //Reload the page
@@ -155,23 +155,23 @@ colorPickerSquare.addEventListener("input", () => {
 //Change the icon under the canvas
 //********************************/
 let index = 0;
-nextPicture.addEventListener("click", () => {
-  if (index < imagesArray.length - 1) {
-    index = index + 1;
-  } else {
-    index = 0;
-  }
-  centralPicture.src = imagesArray[index];
-});
+// nextPicture.addEventListener("click", () => {
+//   if (index < imagesArray.length - 1) {
+//     index = index + 1;
+//   } else {
+//     index = 0;
+//   }
+//   centralPicture.src = imagesArray[index];
+// });
 
-previousPicture.addEventListener("click", () => {
-  if (index === 0) {
-    index = imagesArray.length - 1;
-  } else {
-    index = index - 1;
-  }
-  centralPicture.src = imagesArray[index];
-});
+// previousPicture.addEventListener("click", () => {
+//   if (index === 0) {
+//     index = imagesArray.length - 1;
+//   } else {
+//     index = index - 1;
+//   }
+//   centralPicture.src = imagesArray[index];
+// });
 
 //************************************************************************************/
 

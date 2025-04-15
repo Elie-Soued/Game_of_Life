@@ -15,9 +15,25 @@
   </head>
 
   <body>
-    <div id="upperSection">
+    <div id="controlParent">
       <div id="randomSection">
-        <div id="buttons">
+        <p>Canvas Color</p>
+        <div class="buttons">
+          <div class="inputLabel buttonElement position">
+            <input id="colorPickerBackground" type="color" value="#FFFFFF" />
+            <label for="colorPickerBackground">Background</label>
+          </div>
+          <div class="inputLabel buttonElement">
+            <input id="colorPickerGrid" type="color" value="#000000" />
+            <label for="colorPickerGrid">Grid</label>
+          </div>
+          <div class="inputLabel buttonElement">
+            <input id="colorPickerSquare" type="color" value="#000000" />
+            <label for="colorPickerSquare">Square</label>
+          </div>
+        </div>
+        <p>Algorithm Control</p>
+        <div class="buttons">
           <i
             id="fillRandomSquaresButton"
             class="fas fa-random"
@@ -29,6 +45,11 @@
             title="Run the Game of life algorithm"
           ></i>
 
+          <i id="pause" class="fas fa-pause buttonElement" title="Pause"></i>
+          <i id="reload" class="fas fa-sync-alt" title="refresh"></i>
+        </div>
+        <p>Canvas Control</p>
+        <div class="buttons">
           <i
             id="IncreaseCanvas"
             title="Increase the size of the canvas"
@@ -51,44 +72,34 @@
             title="Zoom out"
             class="fas fa-search-minus buttonElement"
           ></i>
-
-          <div class="inputLabel buttonElement">
-            <input id="colorPickerGrid" type="color" value="#000000" />
-            <label for="colorPickerGrid">Grid</label>
-          </div>
-
+        </div>
+        <p>Patterns</p>
+        <div class="buttons">
           <div class="inputLabel buttonElement position">
-            <input id="colorPickerBackground" type="color" value="#FFFFFF" />
-            <label for="colorPickerBackground">Background</label>
+            <img src="../image/oscillators/Beacon (Period2).JPG" alt="" />
           </div>
-
           <div class="inputLabel buttonElement">
-            <input id="colorPickerSquare" type="color" value="#000000" />
-            <label for="colorPickerSquare">Square</label>
+            <img src="../image/oscillators/blinker(period2).JPG" alt="" />
           </div>
-          <i id="stop" class="fas fa-stop buttonElement" title="Stop"></i>
+          <div class="inputLabel buttonElement">
+            <img src="../image/oscillators/Pulsar (Period3).JPG" alt="" />
+          </div>
+          <div class="inputLabel buttonElement position">
+            <img src="../image/spaceships/Glider.JPG" alt="" />
+          </div>
+          <div class="inputLabel buttonElement">
+            <img src="../image/spaceships/Gospel Glider Gun.JPG" alt="" />
+          </div>
+          <div class="inputLabel buttonElement">
+            <img src="../image/spaceships/heavyweight spaceship.JPG" alt="" />
+          </div>
         </div>
       </div>
-      <i id="reload" class="fas fa-sync-alt" title="refresh"></i>
-      <div id="drawingSection">
-        <ol id="title2"></ol>
-      </div>
+    </div>
+    <div id="canvasParent">
+      <canvas id="canvasHTML"></canvas>
     </div>
 
-    <canvas id="canvasHTML"></canvas>
-    <br />
-    <div>
-      <i id="previousPicture" class="fas fa-arrow-left"></i>
-
-      <img
-        id="centralPicture"
-        src="../image/oscillators/Beacon (Period2).JPG"
-        alt=""
-      />
-      <i id="nextPicture" class="fas fa-arrow-right"></i>
-    </div>
-
-    <p>Try out these shapes and press play</p>
     <script src="./js/eventlisteners.js" type="module"></script>
     <script src="./js/constants.js" type="module"></script>
   </body>

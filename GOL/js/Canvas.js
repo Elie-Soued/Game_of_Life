@@ -32,25 +32,25 @@ class Canvas {
   }
 
   increaseWidth() {
-    if (this.element.width < window.innerWidth) {
+    if (this.element.width < 1130) {
       return (this.element.width = this.element.width + 10);
     }
   }
 
   increaseHeight() {
-    if (this.element.height < window.innerHeight) {
+    if (this.element.height < 720) {
       return (this.element.height = this.element.height + 10);
     }
   }
 
   decreaseWidth() {
-    if (this.element.width > this.interval) {
+    if (this.element.width > 800) {
       return (this.element.width = this.element.width - 10);
     }
   }
 
   decreaseHeight() {
-    if (this.element.height > this.interval) {
+    if (this.element.height > 400) {
       return (this.element.height = this.element.height - 10);
     }
   }
@@ -67,7 +67,7 @@ class Canvas {
     this.element.style.backgroundColor = backgroundColor;
   }
 
-  stopGameofLife() {
+  pauseGameofLife() {
     this.isRunning = false;
   }
 
