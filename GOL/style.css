@@ -32,6 +32,10 @@ canvas {
 
 }
 
+.zoom{
+  display: none;
+}
+
 
 .title{
   display: block;
@@ -237,9 +241,14 @@ a {
     display: none;
   }
 
-  .images{
+  .mobile{
     display: none;
   }
+
+  .zoom{
+    display: block;
+  }
+  
   
   
 }
