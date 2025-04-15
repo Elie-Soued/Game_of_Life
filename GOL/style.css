@@ -29,7 +29,12 @@ body {
 
 canvas {
   max-width: 100%;
-  border: 1px solid white;
+
+}
+
+
+.title{
+  display: block;
 }
 
 img {
@@ -210,23 +215,27 @@ a {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     width: 100%;
+    height:90vh;
     border: 1px solid white
   
   }
 
   canvas {
-    width: 80%;
-    border: 1px solid white;
+    width: 95%;
+    height:50vh;
   }
-
-
 
 
   #controlParent{
     width: 100%;
     border: 4px solid white
   }
+
+  .title{
+    display: none;
+  }
+  
   
 }
