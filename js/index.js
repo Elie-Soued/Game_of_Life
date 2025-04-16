@@ -1,47 +1,22 @@
 import { Canvas } from "./Canvas.js";
 import { Cell } from "./Cell.js";
 
-// This Module is designed to export constants to eventlistener.js.
-//**************************************************************** */
+let zoomInAction;
+let zoomOutAction;
+let increaseCanvasAction;
+let decreaseCanvasAction;
 
-//1-Assigning HTML Elements to variables
-//************************************/
-const canvasHTML = document.querySelector("canvas");
-const runGameofLifeButton = document.getElementById("runGameofLifeButton");
-const pause = document.getElementById("pause");
-const reload = document.getElementById("reload");
-const increaseCanvas = document.getElementById("IncreaseCanvas");
-const decreaseCanvas = document.getElementById("DecreaseCanvas");
-const colorPickerBackground = document.getElementById("colorPickerBackground");
-const colorPickerGrid = document.getElementById("colorPickerGrid");
-const colorPickerSquare = document.getElementById("colorPickerSquare");
-const fillRandomSquaresButton = document.getElementById(
-  "fillRandomSquaresButton"
+const canvas = new Canvas(
+  document.querySelector("canvas"),
+  "black",
+  "white",
+  "black",
+  20,
+  40,
+  20
 );
-const nextPicture = document.getElementById("nextPicture");
-const centralPicture = document.getElementById("centralPicture");
 
-//2-Importing all images and storing them in an Array
-//*************************************************/
-const imagesArray = [
-  "../image/oscillators/Beacon (Period2).JPG",
-  "../image/oscillators/blinker(period2).JPG",
-  "../image/oscillators/Pulsar (Period3).JPG",
-  "../image/oscillators/Toad (period2).JPG",
-  "../image/spaceships/Lightweight spaceship.JPG",
-  "../image/spaceships/middleweight spaceship.JPG",
-  "../image/spaceships/heavyweight spaceship.JPG",
-  "../image/spaceships/Glider.JPG",
-  "../image/favicon.jpg",
-];
-
-const canvas = new Canvas(canvasHTML, "black", "white", "black", 20, 40, 20);
-
-//3-Helper Functions
-//*****************/
-
-//Functions related to the 2DArray
-//-------------------------------/
+// Game of life algorithm
 
 const make2DArray = (cols, rows, canvas) => {
   let arr = new Array(cols);
@@ -64,6 +39,12 @@ const fillRandomly = () => {
       grid[i][j].state = Math.floor(Math.random() * 2);
     }
   }
+};
+
+const pilex = () => {
+  grid[5][0].state = 1;
+  grid[5][1].state = 1;
+  grid[5][2].state = 1;
 };
 
 const renderTheSquares = () => {
@@ -116,9 +97,6 @@ const getNext = (grid) => {
   return next;
 };
 
-//Functions related to building the grid
-//-------------------------------------
-
 const drawLine = (init_x, init_y, final_x, final_y) => {
   canvas.c.beginPath();
   canvas.c.moveTo(init_x, init_y);
@@ -150,11 +128,9 @@ const fillSquares = (x, y) => {
   canvas.c.stroke();
 };
 
-//4-Functions to export
-//*******************/
-
 const renderRandomSquares = () => {
   fillRandomly();
+  // pilex();
   renderTheSquares();
 };
 
@@ -181,26 +157,114 @@ const toggleCell = (x, y, grid) => {
   }
 };
 
-export {
-  //HTML elements turned to variables and exported
-  canvas,
-  canvasHTML,
-  pause,
-  reload,
-  increaseCanvas,
-  decreaseCanvas,
-  colorPickerBackground,
-  colorPickerSquare,
-  colorPickerGrid,
-  fillRandomSquaresButton,
-  runGameofLifeButton,
-  centralPicture,
-  nextPicture,
-  imagesArray,
-  //exporting the grid variable
-  grid,
-  //exporting functions
-  renderRandomSquares,
-  runGameofLife,
-  toggleCell,
-};
+// Adding functionalities to the icons
+
+document
+  .getElementById("fillRandomSquaresButton")
+  .addEventListener("click", renderRandomSquares);
+
+document.getElementById("runGameofLifeButton").addEventListener("click", () => {
+  canvas.restartGameofLife();
+  runGameofLife();
+});
+
+document.getElementById("pause").addEventListener("click", () => {
+  canvas.pauseGameofLife();
+});
+
+document.getElementById("reload").addEventListener("click", () => {
+  location.reload();
+});
+
+const zoomInButtons = document.querySelectorAll(".ZoomIn");
+zoomInButtons.forEach((button) => {
+  button.addEventListener("mousedown", () => {
+    zoomInAction = setInterval(() => {
+      canvas.increaseInterval();
+    }, 100);
+  });
+
+  button.addEventListener("click", () => {
+    canvas.increaseInterval();
+  });
+
+  button.addEventListener("mouseup", () => {
+    clearInterval(zoomInAction);
+  });
+});
+
+const zoomOutButtons = document.querySelectorAll(".ZoomOut");
+zoomOutButtons.forEach((button) => {
+  button.addEventListener("mousedown", () => {
+    zoomOutAction = setInterval(() => {
+      canvas.decreaseInterval();
+    }, 100);
+  });
+
+  button.addEventListener("click", () => {
+    canvas.decreaseInterval();
+  });
+
+  button.addEventListener("mouseup", () => {
+    clearInterval(zoomOutAction);
+  });
+});
+
+const increaseCanvas = document.getElementById("IncreaseCanvas");
+
+increaseCanvas.addEventListener("mousedown", () => {
+  increaseCanvasAction = setInterval(() => {
+    canvas.increaseWidth();
+    canvas.increaseHeight();
+  }, 100);
+});
+
+increaseCanvas.addEventListener("click", () => {
+  canvas.increaseWidth();
+  canvas.increaseHeight();
+});
+
+increaseCanvas.addEventListener("mouseup", () => {
+  clearInterval(increaseCanvasAction);
+});
+
+const decreaseCanvas = document.getElementById("DecreaseCanvas");
+
+decreaseCanvas.addEventListener("mousedown", () => {
+  decreaseCanvasAction = setInterval(() => {
+    canvas.decreaseWidth();
+    canvas.decreaseHeight();
+  }, 100);
+});
+
+decreaseCanvas.addEventListener("click", () => {
+  canvas.decreaseWidth();
+  canvas.decreaseHeight();
+});
+
+decreaseCanvas.addEventListener("mouseup", () => {
+  clearInterval(decreaseCanvasAction);
+});
+
+document
+  .getElementById("colorPickerBackground")
+  .addEventListener("input", () => {
+    canvas.setBackgroundColor(colorPickerBackground.value);
+  });
+
+document.getElementById("colorPickerGrid").addEventListener("input", () => {
+  canvas.setGridColor(colorPickerGrid.value);
+});
+
+document.getElementById("colorPickerSquare").addEventListener("input", () => {
+  canvas.setSquareColor(colorPickerSquare.value);
+});
+
+canvasHTML.addEventListener("click", (e) => {
+  const rect = e.target.getBoundingClientRect();
+  const x =
+    Math.floor((e.clientX - rect.left) / canvas.interval) * canvas.interval;
+  const y =
+    Math.floor((e.clientY - rect.top) / canvas.interval) * canvas.interval;
+  toggleCell(x, y, grid);
+});

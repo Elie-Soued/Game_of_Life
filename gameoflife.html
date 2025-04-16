@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="icon" href="../image/favicon.jpg" type="image/x-icon " />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./css/gameoflife.css" />
   </head>
 
   <body>
@@ -20,15 +20,30 @@
         <p class="title">Canvas Color</p>
         <div class="buttons">
           <div class="inputLabel buttonElement position">
-            <input id="colorPickerBackground" type="color" value="#FFFFFF" />
+            <input
+              id="colorPickerBackground"
+              type="color"
+              value="#FFFFFF"
+              style="cursor: pointer"
+            />
             <label for="colorPickerBackground">Background</label>
           </div>
           <div class="inputLabel buttonElement">
-            <input id="colorPickerGrid" type="color" value="#000000" />
+            <input
+              id="colorPickerGrid"
+              type="color"
+              value="#000000"
+              style="cursor: pointer"
+            />
             <label for="colorPickerGrid">Grid</label>
           </div>
           <div class="inputLabel buttonElement">
-            <input id="colorPickerSquare" type="color" value="#000000" />
+            <input
+              id="colorPickerSquare"
+              type="color"
+              value="#000000"
+              style="cursor: pointer"
+            />
             <label for="colorPickerSquare">Square</label>
           </div>
         </div>
@@ -36,7 +51,7 @@
         <div class="buttons">
           <i
             id="fillRandomSquaresButton"
-            class="fas fa-random"
+            class="fas fa-random buttonElement"
             title="Fill the Grid randomly"
           ></i>
           <i
@@ -55,7 +70,11 @@
           ></i>
 
           <i id="pause" class="fas fa-pause buttonElement" title="Pause"></i>
-          <i id="reload" class="fas fa-sync-alt" title="refresh"></i>
+          <i
+            id="reload"
+            class="fas fa-sync-alt buttonElement"
+            title="refresh"
+          ></i>
         </div>
         <p class="title mobile">Canvas Control</p>
         <div class="buttons mobile">
@@ -107,7 +126,6 @@
       <canvas id="canvasHTML"></canvas>
     </div>
 
-    <script src="./js/eventlisteners.js" type="module"></script>
-    <script src="./js/constants.js" type="module"></script>
+    <script src="./js/index.js" type="module"></script>
   </body>
 </html>
