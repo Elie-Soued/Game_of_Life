@@ -10,122 +10,140 @@
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
       crossorigin="anonymous"
     />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" href="../image/favicon.jpg" type="image/x-icon " />
     <link rel="stylesheet" href="./css/gameoflife.css" />
   </head>
 
   <body>
-    <div id="controlParent">
-      <div id="randomSection">
-        <p class="title">Canvas Color</p>
-        <div class="buttons">
-          <div class="inputLabel buttonElement position">
-            <input
-              id="colorPickerBackground"
-              type="color"
-              value="#FFFFFF"
-              style="cursor: pointer"
-            />
-            <label for="colorPickerBackground">Background</label>
-          </div>
-          <div class="inputLabel buttonElement">
-            <input
-              id="colorPickerGrid"
-              type="color"
-              value="#000000"
-              style="cursor: pointer"
-            />
-            <label for="colorPickerGrid">Grid</label>
-          </div>
-          <div class="inputLabel buttonElement">
-            <input
-              id="colorPickerSquare"
-              type="color"
-              value="#000000"
-              style="cursor: pointer"
-            />
-            <label for="colorPickerSquare">Square</label>
-          </div>
-        </div>
-        <p class="title">Algorithm Control</p>
-        <div class="buttons">
-          <i
-            id="fillRandomSquaresButton"
-            class="fas fa-random buttonElement"
-            title="Fill the Grid randomly"
-          ></i>
-          <i
-            id="runGameofLifeButton"
-            class="fas fa-play buttonElement"
-            title="Run the Game of life algorithm"
-          ></i>
+    <div id="main">
+      <div id="controlParent">
+        <div id="randomSection">
+          <p class="title">Activate the Algorithm</p>
+          <div class="buttons">
+            <i
+              id="fillRandomSquaresButton"
+              class="fas fa-random buttonElement"
+              title="Fill the Grid randomly"
+            ></i>
+            <i
+              id="runGameofLifeButton"
+              class="fas fa-play buttonElement"
+              title="Run the Game of life algorithm"
+            ></i>
 
-          <i
-            class="fas fa-search-plus buttonElement zoom ZoomIn"
-            title="Zoom in"
-          ></i>
-          <i
-            title="Zoom out"
-            class="fas fa-search-minus buttonElement zoom ZoomOut"
-          ></i>
+            <i
+              class="fas fa-search-plus buttonElement zoom ZoomIn"
+              title="Zoom in"
+            ></i>
+            <i
+              title="Zoom out"
+              class="fas fa-search-minus buttonElement zoom ZoomOut"
+            ></i>
 
-          <i id="pause" class="fas fa-pause buttonElement" title="Pause"></i>
-          <i
-            id="reload"
-            class="fas fa-sync-alt buttonElement"
-            title="refresh"
-          ></i>
-        </div>
-        <p class="title mobile">Canvas Control</p>
-        <div class="buttons mobile">
-          <i
-            id="IncreaseCanvas"
-            title="Increase the size of the canvas"
-            class="fas fa-expand-arrows-alt buttonElement"
-          ></i>
+            <i id="pause" class="fas fa-pause buttonElement" title="Pause"></i>
+            <i
+              id="reload"
+              class="fas fa-sync-alt buttonElement"
+              title="refresh"
+            ></i>
+          </div>
+          <p class="title">Change colors</p>
+          <div class="buttons">
+            <div class="inputLabel buttonElement position">
+              <input
+                id="colorPickerBackground"
+                type="color"
+                value="#FFFFFF"
+                style="cursor: pointer"
+              />
+              <label for="colorPickerBackground">Background</label>
+            </div>
+            <div class="inputLabel buttonElement">
+              <input
+                id="colorPickerGrid"
+                type="color"
+                value="#000000"
+                style="cursor: pointer"
+              />
+              <label for="colorPickerGrid">Grid</label>
+            </div>
+            <div class="inputLabel buttonElement">
+              <input
+                id="colorPickerSquare"
+                type="color"
+                value="#000000"
+                style="cursor: pointer"
+              />
+              <label for="colorPickerSquare">Square</label>
+            </div>
+          </div>
 
-          <i
-            id="DecreaseCanvas"
-            title="Decrease the size of the canvas"
-            class="fas fa-compress-arrows-alt buttonElement"
-          ></i>
+          <p class="title mobile">Change sizes</p>
+          <div class="buttons mobile">
+            <i
+              id="IncreaseCanvas"
+              title="Increase the size of the canvas"
+              class="fas fa-expand-arrows-alt buttonElement"
+            ></i>
 
-          <i
-            class="fas fa-search-plus buttonElement ZoomIn"
-            title="Zoom in"
-          ></i>
-          <i
-            title="Zoom out"
-            class="fas fa-search-minus buttonElement ZoomOut"
-          ></i>
-        </div>
-        <p class="title">Patterns</p>
-        <div class="buttons mobile">
-          <div class="inputLabel buttonElement position">
-            <img src="../image/oscillators/Beacon (Period2).JPG" alt="" />
+            <i
+              id="DecreaseCanvas"
+              title="Decrease the size of the canvas"
+              class="fas fa-compress-arrows-alt buttonElement"
+            ></i>
+
+            <i
+              class="fas fa-search-plus buttonElement ZoomIn"
+              title="Zoom in"
+            ></i>
+            <i
+              title="Zoom out"
+              class="fas fa-search-minus buttonElement ZoomOut"
+            ></i>
           </div>
-          <div class="inputLabel buttonElement">
-            <img id="blinker" src="../image/oscillators/blinker(period2).JPG" />
-          </div>
-          <div class="inputLabel buttonElement">
-            <img src="../image/oscillators/Pulsar (Period3).JPG" alt="" />
-          </div>
-          <div class="inputLabel buttonElement position">
-            <img src="../image/spaceships/Glider.JPG" alt="" />
-          </div>
-          <div class="inputLabel buttonElement">
-            <img src="../image/spaceships/Gospel Glider Gun.JPG" alt="" />
-          </div>
-          <div class="inputLabel buttonElement">
-            <img src="../image/spaceships/heavyweight spaceship.JPG" alt="" />
+          <p class="title">Patterns</p>
+          <div
+            class="buttons mobile"
+            style="height: 100%; display: flex; flex-wrap: wrap"
+          >
+            <div class="inputLabel buttonElement position">
+              <img src="../image/oscillators/Beacon (Period2).JPG" alt="" />
+            </div>
+            <div class="inputLabel buttonElement">
+              <img
+                id="blinker"
+                src="../image/oscillators/blinker(period2).JPG"
+              />
+            </div>
+            <div class="inputLabel buttonElement">
+              <img src="../image/oscillators/Pulsar (Period3).JPG" alt="" />
+            </div>
+            <div class="inputLabel buttonElement position">
+              <img src="../image/spaceships/Glider.JPG" alt="" />
+            </div>
+            <div class="inputLabel buttonElement">
+              <img
+                src="../image/spaceships/Gospel Glider Gun.JPG"
+                style="width: 150px"
+                alt=""
+              />
+            </div>
+            <div class="inputLabel buttonElement">
+              <img src="../image/spaceships/heavyweight spaceship.JPG" alt="" />
+            </div>
           </div>
         </div>
       </div>
+      <div id="canvasParent">
+        <canvas id="canvasHTML"></canvas>
+      </div>
     </div>
-    <div id="canvasParent">
-      <canvas id="canvasHTML"></canvas>
-    </div>
-
+    <p style="text-align: center">A PilexLaFlex Project</p>
     <script src="./js/index.js" type="module"></script>
   </body>
 </html>
