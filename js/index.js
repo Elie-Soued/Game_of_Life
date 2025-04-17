@@ -8,12 +8,12 @@ let decreaseCanvasAction;
 
 const canvas = new Canvas(
   document.querySelector("canvas"),
-  "black",
   "white",
   "black",
+  "lightgray",
   20,
-  40,
-  20
+  60,
+  40
 );
 
 // Game of life algorithm
@@ -151,6 +151,214 @@ const toggleCell = (x, y, grid) => {
   }
 };
 
+const blinker = () => {
+  grid[10 * canvas.cols + 19].state = 1;
+  grid[11 * canvas.cols + 19].state = 1;
+  grid[12 * canvas.cols + 19].state = 1;
+  renderTheSquares(grid, false);
+};
+
+const beacon = () => {
+  grid[11 * canvas.cols + 20].state = 1;
+  grid[11 * canvas.cols + 19].state = 1;
+  grid[12 * canvas.cols + 19].state = 1;
+  grid[14 * canvas.cols + 21].state = 1;
+  grid[14 * canvas.cols + 22].state = 1;
+  grid[13 * canvas.cols + 22].state = 1;
+  renderTheSquares(grid, false);
+};
+
+const glider = () => {
+  grid[10 * canvas.cols + 19].state = 1;
+  grid[12 * canvas.cols + 19].state = 1;
+  grid[12 * canvas.cols + 20].state = 1;
+  grid[11 * canvas.cols + 20].state = 1;
+  grid[11 * canvas.cols + 21].state = 1;
+  renderTheSquares(grid, false);
+};
+
+const pentadecathlon = () => {
+  grid[9 * canvas.cols + 29].state = 1;
+  grid[10 * canvas.cols + 29].state = 1;
+  grid[11 * canvas.cols + 29].state = 1;
+  grid[11 * canvas.cols + 28].state = 1;
+  grid[11 * canvas.cols + 30].state = 1;
+
+  grid[14 * canvas.cols + 28].state = 1;
+  grid[14 * canvas.cols + 29].state = 1;
+  grid[14 * canvas.cols + 30].state = 1;
+  grid[15 * canvas.cols + 29].state = 1;
+  grid[16 * canvas.cols + 29].state = 1;
+  grid[17 * canvas.cols + 29].state = 1;
+  grid[18 * canvas.cols + 29].state = 1;
+  grid[19 * canvas.cols + 29].state = 1;
+  grid[19 * canvas.cols + 28].state = 1;
+  grid[19 * canvas.cols + 30].state = 1;
+
+  grid[22 * canvas.cols + 30].state = 1;
+  grid[22 * canvas.cols + 28].state = 1;
+  grid[22 * canvas.cols + 29].state = 1;
+
+  grid[23 * canvas.cols + 29].state = 1;
+  grid[24 * canvas.cols + 29].state = 1;
+
+  renderTheSquares(grid, false);
+};
+
+const toad = () => {
+  grid[9 * canvas.cols + 29].state = 1;
+  grid[9 * canvas.cols + 30].state = 1;
+  grid[9 * canvas.cols + 31].state = 1;
+  grid[10 * canvas.cols + 28].state = 1;
+  grid[10 * canvas.cols + 29].state = 1;
+  grid[10 * canvas.cols + 30].state = 1;
+  renderTheSquares(grid, false);
+};
+
+const glidergun = () => {
+  console.log("canvas.cols :>> ", canvas.cols);
+  grid[19 * canvas.cols + 5].state = 1;
+  grid[19 * canvas.cols + 6].state = 1;
+  grid[20 * canvas.cols + 5].state = 1;
+  grid[20 * canvas.cols + 6].state = 1;
+
+  grid[17 * canvas.cols + 17].state = 1;
+  grid[17 * canvas.cols + 16].state = 1;
+  grid[18 * canvas.cols + 15].state = 1;
+  grid[19 * canvas.cols + 14].state = 1;
+  grid[20 * canvas.cols + 14].state = 1;
+  grid[21 * canvas.cols + 14].state = 1;
+  grid[22 * canvas.cols + 15].state = 1;
+  grid[23 * canvas.cols + 16].state = 1;
+  grid[23 * canvas.cols + 17].state = 1;
+
+  grid[20 * canvas.cols + 18].state = 1;
+  grid[20 * canvas.cols + 20].state = 1;
+  grid[20 * canvas.cols + 21].state = 1;
+  grid[19 * canvas.cols + 20].state = 1;
+  grid[21 * canvas.cols + 20].state = 1;
+  grid[18 * canvas.cols + 19].state = 1;
+  grid[22 * canvas.cols + 19].state = 1;
+
+  grid[19 * canvas.cols + 24].state = 1;
+  grid[18 * canvas.cols + 24].state = 1;
+  grid[17 * canvas.cols + 24].state = 1;
+
+  grid[19 * canvas.cols + 25].state = 1;
+  grid[18 * canvas.cols + 25].state = 1;
+  grid[17 * canvas.cols + 25].state = 1;
+
+  grid[16 * canvas.cols + 26].state = 1;
+  grid[20 * canvas.cols + 26].state = 1;
+
+  grid[16 * canvas.cols + 28].state = 1;
+  grid[15 * canvas.cols + 28].state = 1;
+
+  grid[20 * canvas.cols + 28].state = 1;
+  grid[21 * canvas.cols + 28].state = 1;
+
+  grid[18 * canvas.cols + 38].state = 1;
+  grid[18 * canvas.cols + 39].state = 1;
+  grid[17 * canvas.cols + 38].state = 1;
+  grid[17 * canvas.cols + 39].state = 1;
+
+  renderTheSquares(grid, false);
+};
+
+const pulsar = () => {
+  grid[6 * canvas.cols + 19].state = 1;
+  grid[7 * canvas.cols + 19].state = 1;
+  grid[8 * canvas.cols + 19].state = 1;
+  grid[9 * canvas.cols + 19].state = 1;
+
+  grid[8 * canvas.cols + 24].state = 1;
+  grid[9 * canvas.cols + 24].state = 1;
+  grid[7 * canvas.cols + 25].state = 1;
+  grid[6 * canvas.cols + 25].state = 1;
+
+  grid[10 * canvas.cols + 15].state = 1;
+  grid[10 * canvas.cols + 16].state = 1;
+  grid[10 * canvas.cols + 17].state = 1;
+  grid[11 * canvas.cols + 17].state = 1;
+
+  grid[15 * canvas.cols + 17].state = 1;
+  grid[15 * canvas.cols + 18].state = 1;
+  grid[15 * canvas.cols + 19].state = 1;
+  grid[15 * canvas.cols + 20].state = 1;
+
+  grid[18 * canvas.cols + 19].state = 1;
+  grid[18 * canvas.cols + 20].state = 1;
+  grid[19 * canvas.cols + 19].state = 1;
+  grid[20 * canvas.cols + 19].state = 1;
+
+  grid[18 * canvas.cols + 24].state = 1;
+  grid[18 * canvas.cols + 25].state = 1;
+  grid[19 * canvas.cols + 25].state = 1;
+  grid[20 * canvas.cols + 25].state = 1;
+
+  grid[16 * canvas.cols + 17].state = 1;
+  grid[16 * canvas.cols + 18].state = 1;
+  grid[16 * canvas.cols + 19].state = 1;
+  grid[15 * canvas.cols + 27].state = 1;
+
+  grid[11 * canvas.cols + 27].state = 1;
+  grid[10 * canvas.cols + 27].state = 1;
+  grid[10 * canvas.cols + 28].state = 1;
+  grid[10 * canvas.cols + 29].state = 1;
+
+  grid[10 * canvas.cols + 20].state = 1;
+  grid[10 * canvas.cols + 21].state = 1;
+  grid[11 * canvas.cols + 21].state = 1;
+  grid[12 * canvas.cols + 20].state = 1;
+  grid[12 * canvas.cols + 19].state = 1;
+  grid[11 * canvas.cols + 19].state = 1;
+
+  grid[10 * canvas.cols + 23].state = 1;
+  grid[10 * canvas.cols + 24].state = 1;
+  grid[11 * canvas.cols + 23].state = 1;
+  grid[12 * canvas.cols + 24].state = 1;
+  grid[12 * canvas.cols + 25].state = 1;
+  grid[11 * canvas.cols + 25].state = 1;
+
+  grid[14 * canvas.cols + 19].state = 1;
+  grid[14 * canvas.cols + 20].state = 1;
+  grid[15 * canvas.cols + 19].state = 1;
+  grid[16 * canvas.cols + 20].state = 1;
+  grid[16 * canvas.cols + 21].state = 1;
+  grid[15 * canvas.cols + 21].state = 1;
+
+  grid[15 * canvas.cols + 23].state = 1;
+  grid[15 * canvas.cols + 24].state = 1;
+  grid[16 * canvas.cols + 23].state = 1;
+  grid[14 * canvas.cols + 24].state = 1;
+  grid[14 * canvas.cols + 25].state = 1;
+  grid[15 * canvas.cols + 25].state = 1;
+
+  renderTheSquares(grid, false);
+};
+
+const heavyweight = () => {
+  grid[6 * canvas.cols + 19].state = 1;
+  grid[6 * canvas.cols + 20].state = 1;
+  grid[6 * canvas.cols + 21].state = 1;
+  grid[6 * canvas.cols + 22].state = 1;
+  grid[6 * canvas.cols + 24].state = 1;
+  grid[6 * canvas.cols + 25].state = 1;
+  grid[7 * canvas.cols + 19].state = 1;
+  grid[7 * canvas.cols + 20].state = 1;
+  grid[7 * canvas.cols + 21].state = 1;
+  grid[7 * canvas.cols + 22].state = 1;
+  grid[7 * canvas.cols + 23].state = 1;
+  grid[7 * canvas.cols + 24].state = 1;
+  grid[8 * canvas.cols + 20].state = 1;
+  grid[8 * canvas.cols + 21].state = 1;
+  grid[8 * canvas.cols + 22].state = 1;
+  grid[8 * canvas.cols + 23].state = 1;
+  grid[5 * canvas.cols + 24].state = 1;
+  grid[5 * canvas.cols + 23].state = 1;
+  renderTheSquares(grid, false);
+};
+
 // Adding functionalities to the icons
 
 document
@@ -262,3 +470,37 @@ canvasHTML.addEventListener("click", (e) => {
     Math.floor((e.clientY - rect.top) / canvas.interval) * canvas.interval;
   toggleCell(x, y, grid);
 });
+
+document.getElementById("blinker").addEventListener("click", () => {
+  blinker();
+});
+
+document.getElementById("beacon").addEventListener("click", () => {
+  beacon();
+});
+
+document.getElementById("glider").addEventListener("click", () => {
+  glider();
+});
+
+document.getElementById("pulsar").addEventListener("click", () => {
+  pulsar();
+});
+
+document.getElementById("heavyweight").addEventListener("click", () => {
+  heavyweight();
+});
+
+document.getElementById("pentadecathlon").addEventListener("click", () => {
+  pentadecathlon();
+});
+
+document.getElementById("toad").addEventListener("click", () => {
+  toad();
+});
+
+document.getElementById("glidergun").addEventListener("click", () => {
+  glidergun();
+});
+
+drawGrid();
