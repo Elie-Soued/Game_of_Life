@@ -12,12 +12,12 @@ class Canvas {
     this.squareColor = squareColor;
     this.gridColor = gridColor;
     this.interval = interval;
-    this.element = element;
-    this.element.style.backgroundColor = backgroundColor;
-    this.element.width = width * this.interval;
-    this.element.height = height * this.interval;
-    this.cols = this.element.width;
-    this.rows = this.element.height;
+    this.HTMLelement = element;
+    this.HTMLelement.style.backgroundColor = backgroundColor;
+    this.HTMLelement.width = width * this.interval;
+    this.HTMLelement.height = height * this.interval;
+    this.cols = this.HTMLelement.width;
+    this.rows = this.HTMLelement.height;
     this.isRunning = true;
   }
 
@@ -32,26 +32,26 @@ class Canvas {
   }
 
   increaseWidth() {
-    if (this.element.width < 1130) {
-      return (this.element.width = this.element.width + 10);
+    if (this.HTMLelement.width < 1130) {
+      return (this.HTMLelement.width = this.HTMLelement.width + 10);
     }
   }
 
   increaseHeight() {
-    if (this.element.height < 720) {
-      return (this.element.height = this.element.height + 10);
+    if (this.HTMLelement.height < 720) {
+      return (this.HTMLelement.height = this.HTMLelement.height + 10);
     }
   }
 
   decreaseWidth() {
-    if (this.element.width > 800) {
-      return (this.element.width = this.element.width - 10);
+    if (this.HTMLelement.width > 800) {
+      return (this.HTMLelement.width = this.HTMLelement.width - 10);
     }
   }
 
   decreaseHeight() {
-    if (this.element.height > 400) {
-      return (this.element.height = this.element.height - 10);
+    if (this.HTMLelement.height > 400) {
+      return (this.HTMLelement.height = this.HTMLelement.height - 10);
     }
   }
 
@@ -64,7 +64,7 @@ class Canvas {
   }
 
   setBackgroundColor(backgroundColor) {
-    this.element.style.backgroundColor = backgroundColor;
+    this.HTMLelement.style.backgroundColor = backgroundColor;
   }
 
   pauseGameofLife() {

@@ -18,81 +18,67 @@ const canvas = new Canvas(
 
 // Game of life algorithm
 
-const make2DArray = (cols, rows, canvas) => {
-  let arr = new Array(cols);
-  for (let i = 0; i < arr.length; i++) {
-    arr[i] = new Array(rows);
-  }
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      arr[i][j] = new Cell(i * canvas.interval, j * canvas.interval, canvas);
+const makeFlatArray = (cols, rows, canvas) => {
+  let arr = [];
+  for (let j = 0; j < rows; j++) {
+    for (let i = 0; i < cols; i++) {
+      arr[j * cols + i] = new Cell(
+        i * canvas.interval,
+        j * canvas.interval,
+        canvas
+      );
     }
   }
+
   return arr;
 };
 
-let grid = make2DArray(canvas.cols, canvas.rows, canvas);
-
-const fillRandomly = () => {
-  for (let i = 0; i < canvas.cols; i++) {
-    for (let j = 0; j < canvas.rows; j++) {
-      grid[i][j].state = Math.floor(Math.random() * 2);
-    }
-  }
-};
-
-const pilex = () => {
-  grid[5][0].state = 1;
-  grid[5][1].state = 1;
-  grid[5][2].state = 1;
-};
-
-const renderTheSquares = () => {
-  for (let i = 0; i < canvas.cols; i++) {
-    for (let j = 0; j < canvas.rows; j++) {
-      let x = i * canvas.interval;
-      let y = j * canvas.interval;
-      if (grid[i][j].state == 1) {
-        fillSquares(x, y);
-      }
-    }
-  }
-};
+let grid = makeFlatArray(canvas.cols, canvas.rows, canvas);
 
 const countAliveNeighbors = (grid, x, y) => {
   let sum = 0;
-  for (let i = -1; i < 2; i++) {
-    for (let j = -1; j < 2; j++) {
+  for (let j = -1; j < 2; j++) {
+    for (let i = -1; i < 2; i++) {
       let col = (x + i + canvas.cols) % canvas.cols;
       let row = (y + j + canvas.rows) % canvas.rows;
 
-      sum += grid[col][row].state;
+      sum += grid[row * canvas.cols + col].state;
     }
   }
-  sum = sum - grid[x][y].state;
+  sum = sum - grid[y * canvas.cols + x].state;
   return sum;
 };
 
 const buildNext = (grid, next) => {
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
+      let index = j * canvas.cols + i;
+
+      if (grid[index].state == 0 && grid[index].aliveNeighbors == 0) {
+        continue;
+      }
+
       let aliveNeighbors = countAliveNeighbors(grid, i, j);
-      if (grid[i][j].state == 0 && aliveNeighbors == 3) {
-        next[i][j].state = 1;
+
+      if (grid[index].state == 0 && aliveNeighbors == 3) {
+        next[index].state = 1;
+        next[index].aliveNeighbors = 3;
       } else if (
-        grid[i][j].state == 1 &&
+        grid[index].state == 1 &&
         (aliveNeighbors < 2 || aliveNeighbors > 3)
       ) {
-        next[i][j].state = 0;
+        next[index].state = 0;
+        next[index].aliveNeighbors = aliveNeighbors;
       } else {
-        next[i][j].state = grid[i][j].state;
+        next[index].state = grid[index].state;
+        next[index].aliveNeighbors = aliveNeighbors;
       }
     }
   }
 };
 
 const getNext = (grid) => {
-  let next = make2DArray(canvas.cols, canvas.rows, canvas);
+  let next = makeFlatArray(canvas.cols, canvas.rows, canvas);
   buildNext(grid, next);
   return next;
 };
@@ -112,11 +98,11 @@ const drawGrid = () => {
     canvas.interval * canvas.cols,
     canvas.interval * canvas.rows
   );
-  for (let i = 0; i <= canvas.element.width; i = i + canvas.interval) {
-    for (let j = 0; j <= canvas.element.height; j = j + canvas.interval) {
-      drawLine(0, j, canvas.element.width, j);
+  for (let i = 0; i <= canvas.HTMLelement.width; i = i + canvas.interval) {
+    for (let j = 0; j <= canvas.HTMLelement.height; j = j + canvas.interval) {
+      drawLine(0, j, canvas.HTMLelement.width, j);
     }
-    drawLine(i, 0, i, canvas.element.height);
+    drawLine(i, 0, i, canvas.HTMLelement.height);
   }
 };
 
@@ -128,30 +114,38 @@ const fillSquares = (x, y) => {
   canvas.c.stroke();
 };
 
-const renderRandomSquares = () => {
-  fillRandomly();
-  // pilex();
-  renderTheSquares();
+const renderTheSquares = (grid, init) => {
+  for (let j = 0; j < canvas.rows; j++) {
+    for (let i = 0; i < canvas.cols; i++) {
+      let x = i * canvas.interval;
+      let y = j * canvas.interval;
+
+      if (init) {
+        grid[j * canvas.cols + i].state = Math.floor(Math.random() * 2);
+      }
+
+      if (grid[j * canvas.cols + i].state == 1) {
+        fillSquares(x, y);
+      }
+    }
+  }
 };
 
 const runGameofLife = () => {
   drawGrid();
+  renderTheSquares(grid, false);
+  grid = getNext(grid);
   if (canvas.isRunning) {
-    renderTheSquares(grid);
-    grid = getNext(grid);
     requestAnimationFrame(runGameofLife);
-  } else {
-    drawGrid();
-    renderTheSquares(grid);
-    grid = getNext(grid);
   }
 };
 
 const toggleCell = (x, y, grid) => {
-  for (let i = 0; i < canvas.cols; i++) {
-    for (let j = 0; j < canvas.rows; j++) {
-      if (grid[i][j].x === x && grid[i][j].y === y) {
-        grid[i][j].toggleState();
+  for (let j = 0; j < canvas.rows; j++) {
+    for (let i = 0; i < canvas.cols; i++) {
+      let index = j * canvas.cols + i;
+      if (grid[index].x === x && grid[index].y === y) {
+        grid[index].toggleState();
       }
     }
   }
@@ -161,7 +155,7 @@ const toggleCell = (x, y, grid) => {
 
 document
   .getElementById("fillRandomSquaresButton")
-  .addEventListener("click", renderRandomSquares);
+  .addEventListener("click", () => renderTheSquares(grid, true));
 
 document.getElementById("runGameofLifeButton").addEventListener("click", () => {
   canvas.restartGameofLife();
