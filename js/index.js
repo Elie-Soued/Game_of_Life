@@ -173,8 +173,7 @@ document.getElementById("pause").addEventListener("click", () => {
 });
 
 document.getElementById("reload").addEventListener("click", () => {
-  canvas.pauseGameofLife();
-  drawGrid();
+  location.reload();
 });
 
 const zoomInButtons = document.querySelectorAll(".ZoomIn");
