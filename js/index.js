@@ -22,7 +22,7 @@ const canvas = new Canvas(
   "black",
   "lightgray",
   20,
-  60,
+  70,
   40
 );
 
@@ -63,10 +63,6 @@ const buildNext = (grid, next) => {
   for (let i = 0; i < canvas.cols; i++) {
     for (let j = 0; j < canvas.rows; j++) {
       let index = j * canvas.cols + i;
-
-      if (grid[index].state == 0 && grid[index].aliveNeighbors == 0) {
-        continue;
-      }
 
       let aliveNeighbors = countAliveNeighbors(grid, i, j);
 
