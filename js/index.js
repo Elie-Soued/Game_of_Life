@@ -456,6 +456,7 @@ document
 
 document.getElementById("colorPickerGrid").addEventListener("input", () => {
   canvas.setGridColor(colorPickerGrid.value);
+  drawGrid();
 });
 
 document.getElementById("colorPickerSquare").addEventListener("input", () => {
