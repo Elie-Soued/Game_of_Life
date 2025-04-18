@@ -238,6 +238,7 @@ a {
   }
 
   canvas {
+    margin-top: 3rem;
     width: 95%;
     height:50vh;
   }
