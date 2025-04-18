@@ -18,6 +18,8 @@ class Canvas {
     this.HTMLelement.height = height * this.interval;
     this.cols = this.HTMLelement.width;
     this.rows = this.HTMLelement.height;
+    this.width = width;
+    this.height = height;
     this.isRunning = true;
   }
 

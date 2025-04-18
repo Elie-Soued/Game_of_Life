@@ -22,8 +22,8 @@ const canvas = new Canvas(
   "black",
   "lightgray",
   20,
-  70,
-  40
+  40,
+  20
 );
 
 // Game of life algorithm
@@ -270,43 +270,46 @@ canvasHTML.addEventListener("click", (e) => {
   toggleCell(x, y, grid);
 });
 
+const centerOfGrid =
+  (canvas.height / 2) * canvas.cols - canvas.cols + canvas.width / 2 - 1;
+
 document.getElementById("blinker").addEventListener("click", () => {
-  blinker(grid, canvas);
+  blinker(grid, canvas, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("beacon").addEventListener("click", () => {
-  beacon(grid, canvas);
+  beacon(grid, canvas, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("glider").addEventListener("click", () => {
-  glider(grid, canvas);
+  glider(grid, canvas, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("pulsar").addEventListener("click", () => {
-  pulsar(grid, canvas);
+  pulsar(grid, canvas, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("heavyweight").addEventListener("click", () => {
-  heavyweight(grid, canvas);
+  heavyweight(grid, canvas, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("pentadecathlon").addEventListener("click", () => {
-  pentadecathlon(grid, canvas);
+  pentadecathlon(grid, canvas, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("toad").addEventListener("click", () => {
-  toad(grid, canvas);
+  toad(grid, canvas, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("glidergun").addEventListener("click", () => {
-  glidergun(grid, canvas);
+  glidergun(grid, canvas, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
