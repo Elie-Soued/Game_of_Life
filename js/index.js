@@ -17,8 +17,8 @@ const config = {
   gridColor: "lightgray",
   squareColor: "black",
   interval: 20,
-  width: 40,
-  height: 20,
+  cols: 40,
+  rows: 20,
   maxWidth: 1130,
   maxHeight: 720,
   minWidth: 800,
@@ -27,7 +27,71 @@ const config = {
 
 const canvas = new Canvas(config);
 
-// Game of life algorithm
+// Functions related to the drawing of the canvas
+
+const drawLine = (init_x, init_y, final_x, final_y) => {
+  canvas.c.beginPath();
+  canvas.c.moveTo(init_x, init_y);
+  canvas.c.lineTo(final_x, final_y);
+  canvas.c.strokeStyle = canvas.gridColor;
+  canvas.c.stroke();
+};
+
+const drawGrid = () => {
+  canvas.c.clearRect(
+    0,
+    0,
+    canvas.interval * gridCols,
+    canvas.interval * gridRows
+  );
+  for (let i = 0; i <= canvas.HTMLelement.width; i = i + canvas.interval) {
+    for (let j = 0; j <= canvas.HTMLelement.height; j = j + canvas.interval) {
+      drawLine(0, j, canvas.HTMLelement.width, j);
+    }
+    drawLine(i, 0, i, canvas.HTMLelement.height);
+  }
+};
+
+const fillSquares = (x, y) => {
+  canvas.c.beginPath();
+  canvas.c.fillStyle = canvas.squareColor;
+  canvas.c.fillRect(x, y, canvas.interval - 1, canvas.interval - 1);
+  canvas.c.strokeStyle = canvas.gridColor;
+  canvas.c.stroke();
+};
+
+const renderTheSquares = (grid, init) => {
+  for (let j = 0; j < gridRows; j++) {
+    for (let i = 0; i < gridCols; i++) {
+      let x = i * canvas.interval;
+      let y = j * canvas.interval;
+
+      if (init) {
+        grid[j * gridCols + i].state = Math.floor(Math.random() * 2);
+      }
+
+      if (grid[j * gridCols + i].state == 1) {
+        fillSquares(x, y);
+      }
+    }
+  }
+};
+
+const toggleCell = (x, y, grid) => {
+  for (let j = 0; j < gridRows; j++) {
+    for (let i = 0; i < gridCols; i++) {
+      let index = j * gridCols + i;
+      if (grid[index].x === x && grid[index].y === y) {
+        grid[index].toggleState();
+      }
+    }
+  }
+};
+
+// Functions related to the Game of life algorithm
+
+const gridCols = canvas.cols * canvas.interval;
+const gridRows = canvas.rows * canvas.interval;
 
 const makeFlatArray = (cols, rows, canvas) => {
   let arr = [];
@@ -44,26 +108,26 @@ const makeFlatArray = (cols, rows, canvas) => {
   return arr;
 };
 
-let grid = makeFlatArray(canvas.cols, canvas.rows, canvas);
+let grid = makeFlatArray(gridCols, gridRows, canvas);
 
 const countAliveNeighbors = (grid, x, y) => {
   let sum = 0;
   for (let j = -1; j < 2; j++) {
     for (let i = -1; i < 2; i++) {
-      let col = (x + i + canvas.cols) % canvas.cols;
-      let row = (y + j + canvas.rows) % canvas.rows;
+      let col = (x + i + gridCols) % gridCols;
+      let row = (y + j + gridRows) % gridRows;
 
-      sum += grid[row * canvas.cols + col].state;
+      sum += grid[row * gridCols + col].state;
     }
   }
-  sum = sum - grid[y * canvas.cols + x].state;
+  sum = sum - grid[y * gridCols + x].state;
   return sum;
 };
 
 const buildNext = (grid, next) => {
-  for (let i = 0; i < canvas.cols; i++) {
-    for (let j = 0; j < canvas.rows; j++) {
-      let index = j * canvas.cols + i;
+  for (let i = 0; i < gridCols; i++) {
+    for (let j = 0; j < gridRows; j++) {
+      let index = j * gridCols + i;
 
       let aliveNeighbors = countAliveNeighbors(grid, i, j);
 
@@ -85,57 +149,9 @@ const buildNext = (grid, next) => {
 };
 
 const getNext = (grid) => {
-  let next = makeFlatArray(canvas.cols, canvas.rows, canvas);
+  let next = makeFlatArray(gridCols, gridRows, canvas);
   buildNext(grid, next);
   return next;
-};
-
-const drawLine = (init_x, init_y, final_x, final_y) => {
-  canvas.c.beginPath();
-  canvas.c.moveTo(init_x, init_y);
-  canvas.c.lineTo(final_x, final_y);
-  canvas.c.strokeStyle = canvas.gridColor;
-  canvas.c.stroke();
-};
-
-const drawGrid = () => {
-  canvas.c.clearRect(
-    0,
-    0,
-    canvas.interval * canvas.cols,
-    canvas.interval * canvas.rows
-  );
-  for (let i = 0; i <= canvas.HTMLelement.width; i = i + canvas.interval) {
-    for (let j = 0; j <= canvas.HTMLelement.height; j = j + canvas.interval) {
-      drawLine(0, j, canvas.HTMLelement.width, j);
-    }
-    drawLine(i, 0, i, canvas.HTMLelement.height);
-  }
-};
-
-const fillSquares = (x, y) => {
-  canvas.c.beginPath();
-  canvas.c.fillStyle = canvas.squareColor;
-  canvas.c.fillRect(x, y, canvas.interval - 1, canvas.interval - 1);
-  canvas.c.strokeStyle = canvas.gridColor;
-  canvas.c.stroke();
-};
-
-const renderTheSquares = (grid, init) => {
-  for (let j = 0; j < canvas.rows; j++) {
-    for (let i = 0; i < canvas.cols; i++) {
-      let x = i * canvas.interval;
-      let y = j * canvas.interval;
-
-      if (init) {
-        grid[j * canvas.cols + i].state = Math.floor(Math.random() * 2);
-      }
-
-      if (grid[j * canvas.cols + i].state == 1) {
-        fillSquares(x, y);
-      }
-    }
-  }
 };
 
 const runGameofLife = () => {
@@ -144,17 +160,6 @@ const runGameofLife = () => {
   grid = getNext(grid);
   if (canvas.isRunning) {
     requestAnimationFrame(runGameofLife);
-  }
-};
-
-const toggleCell = (x, y, grid) => {
-  for (let j = 0; j < canvas.rows; j++) {
-    for (let i = 0; i < canvas.cols; i++) {
-      let index = j * canvas.cols + i;
-      if (grid[index].x === x && grid[index].y === y) {
-        grid[index].toggleState();
-      }
-    }
   }
 };
 
@@ -277,45 +282,45 @@ canvasHTML.addEventListener("click", (e) => {
 });
 
 const centerOfGrid =
-  (canvas.height / 2) * canvas.cols - canvas.cols + canvas.width / 2 - 1;
+  (canvas.rows / 2) * gridCols - gridCols + canvas.cols / 2 - 1;
 
 document.getElementById("blinker").addEventListener("click", () => {
-  blinker(grid, canvas, centerOfGrid);
+  blinker(grid, gridCols, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("beacon").addEventListener("click", () => {
-  beacon(grid, canvas, centerOfGrid);
+  beacon(grid, gridCols, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("glider").addEventListener("click", () => {
-  glider(grid, canvas, centerOfGrid);
+  glider(grid, gridCols, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("pulsar").addEventListener("click", () => {
-  pulsar(grid, canvas, centerOfGrid);
+  pulsar(grid, gridCols, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("heavyweight").addEventListener("click", () => {
-  heavyweight(grid, canvas, centerOfGrid);
+  heavyweight(grid, gridCols, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("pentadecathlon").addEventListener("click", () => {
-  pentadecathlon(grid, canvas, centerOfGrid);
+  pentadecathlon(grid, gridCols, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("toad").addEventListener("click", () => {
-  toad(grid, canvas, centerOfGrid);
+  toad(grid, gridCols, centerOfGrid);
   renderTheSquares(grid, false);
 });
 
 document.getElementById("glidergun").addEventListener("click", () => {
-  glidergun(grid, canvas, centerOfGrid);
+  glidergun(grid, gridCols, centerOfGrid);
   renderTheSquares(grid, false);
 });
 

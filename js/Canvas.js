@@ -6,8 +6,8 @@ class Canvas {
       gridColor,
       squareColor,
       interval,
-      width,
-      height,
+      cols,
+      rows,
       maxWidth,
       maxHeight,
       minWidth,
@@ -20,16 +20,14 @@ class Canvas {
     this.interval = interval;
     this.HTMLelement = HTMLelement;
     this.HTMLelement.style.backgroundColor = backgroundColor;
-    this.HTMLelement.width = width * this.interval;
-    this.HTMLelement.height = height * this.interval;
-    this.cols = this.HTMLelement.width;
-    this.rows = this.HTMLelement.height;
+    this.HTMLelement.width = cols * this.interval;
+    this.HTMLelement.height = rows * this.interval;
     this.minHeight = minHeight;
     this.minWidth = minWidth;
     this.maxHeight = maxHeight;
     this.maxWidth = maxWidth;
-    this.width = width;
-    this.height = height;
+    this.rows = rows;
+    this.cols = cols;
     this.isRunning = true;
   }
 
