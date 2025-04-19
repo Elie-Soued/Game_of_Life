@@ -1,18 +1,20 @@
 class Canvas {
-  constructor(
-    element,
-    backgroundColor,
-    squareColor,
-    gridColor,
-    interval,
-    width,
-    height
-  ) {
-    this.c = element.getContext("2d");
+  constructor(config) {
+    const {
+      HTMLelement,
+      backgroundColor,
+      gridColor,
+      squareColor,
+      interval,
+      width,
+      height,
+    } = config;
+
+    this.c = HTMLelement.getContext("2d");
     this.squareColor = squareColor;
     this.gridColor = gridColor;
     this.interval = interval;
-    this.HTMLelement = element;
+    this.HTMLelement = HTMLelement;
     this.HTMLelement.style.backgroundColor = backgroundColor;
     this.HTMLelement.width = width * this.interval;
     this.HTMLelement.height = height * this.interval;

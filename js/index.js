@@ -11,20 +11,17 @@ import {
   blinker,
 } from "./patterns.js";
 
-let zoomInAction;
-let zoomOutAction;
-let increaseCanvasAction;
-let decreaseCanvasAction;
+const config = {
+  HTMLelement: document.querySelector("canvas"),
+  backgroundColor: "white",
+  gridColor: "lightgray",
+  squareColor: "black",
+  interval: 20,
+  width: 40,
+  height: 20,
+};
 
-const canvas = new Canvas(
-  document.querySelector("canvas"),
-  "white",
-  "black",
-  "lightgray",
-  20,
-  40,
-  20
-);
+const canvas = new Canvas(config);
 
 // Game of life algorithm
 
@@ -211,6 +208,11 @@ zoomOutButtons.forEach((button) => {
 });
 
 const increaseCanvas = document.getElementById("IncreaseCanvas");
+
+let zoomInAction;
+let zoomOutAction;
+let increaseCanvasAction;
+let decreaseCanvasAction;
 
 increaseCanvas.addEventListener("mousedown", () => {
   increaseCanvasAction = setInterval(() => {
