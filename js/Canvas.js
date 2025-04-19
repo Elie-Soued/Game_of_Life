@@ -8,6 +8,10 @@ class Canvas {
       interval,
       width,
       height,
+      maxWidth,
+      maxHeight,
+      minWidth,
+      minHeight,
     } = config;
 
     this.c = HTMLelement.getContext("2d");
@@ -20,6 +24,10 @@ class Canvas {
     this.HTMLelement.height = height * this.interval;
     this.cols = this.HTMLelement.width;
     this.rows = this.HTMLelement.height;
+    this.minHeight = minHeight;
+    this.minWidth = minWidth;
+    this.maxHeight = maxHeight;
+    this.maxWidth = maxWidth;
     this.width = width;
     this.height = height;
     this.isRunning = true;
@@ -36,25 +44,25 @@ class Canvas {
   }
 
   increaseWidth() {
-    if (this.HTMLelement.width < 1130) {
+    if (this.HTMLelement.width < this.maxWidth) {
       return (this.HTMLelement.width = this.HTMLelement.width + 10);
     }
   }
 
   increaseHeight() {
-    if (this.HTMLelement.height < 720) {
+    if (this.HTMLelement.height < this.maxHeight) {
       return (this.HTMLelement.height = this.HTMLelement.height + 10);
     }
   }
 
   decreaseWidth() {
-    if (this.HTMLelement.width > 800) {
+    if (this.HTMLelement.width > this.minWidth) {
       return (this.HTMLelement.width = this.HTMLelement.width - 10);
     }
   }
 
   decreaseHeight() {
-    if (this.HTMLelement.height > 400) {
+    if (this.HTMLelement.height > this.minHeight) {
       return (this.HTMLelement.height = this.HTMLelement.height - 10);
     }
   }

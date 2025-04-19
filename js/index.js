@@ -19,6 +19,10 @@ const config = {
   interval: 20,
   width: 40,
   height: 20,
+  maxWidth: 1130,
+  maxHeight: 720,
+  minWidth: 800,
+  minHeight: 400,
 };
 
 const canvas = new Canvas(config);
