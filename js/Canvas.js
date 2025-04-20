@@ -1,5 +1,5 @@
 class Canvas {
-  constructor(config, gridArray) {
+  constructor(config) {
     const {
       HTMLelement,
       backgroundColor,
@@ -14,7 +14,6 @@ class Canvas {
       minHeight,
     } = config;
 
-    this.gridArray = gridArray;
     this.c = HTMLelement.getContext("2d");
     this.squareColor = squareColor;
     this.gridColor = gridColor;
@@ -29,9 +28,8 @@ class Canvas {
     this.maxWidth = maxWidth;
     this.rows = rows;
     this.cols = cols;
-    this.isRunning = true;
-    this.centerOfGrid =
-      (this.rows / 2) * (this.cols * this.interval) -
+    this.center =
+      (this.rows / 2) * this.cols * this.interval -
       this.cols * this.interval +
       this.cols / 2 -
       1;
@@ -83,14 +81,6 @@ class Canvas {
     this.HTMLelement.style.backgroundColor = backgroundColor;
   }
 
-  pauseGameofLife() {
-    this.isRunning = false;
-  }
-
-  restartGameofLife() {
-    this.isRunning = true;
-  }
-
   drawLine(init_x, init_y, final_x, final_y) {
     this.c.beginPath();
     this.c.moveTo(init_x, init_y);
@@ -122,7 +112,7 @@ class Canvas {
     this.c.stroke();
   }
 
-  renderTheSquares(grid, init, cols, rows) {
+  renderTheSquares(grid, cols, rows, init = false) {
     for (let j = 0; j < rows; j++) {
       for (let i = 0; i < cols; i++) {
         let x = i * this.interval;
@@ -139,248 +129,246 @@ class Canvas {
     }
   }
 
-  // toggleCell(x, y) {
-  //   for (let j = 0; j < this.HTMLelement.height; j++) {
-  //     for (let i = 0; i < this.HTMLelement.width; i++) {
-  //       let index = j * this.HTMLelement.width + i;
-  //       if (this.gridArray[index].x === x && grid[index].y === y) {
-  //         this.gridArray[index].toggleState();
-  //       }
-  //     }
-  //   }
-  // }
-
-  blinker(grid) {
-    grid[this.centerOfGrid].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid + 2 * this.cols * this.interval].state = 1;
+  toggleCell(x, y, grid, gridcols) {
+    let index = y * gridcols + x;
+    if (grid[index].state === 1) {
+      grid[index].state = 0;
+    } else if (grid[index].state === 0) {
+      grid[index].state = 1;
+    }
   }
 
-  beacon(grid) {
-    grid[this.centerOfGrid].state = 1;
-    grid[this.centerOfGrid + 1].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval + 2].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid + 2 * this.cols * this.interval + 3].state = 1;
+  blinker(grid, gridcols) {
+    grid[this.center].state = 1;
+    grid[this.center + 1 * gridcols].state = 1;
+    grid[this.center + 2 * gridcols].state = 1;
   }
 
-  glider(grid) {
-    grid[this.centerOfGrid].state = 1;
-    grid[this.centerOfGrid + 2 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid + 2 * this.cols * this.interval + 1].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval + 1].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval + 2].state = 1;
+  beacon(grid, gridcols) {
+    grid[this.center].state = 1;
+    grid[this.center + 1].state = 1;
+    grid[this.center + 1 * gridcols].state = 1;
+    grid[this.center + 3 * gridcols + 2].state = 1;
+    grid[this.center + 3 * gridcols + 3].state = 1;
+    grid[this.center + 2 * gridcols + 3].state = 1;
   }
 
-  pentadecathlon(grid) {
+  glider(grid, gridcols) {
+    grid[this.center].state = 1;
+    grid[this.center + 2 * gridcols].state = 1;
+    grid[this.center + 2 * gridcols + 1].state = 1;
+    grid[this.center + 1 * gridcols + 1].state = 1;
+    grid[this.center + 1 * gridcols + 2].state = 1;
+  }
+
+  pentadecathlon(grid, gridcols) {
     // First group (top section)
-    grid[this.centerOfGrid - 7 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid - 6 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid - 5 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid - 5 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid - 5 * this.cols * this.interval + 1].state = 1;
+    grid[this.center - 7 * gridcols].state = 1;
+    grid[this.center - 6 * gridcols].state = 1;
+    grid[this.center - 5 * gridcols].state = 1;
+    grid[this.center - 5 * gridcols - 1].state = 1;
+    grid[this.center - 5 * gridcols + 1].state = 1;
 
     // Second group (middle-top section)
-    grid[this.centerOfGrid - 2 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval + 1].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid + 2 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval + 1].state = 1;
+    grid[this.center - 2 * gridcols - 1].state = 1;
+    grid[this.center - 2 * gridcols].state = 1;
+    grid[this.center - 2 * gridcols + 1].state = 1;
+    grid[this.center - 1 * gridcols].state = 1;
+    grid[this.center].state = 1;
+    grid[this.center + 1 * gridcols].state = 1;
+    grid[this.center + 2 * gridcols].state = 1;
+    grid[this.center + 3 * gridcols].state = 1;
+    grid[this.center + 3 * gridcols - 1].state = 1;
+    grid[this.center + 3 * gridcols + 1].state = 1;
 
     // Third group (middle-bottom section)
-    grid[this.centerOfGrid + 6 * this.cols * this.interval + 1].state = 1;
-    grid[this.centerOfGrid + 6 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid + 6 * this.cols * this.interval].state = 1;
+    grid[this.center + 6 * gridcols + 1].state = 1;
+    grid[this.center + 6 * gridcols - 1].state = 1;
+    grid[this.center + 6 * gridcols].state = 1;
 
     // Fourth group (bottom section)
-    grid[this.centerOfGrid + 7 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid + 8 * this.cols * this.interval].state = 1;
+    grid[this.center + 7 * gridcols].state = 1;
+    grid[this.center + 8 * gridcols].state = 1;
   }
 
-  toad(grid) {
-    grid[this.centerOfGrid].state = 1;
-    grid[this.centerOfGrid + 1].state = 1;
-    grid[this.centerOfGrid + 2].state = 1;
-    grid[this.centerOfGrid + this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid + this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid + this.cols * this.interval + 1].state = 1;
+  toad(grid, gridcols) {
+    grid[this.center].state = 1;
+    grid[this.center + 1].state = 1;
+    grid[this.center + 2].state = 1;
+    grid[this.center + gridcols - 1].state = 1;
+    grid[this.center + gridcols].state = 1;
+    grid[this.center + gridcols + 1].state = 1;
   }
 
-  glidergun(grid) {
+  glidergun(grid, gridcols) {
     // Left block - moved further right (+3)
-    grid[this.centerOfGrid - 1 * this.cols * this.interval - 17].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval - 16].state = 1;
-    grid[this.centerOfGrid - 0 * this.cols * this.interval - 17].state = 1;
-    grid[this.centerOfGrid - 0 * this.cols * this.interval - 16].state = 1;
+    grid[this.center - 1 * gridcols - 17].state = 1;
+    grid[this.center - 1 * gridcols - 16].state = 1;
+    grid[this.center - 0 * gridcols - 17].state = 1;
+    grid[this.center - 0 * gridcols - 16].state = 1;
 
     // Left ship/boat formation - moved further right (+3)
-    grid[this.centerOfGrid - 3 * this.cols * this.interval - 4].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval - 5].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval - 6].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval - 7].state = 1;
-    grid[this.centerOfGrid - 0 * this.cols * this.interval - 7].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval - 7].state = 1;
-    grid[this.centerOfGrid + 2 * this.cols * this.interval - 6].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval - 5].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval - 4].state = 1;
+    grid[this.center - 3 * gridcols - 4].state = 1;
+    grid[this.center - 3 * gridcols - 5].state = 1;
+    grid[this.center - 2 * gridcols - 6].state = 1;
+    grid[this.center - 1 * gridcols - 7].state = 1;
+    grid[this.center - 0 * gridcols - 7].state = 1;
+    grid[this.center + 1 * gridcols - 7].state = 1;
+    grid[this.center + 2 * gridcols - 6].state = 1;
+    grid[this.center + 3 * gridcols - 5].state = 1;
+    grid[this.center + 3 * gridcols - 4].state = 1;
 
     // Middle complex pattern - moved further right (+3)
-    grid[this.centerOfGrid + 0 * this.cols * this.interval - 3].state = 1;
-    grid[this.centerOfGrid + 0 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid + 0 * this.cols * this.interval].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval - 2].state = 1;
-    grid[this.centerOfGrid + 2 * this.cols * this.interval - 2].state = 1;
+    grid[this.center + 0 * gridcols - 3].state = 1;
+    grid[this.center + 0 * gridcols - 1].state = 1;
+    grid[this.center + 0 * gridcols].state = 1;
+    grid[this.center - 1 * gridcols - 1].state = 1;
+    grid[this.center + 1 * gridcols - 1].state = 1;
+    grid[this.center - 2 * gridcols - 2].state = 1;
+    grid[this.center + 2 * gridcols - 2].state = 1;
 
     // Right structure - first vertical line - moved further right (+3)
-    grid[this.centerOfGrid - 1 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval + 3].state = 1;
+    grid[this.center - 1 * gridcols + 3].state = 1;
+    grid[this.center - 2 * gridcols + 3].state = 1;
+    grid[this.center - 3 * gridcols + 3].state = 1;
 
     // Right structure - second vertical line - moved further right (+3)
-    grid[this.centerOfGrid - 1 * this.cols * this.interval + 4].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval + 4].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval + 4].state = 1;
+    grid[this.center - 1 * gridcols + 4].state = 1;
+    grid[this.center - 2 * gridcols + 4].state = 1;
+    grid[this.center - 3 * gridcols + 4].state = 1;
 
     // Right structure - top and bottom points - moved further right (+3)
-    grid[this.centerOfGrid - 4 * this.cols * this.interval + 5].state = 1;
-    grid[this.centerOfGrid + 0 * this.cols * this.interval + 5].state = 1;
+    grid[this.center - 4 * gridcols + 5].state = 1;
+    grid[this.center + 0 * gridcols + 5].state = 1;
 
     // Right structure - far right top points - moved further right (+3)
-    grid[this.centerOfGrid - 4 * this.cols * this.interval + 7].state = 1;
-    grid[this.centerOfGrid - 5 * this.cols * this.interval + 7].state = 1;
+    grid[this.center - 4 * gridcols + 7].state = 1;
+    grid[this.center - 5 * gridcols + 7].state = 1;
 
     // Right structure - far right bottom points - moved further right (+3)
-    grid[this.centerOfGrid + 0 * this.cols * this.interval + 7].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval + 7].state = 1;
+    grid[this.center + 0 * gridcols + 7].state = 1;
+    grid[this.center + 1 * gridcols + 7].state = 1;
 
     // Far right block - moved further right (+3)
-    grid[this.centerOfGrid - 2 * this.cols * this.interval + 17].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval + 18].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval + 17].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval + 18].state = 1;
+    grid[this.center - 2 * gridcols + 17].state = 1;
+    grid[this.center - 2 * gridcols + 18].state = 1;
+    grid[this.center - 3 * gridcols + 17].state = 1;
+    grid[this.center - 3 * gridcols + 18].state = 1;
   }
 
-  pulsar(grid) {
+  pulsar(grid, gridcols) {
     // Top-left group
 
-    grid[this.centerOfGrid - 7 * this.cols * this.interval - 3].state = 1;
-    grid[this.centerOfGrid - 6 * this.cols * this.interval - 3].state = 1;
-    grid[this.centerOfGrid - 5 * this.cols * this.interval - 3].state = 1;
-    grid[this.centerOfGrid - 5 * this.cols * this.interval - 2].state = 1;
+    grid[this.center - 7 * gridcols - 3].state = 1;
+    grid[this.center - 6 * gridcols - 3].state = 1;
+    grid[this.center - 5 * gridcols - 3].state = 1;
+    grid[this.center - 5 * gridcols - 2].state = 1;
 
     // Top-right group
-    grid[this.centerOfGrid - 7 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid - 6 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid - 5 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid - 5 * this.cols * this.interval + 2].state = 1;
+    grid[this.center - 7 * gridcols + 3].state = 1;
+    grid[this.center - 6 * gridcols + 3].state = 1;
+    grid[this.center - 5 * gridcols + 3].state = 1;
+    grid[this.center - 5 * gridcols + 2].state = 1;
 
     // Bottom-left group
-    grid[this.centerOfGrid + 5 * this.cols * this.interval - 3].state = 1;
-    grid[this.centerOfGrid + 5 * this.cols * this.interval - 2].state = 1;
-    grid[this.centerOfGrid + 6 * this.cols * this.interval - 3].state = 1;
-    grid[this.centerOfGrid + 7 * this.cols * this.interval - 3].state = 1;
+    grid[this.center + 5 * gridcols - 3].state = 1;
+    grid[this.center + 5 * gridcols - 2].state = 1;
+    grid[this.center + 6 * gridcols - 3].state = 1;
+    grid[this.center + 7 * gridcols - 3].state = 1;
 
     // Bottom-right group
-    grid[this.centerOfGrid + 5 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid + 5 * this.cols * this.interval + 2].state = 1;
-    grid[this.centerOfGrid + 6 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid + 7 * this.cols * this.interval + 3].state = 1;
+    grid[this.center + 5 * gridcols + 3].state = 1;
+    grid[this.center + 5 * gridcols + 2].state = 1;
+    grid[this.center + 6 * gridcols + 3].state = 1;
+    grid[this.center + 7 * gridcols + 3].state = 1;
 
     // Left far edge
-    grid[this.centerOfGrid - 3 * this.cols * this.interval - 5].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval - 6].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval - 7].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval - 5].state = 1;
+    grid[this.center - 3 * gridcols - 5].state = 1;
+    grid[this.center - 3 * gridcols - 6].state = 1;
+    grid[this.center - 3 * gridcols - 7].state = 1;
+    grid[this.center - 2 * gridcols - 5].state = 1;
 
     // Left bottom edge
-    grid[this.centerOfGrid + 2 * this.cols * this.interval - 5].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval - 5].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval - 6].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval - 7].state = 1;
+    grid[this.center + 2 * gridcols - 5].state = 1;
+    grid[this.center + 3 * gridcols - 5].state = 1;
+    grid[this.center + 3 * gridcols - 6].state = 1;
+    grid[this.center + 3 * gridcols - 7].state = 1;
 
     // Right far edge
-    grid[this.centerOfGrid - 3 * this.cols * this.interval + 7].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval + 6].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval + 5].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval + 5].state = 1;
+    grid[this.center - 3 * gridcols + 7].state = 1;
+    grid[this.center - 3 * gridcols + 6].state = 1;
+    grid[this.center - 3 * gridcols + 5].state = 1;
+    grid[this.center - 2 * gridcols + 5].state = 1;
 
     // Right bottom edge
-    grid[this.centerOfGrid + 2 * this.cols * this.interval + 5].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval + 5].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval + 6].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval + 7].state = 1;
+    grid[this.center + 2 * gridcols + 5].state = 1;
+    grid[this.center + 3 * gridcols + 5].state = 1;
+    grid[this.center + 3 * gridcols + 6].state = 1;
+    grid[this.center + 3 * gridcols + 7].state = 1;
 
     // Bottom-right inner section
-    grid[this.centerOfGrid + 2 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval + 2].state = 1;
-    grid[this.centerOfGrid + 2 * this.cols * this.interval + 1].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval + 1].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval + 2].state = 1;
+    grid[this.center + 2 * gridcols + 3].state = 1;
+    grid[this.center + 1 * gridcols + 3].state = 1;
+    grid[this.center + 1 * gridcols + 2].state = 1;
+    grid[this.center + 2 * gridcols + 1].state = 1;
+    grid[this.center + 3 * gridcols + 1].state = 1;
+    grid[this.center + 3 * gridcols + 2].state = 1;
 
     // Bottom inner section
-    grid[this.centerOfGrid + 2 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid + 3 * this.cols * this.interval - 2].state = 1;
+    grid[this.center + 2 * gridcols - 1].state = 1;
+    grid[this.center + 3 * gridcols - 1].state = 1;
+    grid[this.center + 3 * gridcols - 2].state = 1;
 
     // Bottom-left inner section
-    grid[this.centerOfGrid + 1 * this.cols * this.interval - 2].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval - 3].state = 1;
-    grid[this.centerOfGrid + 2 * this.cols * this.interval - 3].state = 1;
+    grid[this.center + 1 * gridcols - 2].state = 1;
+    grid[this.center + 1 * gridcols - 3].state = 1;
+    grid[this.center + 2 * gridcols - 3].state = 1;
 
     // Middle-left inner section
-    grid[this.centerOfGrid - 1 * this.cols * this.interval - 2].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval - 3].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval - 3].state = 1;
+    grid[this.center - 1 * gridcols - 2].state = 1;
+    grid[this.center - 1 * gridcols - 3].state = 1;
+    grid[this.center - 2 * gridcols - 3].state = 1;
 
     // Middle-top inner section
-    grid[this.centerOfGrid - 3 * this.cols * this.interval - 2].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval - 1].state = 1;
+    grid[this.center - 3 * gridcols - 2].state = 1;
+    grid[this.center - 3 * gridcols - 1].state = 1;
+    grid[this.center - 2 * gridcols - 1].state = 1;
 
     // Middle-right inner section
-    grid[this.centerOfGrid - 2 * this.cols * this.interval + 1].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval + 1].state = 1;
-    grid[this.centerOfGrid - 3 * this.cols * this.interval + 2].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval + 2].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval + 3].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval + 3].state = 1;
+    grid[this.center - 2 * gridcols + 1].state = 1;
+    grid[this.center - 3 * gridcols + 1].state = 1;
+    grid[this.center - 3 * gridcols + 2].state = 1;
+    grid[this.center - 1 * gridcols + 2].state = 1;
+    grid[this.center - 1 * gridcols + 3].state = 1;
+    grid[this.center - 2 * gridcols + 3].state = 1;
   }
 
-  heavyweight(grid) {
+  heavyweight(grid, gridcols) {
     // Top row
-    grid[this.centerOfGrid - 1 * this.cols * this.interval - 3].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval - 2].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval + 0].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval + 2].state = 1;
-    grid[this.centerOfGrid - 1 * this.cols * this.interval + 3].state = 1;
+    grid[this.center - 1 * gridcols - 3].state = 1;
+    grid[this.center - 1 * gridcols - 2].state = 1;
+    grid[this.center - 1 * gridcols - 1].state = 1;
+    grid[this.center - 1 * gridcols + 0].state = 1;
+    grid[this.center - 1 * gridcols + 2].state = 1;
+    grid[this.center - 1 * gridcols + 3].state = 1;
 
     // Middle row
-    grid[this.centerOfGrid + 0 * this.cols * this.interval - 3].state = 1;
-    grid[this.centerOfGrid + 0 * this.cols * this.interval - 2].state = 1;
-    grid[this.centerOfGrid + 0 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid + 0 * this.cols * this.interval + 0].state = 1;
-    grid[this.centerOfGrid + 0 * this.cols * this.interval + 1].state = 1;
-    grid[this.centerOfGrid + 0 * this.cols * this.interval + 2].state = 1;
+    grid[this.center + 0 * gridcols - 3].state = 1;
+    grid[this.center + 0 * gridcols - 2].state = 1;
+    grid[this.center + 0 * gridcols - 1].state = 1;
+    grid[this.center + 0 * gridcols + 0].state = 1;
+    grid[this.center + 0 * gridcols + 1].state = 1;
+    grid[this.center + 0 * gridcols + 2].state = 1;
 
     // Bottom row
-    grid[this.centerOfGrid + 1 * this.cols * this.interval - 2].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval - 1].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval + 0].state = 1;
-    grid[this.centerOfGrid + 1 * this.cols * this.interval + 1].state = 1;
+    grid[this.center + 1 * gridcols - 2].state = 1;
+    grid[this.center + 1 * gridcols - 1].state = 1;
+    grid[this.center + 1 * gridcols + 0].state = 1;
+    grid[this.center + 1 * gridcols + 1].state = 1;
 
     // Top extra cells
-    grid[this.centerOfGrid - 2 * this.cols * this.interval + 2].state = 1;
-    grid[this.centerOfGrid - 2 * this.cols * this.interval + 1].state = 1;
+    grid[this.center - 2 * gridcols + 2].state = 1;
+    grid[this.center - 2 * gridcols + 1].state = 1;
   }
 }
 
